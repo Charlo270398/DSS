@@ -14,8 +14,14 @@ class CreateClinicasTable extends Migration
     public function up()
     {
         Schema::create('clinicas', function (Blueprint $table) {
-            $table->increments('id');
+            $table->unsignedInteger('id');//No hemos podido hacer una clave compuesta con uno de los dos valores de caracter autoincremental
+            $table->string('nombre');
+            $table->string('direccion');
+            $table->integer('id_box');
+            $table->timestamp('fecha_inauguracion');
+            $table->primary(['id', 'id_box']);
             $table->timestamps();
+            
         });
     }
 
