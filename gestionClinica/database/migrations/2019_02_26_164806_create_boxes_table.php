@@ -15,6 +15,8 @@ class CreateBoxesTable extends Migration
     {
         Schema::create('boxes', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('numero');
+            $table->integer('id_clinica')->references('id')->on('clinicas');
             $table->timestamps();
         });
     }
