@@ -12,12 +12,6 @@ class Clinica extends Model
     private $direccion;
     private $fecha_inauguracion;
 
-    public function __construct($nombre, $direccion, $fecha_inauguracion){
-        $this->nombre = $nombre;
-        $this->direccion = $direccion;
-        $this->fecha_inauguracion = $fecha_inauguracion;
-    }
-
     public function box(){
         return $this->hasMany('Box');
     }

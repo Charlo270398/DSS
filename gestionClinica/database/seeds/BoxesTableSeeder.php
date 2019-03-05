@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\Box;
 
 function anyadirDep($cli, $nombreDep){
 
@@ -24,14 +25,9 @@ class BoxesTableSeeder extends Seeder
     public function run()
     {
         // Borramos los datos de la tabla
-        DB::table('departamentos')->delete();
+        DB::table('boxes')->delete();
         
         // Añadimos una entrada a esta tabla
-        anyadirDep('Clinica Alicante', 'Odontologia');
-        anyadirDep('Clinica Alicante', 'Ginecologia');
-        anyadirDep('Clinica Alicante', 'Fisioterapia');
-        anyadirDep('Clinica Alicante', 'Oncoligia');
-        anyadirDep('Clinica Alicante', 'Radiografia');
-                
+            
     }
 }
