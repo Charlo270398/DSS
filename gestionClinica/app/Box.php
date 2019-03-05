@@ -8,10 +8,7 @@ use App\Clinica;
 class Box extends Model
 {
     private $numero;
-
-    public function __construct($numero){
-        $this->numero = $numero;
-    }
+    private $id_clinica;
 
     public function clinica(){
         return $this->belongsTo('Clinica');
