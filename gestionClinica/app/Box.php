@@ -3,13 +3,18 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Clinica;
 
 class Box extends Model
 {
     private $numero;
 
+    public function __construct($numero){
+        $this->numero = $numero;
+    }
+
     public function clinica(){
-        return $this->belongsTo('App\Clinica');
+        return $this->belongsTo('Clinica');
     }
 
     public function getNumero(){
