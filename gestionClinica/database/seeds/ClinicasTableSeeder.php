@@ -17,6 +17,7 @@ class ClinicasTableSeeder extends Seeder
         // Añadimos una entrada a esta tabla
         $clinica= new Clinica(['nombre' => 'Clinica Alicante', 'direccion' =>'C/Pascual 191 A',
          'fecha_inauguracion' => date('2015-10-10 10:10:10')]);
+         // Guardamos datos en la tabla
         $clinica->save();
     }
 }
