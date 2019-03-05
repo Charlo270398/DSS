@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\Clinica;
 
 class ClinicasTableSeeder extends Seeder
 {
@@ -14,6 +15,8 @@ class ClinicasTableSeeder extends Seeder
         // Borramos los datos de la tabla
         DB::table('clinicas')->delete();
         // Añadimos una entrada a esta tabla
-        DB::table('clinicas')->insert(['nombre'=>'Clinica Alicante', 'direccion'=>'C/Pascual 191 A', 'fecha_inauguracion' => date('2010-10-10 10:10:10')]);
+        $clinica= new Clinica(['nombre' => 'Clinica Alicante', 'direccion' =>'C/Pascual 191 A',
+         'fecha_inauguracion' => date('2015-10-10 10:10:10')]);
+        $clinica->save();
     }
 }
