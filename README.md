@@ -1,8 +1,11 @@
-DISEÑO DE SISTEMAS DE SOFTWARE
+# Gestión clínica Alicante 
 
 GESTIÓN CLÍNICA ALICANTE
 
-prueba git
+## Desarrolladores
 
-
+* Carlos Zamora Sanz
+* Juan Soliveres Olivares
+* Miguel Campello Román
+* Soufyan 
 ![](http://mailtrain.org/mailtrain.png)
