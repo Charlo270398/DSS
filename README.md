@@ -1,6 +1,5 @@
 # Gestión clínica Alicante 
-
-GESTIÓN CLÍNICA ALICANTE
+(Descripción)
 
 ## Desarrolladores
 
@@ -8,4 +7,6 @@ GESTIÓN CLÍNICA ALICANTE
 * Juan Soliveres Olivares
 * Miguel Campello Román
 * Soufyan 
+
+
 ![](http://mailtrain.org/mailtrain.png)
