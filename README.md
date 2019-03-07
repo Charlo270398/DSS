@@ -1,4 +1,8 @@
 # Gestión clínica Alicante 
+
+![](http://ilemiprojects.com/Altamira/wp-content/uploads/2016/10/banner-home-3.jpg)
+
+## Descripción del proyecto
 (Descripción)
 
 ## Desarrolladores
@@ -8,5 +12,7 @@
 * Miguel Campello Román
 * Soufyan Rhazili Raoui
 
+## Guía de instalación
+(Guía)
 
-![](http://ilemiprojects.com/Altamira/wp-content/uploads/2016/10/banner-home-3.jpg)
+
