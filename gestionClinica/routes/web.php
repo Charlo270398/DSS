@@ -12,5 +12,9 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home', array('name'=>'Carlos'));
+});
+
+Route::get('/pag2', function () {
+    return view('pag2', array('num'=>'2'));
 });
