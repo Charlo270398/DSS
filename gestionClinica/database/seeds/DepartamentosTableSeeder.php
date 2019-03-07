@@ -2,10 +2,7 @@
 use Illuminate\Database\Seeder;
 use App\Departamento;
 use App\Clinica;
-<<<<<<< HEAD
 
-=======
->>>>>>> Carlos
 function anyadirBox($cli, $num){
     $clinica= DB::table('clinicas')->where('nombre', $cli)->first();
     if($clinica != null){
@@ -25,10 +22,7 @@ class DepartamentosTableSeeder extends Seeder
     public function run()
     {
         $clinica= Clinica::where('nombre', '=', 'Clinica Alicante')->first();
-<<<<<<< HEAD
-
-=======
->>>>>>> Carlos
+        
 		// Borramos los datos de la tabla
         DB::table('departamentos')->delete();   
         // Añadimos una entrada a esta tabla
@@ -41,12 +35,6 @@ class DepartamentosTableSeeder extends Seeder
         $departamento= new Departamento(['id_clinica' => $clinica->id, 'nombre' => 'Oncologia']);
         $departamento->save();  
         $departamento= new Departamento(['id_clinica' => $clinica->id, 'nombre' => 'Radiografia']);
-<<<<<<< HEAD
         $departamento->save();  
-        $departamento= new Departamento(['id_clinica' => $clinica->id, 'nombre' => 'Odontologia']);
-        $departamento->save();  
-=======
-        $departamento->save();    
->>>>>>> Carlos
     }
 }
