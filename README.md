@@ -6,7 +6,7 @@
 * Carlos Zamora Sanz
 * Juan Soliveres Olivares
 * Miguel Campello Román
-* Soufyan 
+* Soufyan Rhazili Raoui
 
 
-![](http://mailtrain.org/mailtrain.png)
+![](http://ilemiprojects.com/Altamira/wp-content/uploads/2016/10/banner-home-3.jpg)
