@@ -11,13 +11,14 @@ class Clinica extends Model
     private $nombre;
     private $direccion;
     private $fecha_inauguracion;
+    
 
     public function box(){
-        return $this->hasMany('Box');
+        return $this->hasMany('App\Box');
     }
 
     public function departamentos(){
-        return $this->hasMany('Departamento');
+        return $this->hasMany('App\Departamento');
     }
 
     public function getNombre(){

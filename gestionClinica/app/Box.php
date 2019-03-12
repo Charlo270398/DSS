@@ -8,10 +8,9 @@ use App\Clinica;
 class Box extends Model
 {
     private $numero;
-    private $id_clinica;
 
     public function clinica(){
-        return $this->belongsTo('Clinica');
+        return $this->belongsTo('App\Clinica');
     }
 
     public function getNumero(){

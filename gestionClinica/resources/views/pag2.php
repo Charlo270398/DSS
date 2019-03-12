@@ -1,6 +1,6 @@
 <html>
     <head>
-        <title> Mi Web</title>
+        <title> Pagina 2</title>
     </head>
     <body>
         <h1>¡Hola, estás en la página <?php echo $num; ?>!</h1>

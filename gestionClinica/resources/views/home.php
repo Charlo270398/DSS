@@ -1,6 +1,6 @@
 <html>
     <head>
-        <title> Mi Web</title>
+        <title> Pagina 1</title>
     </head>
     <body>
         <h1>¡Hola <?php echo $name; ?>!</h1>

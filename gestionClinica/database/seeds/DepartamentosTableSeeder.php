@@ -6,7 +6,7 @@ use App\Clinica;
 function anyadirBox($cli, $num){
     $clinica= DB::table('clinicas')->where('nombre', $cli)->first();
     if($clinica != null){
-        DB::table('boxes')->insert(['numero' => $num, 'id_clinica'=>$clinica->id]);
+        DB::table('boxes')->insert(['numero' => $num, 'clinica_id'=>$clinica->id]);
     }
     else{
 		echo("ERROR: no existe $cli en la BD \n");    
@@ -26,15 +26,15 @@ class DepartamentosTableSeeder extends Seeder
 		// Borramos los datos de la tabla
         DB::table('departamentos')->delete();   
         // Añadimos una entrada a esta tabla
-        $departamento= new Departamento(['id_clinica' => $clinica->id, 'nombre' => 'Odontologia']);
+        $departamento= new Departamento(['clinica_id' => $clinica->id, 'nombre' => 'Odontologia']);
         $departamento->save();  
-        $departamento= new Departamento(['id_clinica' => $clinica->id, 'nombre' => 'Ginecologia']);
+        $departamento= new Departamento(['clinica_id' => $clinica->id, 'nombre' => 'Ginecologia']);
         $departamento->save();  
-        $departamento= new Departamento(['id_clinica' => $clinica->id, 'nombre' => 'Fisioterapia']);
+        $departamento= new Departamento(['clinica_id' => $clinica->id, 'nombre' => 'Fisioterapia']);
         $departamento->save();  
-        $departamento= new Departamento(['id_clinica' => $clinica->id, 'nombre' => 'Oncologia']);
+        $departamento= new Departamento(['clinica_id' => $clinica->id, 'nombre' => 'Oncologia']);
         $departamento->save();  
-        $departamento= new Departamento(['id_clinica' => $clinica->id, 'nombre' => 'Radiografia']);
+        $departamento= new Departamento(['clinica_id' => $clinica->id, 'nombre' => 'Radiografia']);
         $departamento->save();  
     }
 }

@@ -9,7 +9,7 @@ function anyadirDep($cli, $nombreDep){
     $clinica= DB::table('clinicas')->where('nombre', $cli)->first();
 
     if($clinica != null){
-        DB::table('departamentos')->insert(['nombre' => $nombreDep, 'id_clinica'=>$clinica->id]);
+        DB::table('departamentos')->insert(['nombre' => $nombreDep, 'clinica_id'=>$clinica->id]);
     }
     else{
 		echo("ERROR: no existe $cli en la BD \n");    
@@ -30,17 +30,17 @@ class BoxesTableSeeder extends Seeder
         DB::table('boxes')->delete();
         
         // Añadimos una entrada a esta tabla
-        $box= new Box(['numero' => 1, 'id_clinica' => $clinica->id]);
+        $box= new Box(['numero' => 1, 'clinica_id' => $clinica->id]);
         $box->save();
-        $box= new Box(['numero' => 2, 'id_clinica' => $clinica->id]);
+        $box= new Box(['numero' => 2, 'clinica_id' => $clinica->id]);
         $box->save();
-        $box= new Box(['numero' => 3, 'id_clinica' => $clinica->id]);
+        $box= new Box(['numero' => 3, 'clinica_id' => $clinica->id]);
         $box->save();
-        $box= new Box(['numero' => 4, 'id_clinica' => $clinica->id]);
+        $box= new Box(['numero' => 4, 'clinica_id' => $clinica->id]);
         $box->save();
-        $box= new Box(['numero' => 5, 'id_clinica' => $clinica->id]);
+        $box= new Box(['numero' => 5, 'clinica_id' => $clinica->id]);
         $box->save();
-        $box= new Box(['numero' => 6, 'id_clinica' => $clinica->id]);
+        $box= new Box(['numero' => 6, 'clinica_id' => $clinica->id]);
         $box->save();
             
     }

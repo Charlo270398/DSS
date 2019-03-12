@@ -8,9 +8,10 @@ use App\Clinica;
 class Departamento extends Model
 {
     private $nombre;
+    private $id_clinica;
 
     public function clinica(){
-        return $this->belongsTo('Clinica');
+        return $this->belongsTo('App\Clinica');
     }
 
     public function getNombre(){
