@@ -3,13 +3,14 @@
 <!DOCTYPE html>
 
 <html>
+  <link href="/css/navbar.css" rel="stylesheet">
     <nav>
-        <link href="/css/navbar.css" rel="stylesheet">
           <ul>
             <li><a href="/">Inicio</a></li>
             <li><a href="/pag2">Especialidades</a></li>
             <li><a href="/contact">Médicos</a></li>
-            <li style="float:right"><a class="active" href="/about">Iniciar sesión</a></li>
+            <li style="float:right"><a class="active" href="/about">Portal Paciente</a></li>
+            <li style="float:right"><a class="active" href="/about">Portal Médico</a></li>
           </ul> 
     </nav>
     <body>
