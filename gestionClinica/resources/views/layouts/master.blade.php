@@ -18,4 +18,11 @@
         @show
     </body>
     
+    <footer>
+      <h6>C/ Doctor Santiago Ramón y Cajal, 7</h6>
+      <h6>03503 Benidorm (Alicante)</h6>
+      <h6>T. (+34) 966 81 11 11</h6>
+      <h6>alicante@clinicas.com</h6>
+    </footer>
+    
 </html>

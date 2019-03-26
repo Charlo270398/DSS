@@ -33,4 +33,14 @@ body{
 a{
     color: rgb(26, 102, 173);
 }
+footer{
+    margin-top: 200px;
+    margin-bottom: 40px;
+    background-color: rgb(153, 153, 153);
+}
+h6{
+    text-align: right;
+    margin-bottom: -20px;
+    color: rgb(26, 102, 173);
+}
 
