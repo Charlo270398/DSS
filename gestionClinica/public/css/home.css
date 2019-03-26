@@ -28,3 +28,18 @@ div{
     margin-left: 50px;
     color: rgb(94, 90, 90);
 }
+
+p{
+    text-align: right;
+    color: rgb(26, 102, 173);
+    font-size: x-small;
+    margin-right: 5px;
+}
+
+footer{
+    margin-top: 200px;
+    margin-bottom: 20px;
+    background-color: rgb(153, 153, 153);
+    border-style: solid;
+    border-color:  rgb(94, 90, 90);
+}

@@ -34,8 +34,12 @@
                             <li class="liTexto"><strong>Orientados hacia la calidad.</strong> A través de una actitud proactiva y con el objetivo de mejorar cada día el servicio que prestamos a cada paciente en cualquier ámbito de nuestra actividad. Los detalles marcan la diferencia.</li>
                             <li class="liTexto"><strong>Orientados a la innovación y la tecnología.</strong> La tecnología como elemento facilitador de la relación con el paciente y a su vez como eje diferencial de nuestra propuesta sanitaria.</li>
                 </div>
-                
-                
+                <footer>
+                    <p>C/ Doctor Santiago Ramón y Cajal, 7</p>
+                    <p>03503 Benidorm (Alicante)</p>
+                    <p>T. (+34) 966 81 11 11</p>
+                    <p>alicante@clinicas.com</p>
+                </footer>
             </html>
         @stop
             

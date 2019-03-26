@@ -4,6 +4,8 @@ ul {
     padding: 0;
     overflow: hidden;
     background-color: rgb(200, 210, 216);
+    border-style: solid;
+    border-color:  rgb(94, 90, 90);
 }
 
 li {
@@ -19,7 +21,7 @@ li a {
 }
 
 li a:hover:not(.active) {
-    background-color: #111;
+    color: rgb(26, 102, 173);
 }
 
 .active {
@@ -27,20 +29,17 @@ li a:hover:not(.active) {
 }
 
 body{
-    background-color: rgb(224, 247, 231);;
+    background-color: rgb(224, 247, 231);
 }
 
 a{
     color: rgb(26, 102, 173);
 }
-footer{
-    margin-top: 200px;
-    margin-bottom: 40px;
-    background-color: rgb(153, 153, 153);
-}
+
 h6{
     text-align: right;
     margin-bottom: -20px;
     color: rgb(26, 102, 173);
 }
+
 

@@ -17,11 +17,17 @@
 <html>
     <body>
         <ol>
+             <div class = "text">
+                <h2>Listado de departamentos</h2>
+             </div>
+        </ol>
+        <ol>
             <?php foreach($departamentos as $key=>$value): ?>
-            <div class = "text">
-                <a href="/departamentos/<?php echo $value->id;?>">
-                      · <?php echo $value->nombre; ?></a>
-            </div>
+                <div class="btn-group">
+                    <a href="/departamentos/<?php echo $value->id;?>">
+                        <button><?php echo $value->nombre;?></button>
+                    </a> 
+                </div>
             <?php endforeach; ?>
         </ol>
     </body>

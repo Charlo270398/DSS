@@ -19,5 +19,6 @@ Route::get('/home', function () {
     return view('home');
 });
 
-Route::get('/departamentos','DepartamentosController@mostrarDepartamentos');
+Route::get('/departamentos','DepartamentosController@mostrarListaDepartamentos');
+Route::get('/departamentos/{id}', 'DepartamentosController@mostrarDepartamento');
 

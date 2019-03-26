@@ -4,12 +4,42 @@
 
 ol{
     margin-top: 20px;
+    margin-bottom: -20px;
     display: block;
     text-align: left;
     padding: 4px 20px;
     text-decoration: none;
+    
 }
 
 div{
     margin-bottom: 5px;
 }
+
+.btn-group button {
+    background-color: rgb(26, 102, 173);
+    border: 1px solid green; /* Green border */
+    color: white; /* White text */
+    padding: 25px 25px; /* Some padding */
+    cursor: pointer; /* Pointer/hand icon */
+    width: 100%; /* Set a width if needed */
+    display: block; /* Make the buttons appear below each other */
+  }
+  
+  .btn-group button:not(:last-child) {
+    border-bottom: none; /* Prevent double borders */
+  }
+  
+  /* Add a background color on hover */
+  .btn-group button:hover {
+    background-color: #3e8e41;
+  }
+  h2{
+    color: white; /* White text */
+    background-color: rgb(200, 210, 216);
+    text-align: center;
+    color: rgb(94, 90, 90);
+    padding: 15px 15px; /* Some padding */
+    border-style: solid;
+    border-color:  rgb(94, 90, 90);
+  }

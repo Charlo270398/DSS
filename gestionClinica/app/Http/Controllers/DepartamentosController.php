@@ -7,10 +7,15 @@ use App\Departamento;
 
 class DepartamentosController extends Controller
 {
-    public function mostrarDepartamentos() {
+    public function mostrarListaDepartamentos() {
         
-        $dep = Departamento::all(); // select * from users
+        $dep = Departamento::orderBy('nombre')->get();//Los devuelve ordenados alfabéticamente
 
-        return view('/departamentos', ['departamentos' => $dep]);
+        return view('/departamento/lista', ['departamentos' => $dep]);
+    }
+
+    public function mostrarDepartamento($id) {
+        $dep = Departamento::findOrFail($id);
+        return view('/departamento/departamento', ['departamento' => $dep]);
     }
 }

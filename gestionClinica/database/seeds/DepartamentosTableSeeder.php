@@ -26,15 +26,15 @@ class DepartamentosTableSeeder extends Seeder
 		// Borramos los datos de la tabla
         DB::table('departamentos')->delete();   
         // Añadimos una entrada a esta tabla
-        $departamento= new Departamento(['clinica_id' => $clinica->id, 'nombre' => 'Odontologia']);
+        $departamento= new Departamento(['clinica_id' => $clinica->id, 'nombre' => 'Odontología']);
         $departamento->save();  
-        $departamento= new Departamento(['clinica_id' => $clinica->id, 'nombre' => 'Ginecologia']);
+        $departamento= new Departamento(['clinica_id' => $clinica->id, 'nombre' => 'Ginecología']);
         $departamento->save();  
         $departamento= new Departamento(['clinica_id' => $clinica->id, 'nombre' => 'Fisioterapia']);
         $departamento->save();  
-        $departamento= new Departamento(['clinica_id' => $clinica->id, 'nombre' => 'Oncologia']);
+        $departamento= new Departamento(['clinica_id' => $clinica->id, 'nombre' => 'Oncología']);
         $departamento->save();  
-        $departamento= new Departamento(['clinica_id' => $clinica->id, 'nombre' => 'Radiografia']);
+        $departamento= new Departamento(['clinica_id' => $clinica->id, 'nombre' => 'Radiografía']);
         $departamento->save();  
     }
 }
