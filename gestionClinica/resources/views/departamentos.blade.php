@@ -9,6 +9,10 @@
 
 @section('body')
 <!DOCTYPE html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Departamentos</title>
+</head>
 <link href="/css/lists.css" rel="stylesheet">
 <html>
     <body>

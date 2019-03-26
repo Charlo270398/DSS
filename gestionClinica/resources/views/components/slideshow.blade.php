@@ -7,17 +7,17 @@
 
   <div class="slideshow-container">
 
-    <div class="mySlides fade">
+    <header class="mySlides fade">
       <img src="/images/5.jpg" style="width:100%">
-    </div>
+    </header>
 
-    <div class="mySlides fade">
+    <header class="mySlides fade">
       <img src="/images/6.jpg" style="width:100%">
-    </div>
+    </header>
 
-    <div class="mySlides fade">
+    <header class="mySlides fade">
       <img src="/images/7.jpg" style="width:100%">
-    </div>
+    </header>
 
   </div>
 
