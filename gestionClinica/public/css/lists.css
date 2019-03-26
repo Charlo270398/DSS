@@ -1,0 +1,18 @@
+.text{
+    color: rgb(26, 102, 173);
+}
+
+ol{
+    margin-top: 20px;
+    display: block;
+    text-align: left;
+    padding: 4px 20px;
+    text-decoration: none;
+}
+
+a{
+    color: greenyellow;
+}
+div{
+    margin-bottom: 5px;
+}

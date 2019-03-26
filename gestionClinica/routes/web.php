@@ -19,7 +19,5 @@ Route::get('/home', function () {
     return view('home');
 });
 
-Route::get('/pag2', function () {
-    return view('pag2', array('num'=>'2'));
-});
+Route::get('/departamentos','DepartamentosController@mostrarDepartamentos');
 
