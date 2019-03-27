@@ -22,3 +22,5 @@ Route::get('/home', function () {
 Route::get('/departamentos','DepartamentosController@mostrarListaDepartamentos');
 Route::get('/departamentos/{id}', 'DepartamentosController@mostrarDepartamento');
 
+Route::get('/medicos','MedicosController@mostrarListaMedicos');
+Route::get('/medicos/{id}', 'MedicosController@mostrarMedico');
