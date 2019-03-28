@@ -16,20 +16,18 @@
 <link href="/css/lists.css" rel="stylesheet">
 <html>
     <body>
-        <ol>
-             <div class = "text">
-                <h2>Listado de departamentos</h2>
-             </div>
-        </ol>
-        <ol>
+        <div>
+            <h2>Listado de departamentos</h2>
+        </div>
+        <div>
             <?php foreach($departamentos as $key=>$value): ?>
-                <div class="btn-group">
+                <ol class="btn-group">
                     <a href="/departamentos/<?php echo $value->id;?>">
                         <button><?php echo $value->nombre;?></button>
                     </a> 
-                </div>
+                </ol>
             <?php endforeach; ?>
-        </ol>
+            </div>
     </body>
 </html>
 @stop
