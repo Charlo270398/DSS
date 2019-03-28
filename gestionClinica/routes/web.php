@@ -22,10 +22,7 @@ Route::get('/home', function () {
 Route::get('/departamentos','DepartamentosController@mostrarListaDepartamentos');
 Route::get('/departamentos/{id}', 'DepartamentosController@mostrarDepartamento');
 
-<<<<<<< HEAD
 Route::get('/login/medico', function () { return view('/user/sesionmedico');});
 Route::get('/login/paciente', function () { return view('/user/sesionpaciente');});
-=======
 Route::get('/medicos','MedicosController@mostrarListaMedicos');
 Route::get('/medicos/{id}', 'MedicosController@mostrarMedico');
->>>>>>> e8f792b5e1b03b2350a72d84369de6b9bc818051
