@@ -34,7 +34,9 @@ class DepartamentosTableSeeder extends Seeder
         $departamento->save();  
         $departamento= new Departamento(['clinica_id' => $clinica->id, 'nombre' => 'Oncología']);
         $departamento->save();  
-        $departamento= new Departamento(['clinica_id' => $clinica->id, 'nombre' => 'Radiografía']);
+        $departamento= new Departamento(['clinica_id' => $clinica->id, 'nombre' => 'Radioterapia']);
         $departamento->save();  
+        $departamento= new Departamento(['clinica_id' => $clinica->id, 'nombre' => 'Dermatología']);
+        $departamento->save(); 
     }
 }

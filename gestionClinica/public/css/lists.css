@@ -27,10 +27,11 @@ ol{
 .btn-group button:not(:last-child) {
     border-bottom: none; /* Prevent double borders */
 }
-  
+
   /* Add a background color on hover */
 .btn-group button:hover {
-    background-color: #3e8e41;
+    background-color: #3e8e41; 
+
 }
 h2{
     text-align: center;
