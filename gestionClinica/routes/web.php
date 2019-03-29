@@ -22,17 +22,10 @@ Route::get('/home', function () {
 Route::get('/departamentos','DepartamentosController@mostrarListaDepartamentos');
 Route::get('/departamentos/{id}', 'DepartamentosController@mostrarDepartamento');
 
-<<<<<<< HEAD
-Route::get('/login/medico', function () { return view('/user/sesionmedico');});
-Route::get('/login/paciente', function () { return view('/user/sesionpaciente');});
-Route::get('/medicos','MedicosController@mostrarListaMedicos');
-Route::get('/medicos/{id}', 'MedicosController@mostrarMedico');
-=======
-
 Route::get('/login/medico', function () { return view('/user/sesionmedico');});
 Route::get('/login/paciente', function () { return view('/user/sesionpaciente');});
 
 Route::get('/medicos','MedicosController@mostrarListaMedicos');
 Route::get('/medicos/{id}', 'MedicosController@mostrarMedico');
 
->>>>>>> ec0e87fb0fba788d059c3ae97f9acffdd1d75360
+
