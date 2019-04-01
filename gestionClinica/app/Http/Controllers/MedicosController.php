@@ -10,13 +10,13 @@ class MedicosController extends Controller
 {
     public function mostrarListaMedicos(){
         $rol = Rol::where('nombre', '=', 'Medico')->first();
-        $users = Usuario::where('rol_id', '=', $rol->id)->paginate(3); //bootstrap4.blade
+        $users = Usuario::where('rol_id', '=', $rol->id)->paginate(5); //bootstrap4.blade
         return view('/medico/lista', ['medicos' => $users]);
     }
 
     public function mostrarListaMedicosPorNombre($nombre){
         $rol = Rol::where('nombre', '=', 'Medico')->first();
-        $users = Usuario::orwhere('apellidos', 'like', '%' . $nombre . '%')->where('rol_id', '=', $rol->id)->where('nombre', 'like', '%' . $nombre . '%')->paginate(3); //bootstrap4.blade
+        $users = Usuario::where('apellidos', 'like', '%' . $nombre . '%')->where('rol_id', '=', $rol->id)->paginate(5); //bootstrap4.blade
         return view('/medico/lista', ['medicos' => $users]);
     }
 

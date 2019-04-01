@@ -52,6 +52,16 @@ class usuariosTableSeeder extends Seeder
         'email' => 'medico5@gmail.com', 'num_colegiado' => '5','fecha_nacimiento' => date('2015-10-10 10:10:10'),
         'departamento_id' => $dep->id, 'rol_id' => $medico->id, 'pass' => '1234']);
         $usuario->save();
+
+        $usuario= new Usuario(['dni' => '00000005B','nombre' => 'Jorge', 'apellidos' =>'González Pérez',
+        'email' => 'medico6@gmail.com', 'num_colegiado' => '6','fecha_nacimiento' => date('2015-10-10 10:10:10'),
+        'departamento_id' => $dep->id, 'rol_id' => $medico->id, 'pass' => '1234']);
+        $usuario->save();
+
+        $usuario= new Usuario(['dni' => '00000006B','nombre' => 'Raúl', 'apellidos' =>'Mataix Escrivá',
+        'email' => 'medico7@gmail.com', 'num_colegiado' => '7','fecha_nacimiento' => date('2015-10-10 10:10:10'),
+        'departamento_id' => $dep->id, 'rol_id' => $medico->id, 'pass' => '1234']);
+        $usuario->save();
         
 
         //En esta sección metemos pacientes

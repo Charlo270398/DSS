@@ -36,7 +36,7 @@
                         foreach($medicos as $key=>$value): ?>
                         <ol>
                     <a href="/medicos/<?php echo $value->id;?>">
-                         <?php echo ($value->nombre . ' ' . $value->apellidos) ;?>
+                         <?php echo ($value->apellidos . ', ' . $value->nombre) ;?>
                     </a> 
                 </ol>
                 <?php endforeach;}else{?> 
@@ -46,8 +46,7 @@
             
         </div>
             
-            
-        </div>   
+        <br>
 
         {{ $medicos->links() }}
       
