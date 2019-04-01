@@ -20,8 +20,26 @@
              <h2>Listado de médicos</h2>
         </div>      
         <div>
-            <input  id="myInput" type="text" name="inputMedico" placeholder="Busca por nombre">
-        </div>  
+            <h4>Buscar médico:</h4>
+            <input id="myInput" type="text" name="inputMedico" placeholder="Busca por nombre">
+            
+            <ol>
+                <?php foreach($medicos as $key=>$value): ?>
+                    <a href="/medicos/<?php echo $value->id;?>">
+                         <?php echo ($value->nombre . $value->apellidos) ;?>
+                    </a> 
+                <?php endforeach; ?>
+                
+            </ol>
+
+            
+            
+        </div>   
+
+        {{ $medicos->links() }}
+      
+        
+        
     </body>
 </html>
 @stop
