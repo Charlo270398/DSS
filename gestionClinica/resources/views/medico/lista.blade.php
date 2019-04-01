@@ -19,7 +19,9 @@
         <div>
              <h2>Listado de médicos</h2>
         </div>      
-        <div>
+
+        <br> 
+        <div class="listdiv">
                 
             <ol>
             <h4>Buscar médico:</h4>
@@ -27,8 +29,8 @@
             <button onclick="window.location.href='/medicos' + getInput()" type="submit"> Buscar </button>
             </ol>
         </div>
-        
-        <div>
+        <br>
+        <div class="listdiv">
             
 
                 <?php 

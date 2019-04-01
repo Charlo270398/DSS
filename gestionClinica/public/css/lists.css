@@ -12,6 +12,11 @@ ol{
     
 }
 
+.listdiv{
+    margin: auto;
+    width: 50%;
+}
+
 .btn-group button {
     background-color: rgb(26, 102, 173);
     border: 2px solid white;

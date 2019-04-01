@@ -35,6 +35,11 @@ div{
     width: 50%;
 }
 
+.formdiv{
+    width: 50%;
+    margin: auto;
+}
+
 header{
     margin-top: 20px;
     background-color: rgb(200, 210, 216);

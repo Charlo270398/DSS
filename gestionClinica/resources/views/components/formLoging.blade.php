@@ -6,8 +6,9 @@
     <header class = "text">
             <h2>Iniciar sesión como <?php echo $tipo ?></h2>
     </header>
-
-    <form id="form-login" action="#">  <!-- Hay que mirar el method=POST-->
+    <br>
+    <br>
+    <form class="formdiv" id="form-login" action="#">  <!-- Hay que mirar el method=POST-->
         <div>
         <div>
             <h3><p><label for="nombre">Usuario:</label></p></h3>
