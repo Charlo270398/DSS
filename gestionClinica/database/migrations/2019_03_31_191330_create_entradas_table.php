@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateBoxesTable extends Migration
+class CreateEntradasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,13 @@ class CreateBoxesTable extends Migration
      */
     public function up()
     {
-        Schema::create('boxes', function (Blueprint $table) {
+        Schema::create('entradas', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('numero');
-            $table->integer('clinica_id')->unsigned();
-            $table->foreign('clinica_id')->references('id')->on('clinicas')->onDelete('cascade');
-            
-            $table->timestamps(); 
+            $table->integer('usuario_id');
+            $table->foreign('usuario_id')->references('id')->on('usuarios');
+            $table->string('texto');
+            $table->timestamp('fecha');
+            $table->timestamps();
         });
     }
 
@@ -30,6 +30,6 @@ class CreateBoxesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('boxes');
+        
     }
 }

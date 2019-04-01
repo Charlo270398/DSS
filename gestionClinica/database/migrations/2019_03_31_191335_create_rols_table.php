@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateDepartamentosTable extends Migration
+class CreateRolsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,11 @@ class CreateDepartamentosTable extends Migration
      */
     public function up()
     {
-        Schema::enableForeignKeyConstraints();
-        Schema::create('departamentos', function (Blueprint $table) {
+
+        Schema::create('rols', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('clinica_id')->unsigned();
-            $table->foreign('clinica_id')->references('id')->on('clinicas')->onDelete('cascade');
             $table->string('nombre');
-            $table->timestamps(); 
+            $table->timestamps();
         });
     }
 
@@ -31,6 +29,6 @@ class CreateDepartamentosTable extends Migration
     public function down()
     {
         Schema::dropIfExists('usuarios');
-        Schema::dropIfExists('departamentos');
+        Schema::dropIfExists('rols'); //Borramos antes usuarios porque si no hay errores
     }
 }
