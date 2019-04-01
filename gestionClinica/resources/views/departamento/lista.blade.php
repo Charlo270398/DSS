@@ -19,7 +19,8 @@
         <div>
             <h2>Listado de departamentos</h2>
         </div>
-        <div>
+        <br>
+        <div class = "listdiv">
             <?php foreach($departamentos as $key=>$value): ?>
                 <ol class="btn-group">
                     <a href="/departamentos/<?php echo $value->id;?>">
