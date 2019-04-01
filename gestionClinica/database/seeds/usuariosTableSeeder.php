@@ -23,21 +23,26 @@ class usuariosTableSeeder extends Seeder
         // Borramos los datos de la tabla
         DB::table('usuarios')->delete();
         
-        $usuario= new Usuario(['dni' => '00000000A','nombre' => 'Usuario1', 'apellidos' =>'Apellidos1',
-        'email' => 'usuario1@gmail.com', 'num_colegiado' => '1','fecha_nacimiento' => date('2015-10-10 10:10:10'),
-        'departamento_id' => $dep->id, 'rol_id' => $admin->id]);
+        //Usuario administrador
+
+        $usuario= new Usuario(['dni' => '00000000A','nombre' => 'Admin', 'apellidos' =>'Admin',
+        'email' => 'admin@gmail.com', 'num_colegiado' => null,'fecha_nacimiento' => date('2015-10-10 10:10:10'),
+        'departamento_id' => null, 'rol_id' => $admin->id, 'pass' => '1234']);
         $usuario->save();
 
-        $usuario= new Usuario(['dni' => '00000000B','nombre' => 'Usuario2', 'apellidos' =>'Apellidos1',
+        //En esta sección metemos médicos
+
+        $usuario= new Usuario(['dni' => '00000000B','nombre' => 'Usuario2', 'apellidos' =>'Apellidos2',
         'email' => 'usuario2@gmail.com', 'num_colegiado' => '2','fecha_nacimiento' => date('2015-10-10 10:10:10'),
-        'departamento_id' => $dep->id, 'rol_id' => $paciente->id]);
+        'departamento_id' => $dep->id, 'rol_id' => $medico->id, 'pass' => '1234']);
         $usuario->save();
 
-        $usuario= new Usuario(['dni' => '00000000C','nombre' => 'Usuario3', 'apellidos' =>'Apellidos1',
-        'email' => 'usuario3@gmail.com', 'num_colegiado' => '3','fecha_nacimiento' => date('2015-10-10 10:10:10'),
-        'departamento_id' => $dep->id, 'rol_id' => $medico->id]);
-        $usuario->save();
+        //En esta sección metemos pacientes
 
+        $usuario= new Usuario(['dni' => '00000000C','nombre' => 'Usuario3', 'apellidos' =>'Apellidos3',
+        'email' => 'usuario3@gmail.com', 'num_colegiado' => null,'fecha_nacimiento' => date('2015-10-10 10:10:10'),
+        'departamento_id' => null, 'rol_id' => $paciente->id, 'pass' => '1234']);
+        $usuario->save();
         
     }
 }
