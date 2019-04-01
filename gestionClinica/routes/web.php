@@ -27,5 +27,6 @@ Route::get('/login/paciente', function () { return view('/user/sesionpaciente');
 
 Route::get('/medicos','MedicosController@mostrarListaMedicos');
 Route::get('/medicos/{id}', 'MedicosController@mostrarMedico');
+Route::get('/medicos&{nombre}', 'MedicosController@mostrarListaMedicosPorNombre');
 
 

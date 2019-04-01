@@ -14,6 +14,12 @@ class MedicosController extends Controller
         return view('/medico/lista', ['medicos' => $users]);
     }
 
+    public function mostrarListaMedicosPorNombre($nombre){
+        $rol = Rol::where('nombre', '=', 'Medico')->first();
+        $users = Usuario::where('rol_id', '=', $rol->id)->where('nombre', 'like', '%' . $nombre . '%')->paginate(3); //bootstrap4.blade
+        return view('/medico/lista', ['medicos' => $users]);
+    }
+
     public function mostrarListaMedicosDepartamento($id_dep){
        //TODO
     }
