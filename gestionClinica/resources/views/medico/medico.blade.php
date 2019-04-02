@@ -17,14 +17,13 @@
 <html>
     <body>
         <div>
-            <h2><?php echo $medico->nombre . ' ' . $medico->apellidos; ?></h2>
+            <h2>Ficha del doctor</h2>
         </div>
         <br>
         <div class = "listdiv">
-            <h2 class = "h3">Ficha del doctor</h2>
-            <br>
+            <p><strong>Nombre: </strong><?php echo $medico->nombre . ' ' . $medico->apellidos; ?></p>
             <p><strong>Número de colegiado:</strong> <?php echo $medico->num_colegiado?></p>
-            <p><strong>Departamento:</strong> <a href= "/departamentos/<?php echo $departamento->departamento_id?>"><?php echo $departamento->nombre?></a></p>
+            <p><strong>Departamento:</strong> <a href= '/departamentos/<?php echo $medico->departamento_id?>'><?php echo $departamento->nombre?></a></p>
             <p><strong>Email:</strong> <?php echo $medico->email?></p>
         </div>
     </body>
