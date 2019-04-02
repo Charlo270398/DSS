@@ -13,4 +13,22 @@ class ClinicaController extends Controller
         $cli = $a->mostrarClinica();
         return view('/clinica/editar', ['clinica' => $cli] );
     }
+    
+    public function editarClinica(Request $request) {
+        $a = new ClinicaDAO();
+        $cli = $a->mostrarClinica();
+        $cli->id = $request->input('id');
+        $cli->nombre = $request->input('nombre');
+        $cli->direccion = $request->input('direccion');
+        $cli->fecha_inauguracion = $request->input('fecha_inauguracion');
+       
+            if($a->actualizarClinica($cli)){
+                return view('/clinica/editar', ['clinica' => $cli] );
+            }else{
+                return view('/error' );
+            }
+  
+        
+        
+    }
 }

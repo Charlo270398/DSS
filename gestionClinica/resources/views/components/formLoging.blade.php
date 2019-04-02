@@ -18,6 +18,7 @@
             <h3><p><label for="pass">Contraseña:</label></p></h3>
             <input class="inputText" name="pass" type="password" id="pass" class="pass" placeholder="Pon tu contraseña" ></p>
         </div>
+        <br>
         <div>
             <input class="submitButton" name="submit" type="submit" id="button" value="Entrar" onclick=""/>
         </div> 

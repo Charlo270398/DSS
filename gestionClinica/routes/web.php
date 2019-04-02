@@ -34,4 +34,10 @@ Route::get('/medicos&{nombre}', 'MedicosController@mostrarListaMedicosPorNombre'
 Route::get('/admin/{id}','AdminController@mostrarMenu');
 Route::get('/clinica/edit','ClinicaController@mostrarEditForm');
 
+Route::post('clinica/editar_create', [
+    'uses' => 'ClinicaController@editarClinica'
+  ]);
 
+Route::get('clinica/editar_create', [
+    'uses' => 'ClinicaController@editarClinica'
+]);

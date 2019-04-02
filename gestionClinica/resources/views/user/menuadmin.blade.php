@@ -21,10 +21,10 @@
         </div>
         <br>
         <div>
-            <ul>    <h4>Clínica: <a href="/clinica/edit"> Editar </a>    </h4></ul>
-            <ul>    <h4>Departamentos:  <a href="/departamento/add"> Añadir </a> <a href="/departamento/edit"> Editar </a> <a href="/departamento/delete"> Borrar </a>    </h4></ul>
-            <ul>    <h4>Boxes: <a href="/box/edit"> Añadir </a> <a href="/box/delete"> Borrar </a>    </h4></ul>
-            <ul>    <h4>Medicos: <a href="/medico/add"> Dar de alta </a> <a href="/medico/edit"> Editar </a>  <a href="/medico/delete"> Borrar </a>   </h4></ul>
+            <ul> <h4>Clínica: <a href="/clinica/edit"> Editar </a>    </h4></ul>
+            <ul> <h4>Departamentos:  <a href="/departamento/add"> Añadir </a> <a href="/departamento/editList"> Editar </a> <a href="/departamento/delete"> Borrar </a>    </h4></ul>
+            <ul> <h4>Boxes: <a href="/box/editList"> Añadir </a> <a href="/box/delete"> Borrar </a>    </h4></ul>
+            <ul> <h4>Medicos: <a href="/medico/add"> Dar de alta </a> <a href="/medico/editList"> Editar </a>  <a href="/medico/delete"> Borrar </a>   </h4></ul>
         </div>
     </body>
 </html>
