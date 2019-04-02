@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Usuario;
 use App\Rol;
+use App\Departamento;
 
 class MedicosController extends Controller
 {
@@ -16,7 +17,7 @@ class MedicosController extends Controller
 
     public function mostrarListaMedicosPorNombre($nombre){
         $rol = Rol::where('nombre', '=', 'Medico')->first();
-        $users = Usuario::where('apellidos', 'like', '%' . $nombre . '%')->where('rol_id', '=', $rol->id)->paginate(5); //bootstrap4.blade
+        $users = Usuario::whereRaw("apellidos like  '%$nombre%' collate utf8_general_ci ")->where('rol_id', '=', $rol->id)->paginate(5); //bootstrap4.blade
         return view('/medico/lista', ['medicos' => $users]);
     }
 
@@ -26,6 +27,7 @@ class MedicosController extends Controller
 
     public function mostrarMedico($id) {
         $user = Usuario::findOrFail($id);
-        return view('/medico/medico', ['medico' => $user]);
+        $dep = Departamento::findOrFail($user->departamento_id);
+        return view('/medico/medico', ['medico' => $user, 'departamento' => $dep]);
     }
 }
