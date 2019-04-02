@@ -29,6 +29,9 @@ Route::get('/medicos','MedicosController@mostrarListaMedicos');
 Route::get('/medicos/{id}', 'MedicosController@mostrarMedico');
 Route::get('/medicos&{nombre}', 'MedicosController@mostrarListaMedicosPorNombre');
 
+
+//Administracion
 Route::get('/admin/{id}','AdminController@mostrarMenu');
+Route::get('/clinica/edit','ClinicaController@mostrarEditForm');
 
 
