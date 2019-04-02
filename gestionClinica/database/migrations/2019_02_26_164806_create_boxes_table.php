@@ -15,7 +15,7 @@ class CreateBoxesTable extends Migration
     {
         Schema::create('boxes', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('numero');
+            $table->integer('numero')->unique();
             $table->integer('clinica_id')->unsigned();
             $table->foreign('clinica_id')->references('id')->on('clinicas')->onDelete('cascade');
             

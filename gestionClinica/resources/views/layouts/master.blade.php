@@ -5,7 +5,7 @@
 <html>
   <link href="/css/main.css" rel="stylesheet">
     <nav>
-        <ul>
+        <ul class="navBar">
           <li><a href="/">Inicio</a></li>
           <li><a href="/departamentos">Especialidades</a></li>
           <li><a href="/medicos">Médicos</a></li>

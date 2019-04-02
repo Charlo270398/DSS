@@ -1,4 +1,4 @@
-ul {
+.navBar {
     list-style-type: none;
     margin: 0;
     padding: 0;
@@ -32,7 +32,7 @@ body{
     background-color: rgb(224, 247, 231);
 }
 
-a{
+.aBlue{
     color: rgb(26, 102, 173);
 }
 

@@ -1,0 +1,26 @@
+a{
+    color: rgb(26, 102, 173);
+    font-size: small;
+    margin: 10px;
+}
+.title{
+    margin-top: 20px;
+    background-color: rgb(200, 210, 216);
+    text-align: center;
+    color: rgb(94, 90, 90);
+    padding: 10px 10px; /* Some padding */
+    border-style: solid;
+    border-color:  rgb(94, 90, 90);
+    border-radius: 15px;
+}
+
+div{
+    margin-top: 20px;
+    background-color: rgb(200, 210, 216);
+    text-align: left;
+    color: rgb(94, 90, 90);
+    padding: 10px 10px; /* Some padding */
+    border-style: solid;
+    border-color:  rgb(94, 90, 90);
+    border-radius: 15px;
+}
