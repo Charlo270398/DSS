@@ -31,13 +31,10 @@ Route::get('/medicos&{nombre}', 'MedicosController@mostrarListaMedicosPorNombre'
 
 
 //Administracion
-Route::get('/admin/{id}','AdminController@mostrarMenu');
-Route::get('/clinica/edit','ClinicaController@mostrarEditForm');
+Route::get('/admin/{id}','UsuarioController@autenticarAdmin');
+Route::get('/clinica/edit','ClinicaController@mostrarEditarForm');
 
 Route::post('clinica/editar_create', [
     'uses' => 'ClinicaController@editarClinica'
-  ]);
-
-Route::get('clinica/editar_create', [
-    'uses' => 'ClinicaController@editarClinica'
 ]);
+

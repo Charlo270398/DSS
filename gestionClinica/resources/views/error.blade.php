@@ -1,10 +1,4 @@
-
-
-
-
- 
-            <!DOCTYPE html>
-            <link href="/css/home.css" rel="stylesheet">
+<!DOCTYPE html>
             <html>
                 <head>
                     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -14,7 +8,9 @@
                 <header>
                     <h1>HAY UN PUTO ERROR</h1>
                 </header>
-               
+                <body>
+                    <p>Error en cuestión: <?php echo $error ?> </p>
+                </body>
             </html>
 
             
