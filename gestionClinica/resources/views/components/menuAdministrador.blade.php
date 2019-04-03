@@ -1,13 +1,4 @@
 
-@extends('layouts.master')
-
-@section('title', 'Page Title')
-
-@section('sidebar')
-    @parent
-@stop
-
-@section('body')
 <!DOCTYPE html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -16,10 +7,6 @@
 <link href="/css/menus.css" rel="stylesheet">
 <html>
     <body>
-        <div class = "title">
-            <h2>Bienvenido <?php echo $user->nombre ?> </h2>
-        </div>
-        <br>
         <div>
             <ul> <h2>Panel del administrador</h2></ul>
             <ul> <h4>Clínica: <a class="aPanel" href="/clinica/edit"> Editar </a>    </h4></ul>
@@ -29,5 +16,5 @@
         </div>
     </body>
 </html>
-@stop
+
 

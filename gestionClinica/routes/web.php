@@ -29,6 +29,7 @@ Route::get('/medicos','MedicosController@mostrarListaMedicos');
 Route::get('/medicos/{id}', 'MedicosController@mostrarMedico');
 Route::get('/medicos&{nombre}', 'MedicosController@mostrarListaMedicosPorNombre');
 
+Route::get('/usuario/{id}','UsuarioController@autenticarUsuario');
 
 //Administracion
 Route::get('/admin/{id}','UsuarioController@autenticarAdmin');
@@ -38,3 +39,5 @@ Route::post('clinica/editar_create', [
     'uses' => 'ClinicaController@editarClinica'
 ]);
 
+//Pacientes
+Route::get('/paciente/{id}','UsuarioController@autenticarPaciente');

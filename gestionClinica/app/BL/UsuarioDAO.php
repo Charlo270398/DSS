@@ -29,25 +29,22 @@ class UsuarioDAO
         }
     }
 
-    public function autenticarAdmin($id){
+    public function mostrarRol($id){
         try{
             $user  = Usuario::findOrFail($id); 
-            $rol = Rol::where('nombre', 'like', 'Administrador')->first();
-            if($user->rol_id == $rol->id){
-                return true;
-            }else{
-                return false;
-            }
+            $rol  = Rol::findOrFail($user->rol_id); 
+            return $rol;
+            
         }catch(\Exception $ex){
             return false;
         }
     }
 
-    public function autenticarMedico($id){
+    public function autenticar($id){
         try{
             $user  = Usuario::findOrFail($id); 
-            $rol = Rol::where('nombre', 'like', 'Medico')->first();
-            if($user->rol_id == $rol->id){
+            //TODO el tema contraseñas y tal, de momento pues podemos iniciar sesion
+            if($user != null){
                 return true;
             }else{
                 return false;
@@ -56,19 +53,6 @@ class UsuarioDAO
             return false;
         }
     }
-
-    public function autenticarPaciente($id){
-        try{
-            $user  = Usuario::findOrFail($id); 
-            $rol = Rol::where('nombre', 'like', 'Paciente')->first();
-            if($user->rol_id == $rol->id){
-                return true;
-            }else{
-                return false;
-            }
-        }catch(\Exception $ex){
-            return false;
-        }
-    }
+    
 }
 ?>
