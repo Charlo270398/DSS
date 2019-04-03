@@ -3,12 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\BL\UsuarioDAO;
+use App\BL\UserDAO;
 
 class UsuarioController extends Controller
 {
     public function autenticarAdmin($id){
-        $u = new UsuarioDAO();
+        $u = new UserDAO();
         if($u->autenticarAdmin($id)){
             return view('/user/menuusuario', ['user' => $u->mostrarUsuario($id), 'tipo' => 'Administrador'] );
         }else{
@@ -22,7 +22,7 @@ class UsuarioController extends Controller
     }
 
     public function autenticarPaciente($id){
-        $u = new UsuarioDAO();
+        $u = new UserDAO();
         if($u->autenticarPaciente($id)){
             return view('/user/menuusuario', ['user' => $u->mostrarUsuario($id), 'tipo' => 'Paciente']);
         }else{
@@ -31,7 +31,7 @@ class UsuarioController extends Controller
     }
 
     public function autenticarUsuario($id){
-        $u = new UsuarioDAO();
+        $u = new UserDAO();
         if($u->autenticar($id)){
             return view('/user/menuusuario', ['user' => $u->mostrarUsuario($id), 'tipo' => $u->mostrarRol($id)]);
         }else{

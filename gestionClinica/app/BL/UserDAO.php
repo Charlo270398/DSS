@@ -1,13 +1,13 @@
 <?php
 
 namespace App\BL;
-use App\Usuario;
+use App\User;
 use App\Rol;
 
-class UsuarioDAO
+class UserDAO
 {
     public function mostrarUsuario($id) {
-        $user  = Usuario::findOrFail($id); //Puesto que solo tenemos clinica alicante usamos el primero
+        $user  = User::findOrFail($id); //Puesto que solo tenemos clinica alicante usamos el primero
         return $user;
     }
 
@@ -31,7 +31,7 @@ class UsuarioDAO
 
     public function mostrarRol($id){
         try{
-            $user  = Usuario::findOrFail($id); 
+            $user  = User::findOrFail($id); 
             $rol  = Rol::findOrFail($user->rol_id); 
             return $rol;
             
@@ -42,7 +42,7 @@ class UsuarioDAO
 
     public function autenticar($id){
         try{
-            $user  = Usuario::findOrFail($id); 
+            $user  = User::findOrFail($id); 
             //TODO el tema contraseñas y tal, de momento pues podemos iniciar sesion
             if($user != null){
                 return true;

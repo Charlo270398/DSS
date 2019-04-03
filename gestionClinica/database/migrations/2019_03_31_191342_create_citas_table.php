@@ -16,9 +16,9 @@ class CreateCitasTable extends Migration
         Schema::create('citas', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('medico_id');
-            $table->foreign('medico_id')->references('id')->on('usuarios');
+            $table->foreign('medico_id')->references('id')->on('users');
             $table->integer('paciente_id');
-            $table->foreign('paciente_id')->references('id')->on('usuarios');
+            $table->foreign('paciente_id')->references('id')->on('users');
             $table->timestamp('fecha');
             $table->timestamps();
         });
