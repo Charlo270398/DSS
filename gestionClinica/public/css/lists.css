@@ -2,11 +2,21 @@
     color: rgb(26, 102, 173);
 }
 
+.ulPag{
+    padding: 5px 5px;
+    text-align: center;
+}
+
 ol{
     display: block;
     text-align: left;
 
     text-decoration: none;
+}
+
+.paginatediv{
+    margin: auto;
+    width: 25%;
 }
 
 .listdiv{
