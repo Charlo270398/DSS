@@ -29,7 +29,7 @@
                 <p><strong>Nombre:</strong> <input type="inputText" name="nombre" value="<?php echo $clinica->nombre?>" ></p>
                 <p><strong>Direccion:</strong> <input type="inpuText" name="direccion" value="<?php echo $clinica->direccion?>"> </p>
                 <p><strong>Fecha inauguracion:</strong> <input type="inputText" name="fecha_inauguracion" value="<?php echo $clinica->fecha_inauguracion?>" ></p>
-                <p><button type="submit">Editar</button> <button type="button" data-dismiss="modal" onclick="window.location.href='/admin/1'">Salir</button></p>
+                <p><button type="submit">Editar</button> <button type="button" data-dismiss="modal" onclick="window.location.href='/usuario/1'">Salir</button></p>
             </div>
         </form>
     </body>

@@ -32,11 +32,16 @@ Route::get('/medicos&{nombre}', 'MedicosController@mostrarListaMedicosPorNombre'
 Route::get('/usuario/{id}','UsuarioController@autenticarUsuario');
 
 //Administracion
-Route::get('/admin/{id}','UsuarioController@autenticarAdmin');
 Route::get('/clinica/edit','ClinicaController@mostrarEditarForm');
+Route::get('/box/add','BoxController@mostrarAddForm');
 
+//Metodos post
 Route::post('clinica/editar_create', [
     'uses' => 'ClinicaController@editarClinica'
+]);
+
+Route::post('box/editar_create', [
+    'uses' => 'BoxController@addBox'
 ]);
 
 //Pacientes
