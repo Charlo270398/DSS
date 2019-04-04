@@ -4,18 +4,25 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Departamento;
+use App\Rol;
+use App\Usuario;
 
 class DepartamentosController extends Controller
 {
     public function mostrarListaDepartamentos() {
         
-        $dep = Departamento::orderBy('nombre')->get();//Los devuelve ordenados alfabéticamente
+        $dep = Departamento::orderBy('nombre')->get(); //Los devuelve ordenados alfabéticamente
 
         return view('/departamento/lista', ['departamentos' => $dep]);
     }
 
     public function mostrarDepartamento($id) {
+
         $dep = Departamento::findOrFail($id);
-        return view('/departamento/departamento', ['departamento' => $dep]);
+        $rol = Rol::where('nombre', '=', 'Medico')->first();
+        $users = Usuario::where('rol_id', '=', $rol->id)->paginate(5); //bootstrap4.blade
+
+        return view('/departamento/departamento', ['departamento' => $dep,'medicos' => $users]);
     }
+
 }
