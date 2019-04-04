@@ -29,6 +29,15 @@ class BoxDAO
         }
     }
 
+    public function addBox($box){
+        try{
+            $box->save();
+            return true;
+        }catch(\Exception $ex){
+            return false;
+        }
+    }
+
     public function borrarBox($box){
         try{
             $box->delete();
