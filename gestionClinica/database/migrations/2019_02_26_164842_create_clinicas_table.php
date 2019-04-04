@@ -17,9 +17,8 @@ class CreateClinicasTable extends Migration
             $table->increments('id');
             $table->string('nombre');
             $table->string('direccion');
-            $table->timestamp('fecha_inauguracion');
-            $table->timestamps();
-            
+            $table->timestamp('fecha_inauguracion');   
+            $table->timestamps();       
         });
     }
 

@@ -1,5 +1,19 @@
-DISEÑO DE SISTEMAS DE SOFTWARE
+![](http://ilemiprojects.com/Altamira/wp-content/uploads/2016/10/banner-home-3.jpg)
 
-GESTIÓN CLÍNICA ALICANTE
+# Gestión clínica Alicante 
 
-prueba git
+## Descripción del proyecto
+(Descripción)
+
+## Desarrolladores
+
+* Carlos Zamora Sanz
+* Juan Soliveres Olivares
+* Miguel Campello Román
+* Soufyan Rhazili Raoui
+
+## Guía de instalación
+(Guía)
+
+
+

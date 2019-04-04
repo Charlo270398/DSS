@@ -13,11 +13,14 @@ class CreateDepartamentosTable extends Migration
      */
     public function up()
     {
+        Schema::enableForeignKeyConstraints();
         Schema::create('departamentos', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('id_clinica')->references('id')->on('clinicas');
+            $table->integer('clinica_id')->unsigned();
+            $table->foreign('clinica_id')->references('id')->on('clinicas')->onDelete('cascade');
             $table->string('nombre');
-            $table->timestamps();
+            $table->string('imagen')->nullable(false);;
+            $table->timestamps(); 
         });
     }
 
@@ -28,6 +31,7 @@ class CreateDepartamentosTable extends Migration
      */
     public function down()
     {
+        Schema::dropIfExists('users');
         Schema::dropIfExists('departamentos');
     }
 }

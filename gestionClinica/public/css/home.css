@@ -1,0 +1,45 @@
+h1{
+    color: rgb(26, 102, 173);
+    text-align: center;
+    margin-top: 10px;
+}
+
+h2{
+    color: rgb(26, 102, 173);
+    text-align: center;
+}
+h3{
+    color: rgb(94, 90, 90);
+    text-align: left;
+    margin-top: 10px;
+    margin-left: 20px;
+}
+
+h4{
+    color: rgb(94, 90, 90);
+    text-align: center;
+}
+
+div{
+    margin-top: 70px; 
+}
+
+.liTexto{
+    margin-left: 50px;
+    color: rgb(94, 90, 90);
+}
+
+p{
+    text-align: right;
+    color: rgb(26, 102, 173);
+    font-size: x-small;
+    margin-right: 5px;
+}
+
+footer{
+    margin-top: 200px;
+    margin-bottom: 20px;
+    background-color: rgb(153, 153, 153);
+    border-style: solid;
+    border-color:  rgb(94, 90, 90);
+}

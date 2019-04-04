@@ -1,6 +1,8 @@
 <?php
 
 namespace App;
+use App\Box;
+use App\Departamento;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -8,7 +10,8 @@ class Clinica extends Model
 {
     private $nombre;
     private $direccion;
-    private $fecha_inaguracion;
+    private $fecha_inauguracion;
+    
 
     public function box(){
         return $this->hasMany('App\Box');
@@ -34,12 +37,12 @@ class Clinica extends Model
         $this->direccion = $direccion;
     }
 
-    public function getFecha_inaguracion(){
-        return $this->fecha_inaguracion;
+    public function getFecha_inauguracion(){
+        return $this->fecha_inauguracion;
     }
 
-    public function setFecha_inaguracion($fecha_inaguracion){
-        $this->fecha_inaguracion = $fecha_inaguracion;
+    public function setFecha_inauguracion($fecha_inauguracion){
+        $this->fecha_inauguracion = $fecha_inauguracion;
     }
 }
 ?>
