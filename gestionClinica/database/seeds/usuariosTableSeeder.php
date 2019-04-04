@@ -19,16 +19,13 @@ class UsuariosTableSeeder extends Seeder
         $medico= Rol::where('nombre', '=', 'Medico')->first();
         $paciente= Rol::where('nombre', '=', 'Paciente')->first();
 
-<<<<<<< HEAD
         $dep1= Departamento::where('nombre', '=', 'Odontología')->first();
         $dep2= Departamento::where('nombre', '=', 'Ginecología')->first();
         $dep3= Departamento::where('nombre', '=', 'Fisioterapia')->first();
         $dep4= Departamento::where('nombre', '=', 'Oncología')->first();
         $dep5= Departamento::where('nombre', '=', 'Radioterapia')->first();
         $dep6= Departamento::where('nombre', '=', 'Dermatología')->first();
-=======
         $dep= Departamento::all();
->>>>>>> Develop
         // Borramos los datos de la tabla
         DB::table('users')->delete();
         
@@ -46,7 +43,6 @@ class UsuariosTableSeeder extends Seeder
 
         //En esta sección metemos médicos
 
-<<<<<<< HEAD
         $usuario= new Usuario(['dni' => '00000000B','nombre' => 'Medico1', 'apellidos' =>'ApellidosMedico1',
         'email' => 'medico1@gmail.com', 'num_colegiado' => '1','fecha_nacimiento' => date('2015-10-10 10:10:10'),
         'departamento_id' => $dep1->id, 'rol_id' => $medico->id, 'pass' => '1234']);
@@ -91,38 +87,6 @@ class UsuariosTableSeeder extends Seeder
         'email' => 'medico11@gmail.com', 'num_colegiado' => '11','fecha_nacimiento' => date('2015-10-10 10:10:10'),
         'departamento_id' => $dep3->id, 'rol_id' => $medico->id, 'pass' => '1234']);
         $usuario->save();
-=======
-        $User= new User(['dni' => '00000000B','nombre' => 'Keylor', 'apellidos' =>'Navas',
-        'email' => 'keylortucu@gmail.com', 'num_colegiado' => '1','fecha_nacimiento' => date('2015-10-10 10:10:10'),
-        'departamento_id' => $dep[0]->id, 'rol_id' => $medico->id, 'pass' => '1234']);
-        $User->save();
-        $User= new User(['dni' => '00000001B','nombre' => 'Daniel', 'apellidos' =>'Wass',
-        'email' => 'daniwass@gmail.com', 'num_colegiado' => '2','fecha_nacimiento' => date('2015-10-10 10:10:10'),
-        'departamento_id' => $dep[1]->id, 'rol_id' => $medico->id, 'pass' => '1234']);
-        $User->save();
-        $User= new User(['dni' => '00000002B','nombre' => 'Sergio', 'apellidos' =>'Ramos García',
-        'email' => 'sergitocamero@gmail.com', 'num_colegiado' => '3','fecha_nacimiento' => date('2015-10-10 10:10:10'),
-        'departamento_id' => $dep[2]->id, 'rol_id' => $medico->id, 'pass' => '1234']);
-        $User->save();
-        $User= new User(['dni' => '00000003B','nombre' => 'Luka', 'apellidos' =>'Modric',
-        'email' => 'tulukita@gmail.com', 'num_colegiado' => '4','fecha_nacimiento' => date('2015-10-10 10:10:10'),
-        'departamento_id' => $dep[3]->id, 'rol_id' => $medico->id, 'pass' => '1234']);
-        $User->save();
-        $User= new User(['dni' => '00000004B','nombre' => 'Karim', 'apellidos' =>'Benzema',
-        'email' => 'extorsionador@gmail.com', 'num_colegiado' => '5','fecha_nacimiento' => date('2015-10-10 10:10:10'),
-        'departamento_id' => $dep[4]->id, 'rol_id' => $medico->id, 'pass' => '1234']);
-        $User->save();
-
-        $User= new User(['dni' => '00000005B','nombre' => 'Jorge', 'apellidos' =>'González Pérez',
-        'email' => 'medico6@gmail.com', 'num_colegiado' => '6','fecha_nacimiento' => date('2015-10-10 10:10:10'),
-        'departamento_id' => $dep[5]->id, 'rol_id' => $medico->id, 'pass' => '1234']);
-        $User->save();
-
-        $User= new User(['dni' => '00000006B','nombre' => 'Raúl', 'apellidos' =>'Mataix Escrivá',
-        'email' => 'medico7@gmail.com', 'num_colegiado' => '7','fecha_nacimiento' => date('2015-10-10 10:10:10'),
-        'departamento_id' => $dep[1]->id, 'rol_id' => $medico->id, 'pass' => '1234']);
-        $User->save();
->>>>>>> Develop
         
 
         //En esta sección metemos pacientes

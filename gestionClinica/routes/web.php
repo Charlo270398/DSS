@@ -21,7 +21,6 @@ Route::get('/home', function () {
 
 Route::get('/departamentos','DepartamentosController@mostrarListaDepartamentos');
 Route::get('/departamentos/{id}', 'DepartamentosController@mostrarDepartamento');
-//Route::get('/departamentos/{id}', 'MedicosController@mostrarMedico');
 
 Route::get('/login/medico', function () { return view('/user/sesionmedico');});
 Route::get('/login/paciente', function () { return view('/user/sesionpaciente');});

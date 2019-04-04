@@ -23,21 +23,22 @@
         </ol>
         <br>
         <?php if(strcmp($departamento->nombre,"Odontología")==0){ ?>
-            <center><img src="/images/odontologia.jpg" style="width:1000px;height:375px;"></center>
+            <center><img src="/images/odontologia.jpg" style="width:1000px;height:275px;"></center>
         <?php } elseif(strcmp($departamento->nombre,"Ginecología")==0){ ?>
-            <center><img src="/images/ginecologia.jpg" style="width:1000px;height:375px;"></center>
+            <center><img src="/images/ginecologia.jpg" style="width:1000px;height:275px;"></center>
         <?php } elseif(strcmp($departamento->nombre,"Fisioterapia")==0){ ?>
-            <center><img src="/images/fisioterapia.jpg" style="width:1000px;height:375px;"></center>
+            <center><img src="/images/fisioterapia.jpg" style="width:1000px;height:275px;"></center>
         <?php } elseif(strcmp($departamento->nombre,"Oncología")==0){ ?>
-            <center><img src="/images/oncologia.jpg" style="width:1000px;height:375px;"></center>
+            <center><img src="/images/oncologia.jpg" style="width:1000px;height:275px;"></center>
         <?php } elseif(strcmp($departamento->nombre,"Radioterapia")==0){ ?>
-            <center><img src="/images/radioterapia.jpg" style="width:1000px;height:375px;"></center>
+            <center><img src="/images/radioterapia.jpg" style="width:1000px;height:275px;"></center>
         <?php } elseif(strcmp($departamento->nombre,"Dermatología")==0){ ?>
-            <center><img src="/images/dermatologia.jpg" style="width:1000px;height:375px;"></center>
+            <center><img src="/images/dermatologia.jpg" style="width:1000px;height:275px;"></center>
         <?php } ?>    
         <br>
         <br>
         <div class="listdiv">
+            <h2>Lista de Médicos:</h2>
             <?php 
                 if (count($medicos)!=0){
                     foreach($medicos as $key=>$value): ?>
