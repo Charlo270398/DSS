@@ -31,11 +31,11 @@
         <div class="listDivContainer">
                 <?php 
                     if (count($medicos)!=0){
-                        $i=0;
+                       
                         foreach($medicos as $key=>$value): ?>
                         <ol>
                     <a href="/medicos/<?php echo $value->id;?>">
-                         <?php $i++; echo ($value->apellidos . ', ' . $value->nombre) ;?>
+                         <?php  echo ($value->apellidos . ', ' . $value->nombre) ;?>
                     </a> 
                 </ol>
                 <?php endforeach;}else{?> 

@@ -9,7 +9,7 @@ class DepartamentoDAO
 {
 
     public function mostrarDepartamento($id) {
-        $departamento  = Departamento::findOrFail($id)->first(); 
+        $departamento = Departamento::where('id', '=', $id)->first();
         return $departamento;
     }
 
@@ -19,8 +19,8 @@ class DepartamentoDAO
     }
 
     public function mostrarListaDepartamentos() {
-        $departamentoes  = Departamento::all(); 
-        return $departamentoes;
+        $departamentos  = Departamento::all(); 
+        return $departamentos;
     }
 
     public function actualizarDepartamento($departamento){
@@ -52,7 +52,7 @@ class DepartamentoDAO
 
     public function mostrarMedicosDepartamento($id) {
         $rol = Rol::where('nombre', '=', 'Medico')->first();
-        $user = User::where('rol_id', '=', $rol->id)->paginate(5);
+        $user = User::whereRaw("rol_id =  $rol->id and departamento_id = $id")->paginate(5);
         return $user;
     }
 }

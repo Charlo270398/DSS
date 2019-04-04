@@ -15,15 +15,14 @@
 </head>
 <link href="/css/lists.css" rel="stylesheet">
 <html>
+    <header>
+         <h2>Departamento de <?php echo $departamento->nombre; ?></h2>
+    </header>
     <br>
     <div>
         <img class = "depImages" src='<?php echo $departamento->imagen;?>'>
     </div>
-    <header>
-         <h2>Departamento de <?php echo $departamento->nombre; ?></h2>
-    </header>
     <body>
-        <br>
         <br>
         <div class="listDivContainer">
             <h2>Lista de Médicos:</h2>

@@ -11,7 +11,7 @@ class DepartamentosController extends Controller
     public function mostrarListaDepartamentos() {
         
         $d = new DepartamentoDAO();
-        return view('/departamento/lista', ['departamentos' => $d->mostrarListaDepartamentosAlfabetica()]); //La devuelve Alfabeticamente por defecto
+        return view('/departamento/lista', ['departamentos' => $d->mostrarListaDepartamentos()]); //La devuelve Alfabeticamente por defecto
     }
 
     public function mostrarDepartamento($id) {
