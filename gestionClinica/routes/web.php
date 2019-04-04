@@ -44,11 +44,17 @@ Route::get('/usuario/{id}','UsuarioController@autenticarUsuario');
 //Administracion
 Route::get('/clinica/edit','ClinicaController@mostrarEditarForm');
 Route::get('/box/add','BoxController@mostrarAddForm');
-
+Route::get('/departamento/add','DepartamentosController@mostrarAddForm');
 //Metodos post
 Route::post('clinica/editar_create', [
     'uses' => 'ClinicaController@editarClinica'
 ]);
+
+Route::post('clinica/editar_create', [
+    'uses' => 'DepartamentosController@addDepartamento'
+]);
+
+
 Route::post('box/editar_create', [
     'uses' => 'BoxController@addBox'
 ]);
