@@ -26,17 +26,17 @@ class DepartamentosTableSeeder extends Seeder
 		// Borramos los datos de la tabla
         DB::table('departamentos')->delete();   
         // Añadimos una entrada a esta tabla
-        $departamento= new Departamento(['clinica_id' => $clinica->id, 'nombre' => 'Odontología']);
+        $departamento= new Departamento(['clinica_id' => $clinica->id, 'nombre' => 'Odontología', 'imagen' => '/images/departamentos/odontologia.jpg']);
         $departamento->save();  
-        $departamento= new Departamento(['clinica_id' => $clinica->id, 'nombre' => 'Ginecología']);
+        $departamento= new Departamento(['clinica_id' => $clinica->id, 'nombre' => 'Ginecología', 'imagen' => '/images/departamentos/ginecologia.jpg']);
         $departamento->save();  
-        $departamento= new Departamento(['clinica_id' => $clinica->id, 'nombre' => 'Fisioterapia']);
+        $departamento= new Departamento(['clinica_id' => $clinica->id, 'nombre' => 'Fisioterapia', 'imagen' => '/images/departamentos/fisioterapia.jpg']);
         $departamento->save();  
-        $departamento= new Departamento(['clinica_id' => $clinica->id, 'nombre' => 'Oncología']);
+        $departamento= new Departamento(['clinica_id' => $clinica->id, 'nombre' => 'Oncología', 'imagen' => '/images/departamentos/oncologia.jpg']);
         $departamento->save();  
-        $departamento= new Departamento(['clinica_id' => $clinica->id, 'nombre' => 'Radioterapia']);
+        $departamento= new Departamento(['clinica_id' => $clinica->id, 'nombre' => 'Radioterapia', 'imagen' => '/images/departamentos/radioterapia.jpg']);
         $departamento->save();  
-        $departamento= new Departamento(['clinica_id' => $clinica->id, 'nombre' => 'Dermatología']);
+        $departamento= new Departamento(['clinica_id' => $clinica->id, 'nombre' => 'Dermatología', 'imagen' => '/images/departamentos/dermatologia.jpg']);
         $departamento->save(); 
     }
 }

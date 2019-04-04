@@ -21,6 +21,7 @@
         </div>
         <br>
         <div class = "listdiv">
+            <br>
             <?php foreach($departamentos as $key=>$value): ?>
                 <ol class="btn-group">
                     <a href="/departamentos/<?php echo $value->id;?>">
@@ -28,6 +29,7 @@
                     </a> 
                 </ol>
             <?php endforeach; ?>
+            <br>
             </div>
     </body>
 </html>
