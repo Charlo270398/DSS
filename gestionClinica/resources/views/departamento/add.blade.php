@@ -17,7 +17,7 @@
 <html>
     <body>
         <div class ="formDivHeader">
-            <h2>Añadir DEPARTAMENTO</h2>
+            <h2>Añadir Departamento</h2>
         </div>
         <br>
 
