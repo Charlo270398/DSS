@@ -15,12 +15,13 @@
 </head>
 <link href="/css/lists.css" rel="stylesheet">
 <html>
+    <header>
+        <h2>Ficha del doctor</h2>
+    </header>
     <body>
-        <div>
-            <h2>Ficha del doctor</h2>
-        </div>
         <br>
-        <div class = "listdiv">
+        <br>
+        <div class = "listDivContainer">
             <p><strong>Nombre: </strong><?php echo $medico->nombre . ' ' . $medico->apellidos; ?></p>
             <p><strong>Número de colegiado:</strong> <?php echo $medico->num_colegiado?></p>
             <p><strong>Departamento:</strong> <a href= '/departamentos/<?php echo $medico->departamento_id?>'><?php echo $departamento->nombre?></a></p>

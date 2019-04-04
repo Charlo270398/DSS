@@ -15,12 +15,13 @@
 </head>
 <link href="/css/lists.css" rel="stylesheet">
 <html>
+    <header>
+        <h2>Listado de departamentos</h2>
+    </header>
     <body>
-        <div>
-            <h2>Listado de departamentos</h2>
-        </div>
+        
         <br>
-        <div class = "listdiv">
+        <div class = "listDivContainer">
             <br>
             <?php foreach($departamentos as $key=>$value): ?>
                 <ol class="btn-group">

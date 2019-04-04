@@ -11,6 +11,11 @@ class UserDAO
         return $user;
     }
 
+    public function mostrarListaUsuarios() {
+        $user  = User::orderBy('apellidos')->get();//Ordenado por apelidos
+        return $user;
+    }
+
     public function actualizarUsuario($user){
         try{
             $user->save();

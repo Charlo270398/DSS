@@ -10,7 +10,7 @@ class BoxDAO
         return $box;
     }
 
-    public function mostrarLixtaBoxesOrdenadosPorNum() {
+    public function mostrarListaBoxesOrdenadosPorNum() {
         $boxes  = Box::orderBy('numero')->get(); 
         return $boxes;
     }

@@ -3,26 +3,23 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Departamento;
-use App\Rol;
-use App\User;
+use App\BL\DepartamentoDAO;
+use App\BL\UserDAO;
 
 class DepartamentosController extends Controller
 {
     public function mostrarListaDepartamentos() {
         
-        $dep = Departamento::orderBy('nombre')->get(); //Los devuelve ordenados alfabéticamente
-
-        return view('/departamento/lista', ['departamentos' => $dep]);
+        $d = new DepartamentoDAO();
+        return view('/departamento/lista', ['departamentos' => $d->mostrarListaDepartamentosAlfabetica()]); //La devuelve Alfabeticamente por defecto
     }
 
     public function mostrarDepartamento($id) {
 
-        $dep = Departamento::findOrFail($id);
-        $rol = Rol::where('nombre', '=', 'Medico')->first();
-        $users = User::where('rol_id', '=', $rol->id)->paginate(5); //bootstrap4.blade
+        $d = new DepartamentoDAO();
+     
 
-        return view('/departamento/departamento', ['departamento' => $dep,'medicos' => $users]);
+        return view('/departamento/departamento', ['departamento' => $d->mostrarDepartamento($id),'medicos' => $d->mostrarMedicosDepartamento($id)]);
     }
 
 }

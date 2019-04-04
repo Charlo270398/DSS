@@ -11,6 +11,7 @@
 |
 */
 
+//HOME
 Route::get('/', function () {
     return redirect('/home');
 });
@@ -19,12 +20,15 @@ Route::get('/home', function () {
     return view('home');
 });
 
+//Departamentos
 Route::get('/departamentos','DepartamentosController@mostrarListaDepartamentos');
 Route::get('/departamentos/{id}', 'DepartamentosController@mostrarDepartamento');
 
+//Login
 Route::get('/login/medico', function () { return view('/user/sesionmedico');});
 Route::get('/login/paciente', function () { return view('/user/sesionpaciente');});
 
+//Medicos
 Route::get('/medicos','MedicosController@mostrarListaMedicos');
 Route::get('/medicos/{id}', 'MedicosController@mostrarMedico');
 Route::get('/medicos&{nombre}', 'MedicosController@mostrarListaMedicosPorNombre');
