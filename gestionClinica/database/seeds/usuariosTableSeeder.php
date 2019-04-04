@@ -5,7 +5,7 @@ use App\User;
 use App\Rol;
 use App\Departamento;
 
-class UsuariosTableSeeder extends Seeder
+class usuariosTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
