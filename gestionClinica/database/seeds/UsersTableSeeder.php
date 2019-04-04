@@ -43,26 +43,7 @@ class UsersTableSeeder extends Seeder
 
         //En esta sección metemos médicos
 
-        $usuario= new User(['dni' => '00000000B','nombre' => 'Medico1', 'apellidos' =>'ApellidosMedico1',
-        'email' => 'medico1@gmail.com', 'num_colegiado' => '1','fecha_nacimiento' => date('2015-10-10 10:10:10'),
-        'departamento_id' => $dep1->id, 'rol_id' => $medico->id, 'pass' => '1234']);
-        $usuario->save();
-        $usuario= new User(['dni' => '00000001B','nombre' => 'Medico2', 'apellidos' =>'ApellidosMedico2',
-        'email' => 'medico2@gmail.com', 'num_colegiado' => '2','fecha_nacimiento' => date('2015-10-10 10:10:10'),
-        'departamento_id' => $dep2->id, 'rol_id' => $medico->id, 'pass' => '1234']);
-        $usuario->save();
-        $usuario= new User(['dni' => '00000002B','nombre' => 'Medico3', 'apellidos' =>'ApellidosMedico3',
-        'email' => 'medico3@gmail.com', 'num_colegiado' => '3','fecha_nacimiento' => date('2015-10-10 10:10:10'),
-        'departamento_id' => $dep1->id, 'rol_id' => $medico->id, 'pass' => '1234']);
-        $usuario->save();
-        $usuario= new User(['dni' => '00000003B','nombre' => 'Medico4', 'apellidos' =>'ApellidosMedico4',
-        'email' => 'medico4@gmail.com', 'num_colegiado' => '4','fecha_nacimiento' => date('2015-10-10 10:10:10'),
-        'departamento_id' => $dep3->id, 'rol_id' => $medico->id, 'pass' => '1234']);
-        $usuario->save();
-        $usuario= new User(['dni' => '00000004B','nombre' => 'Medico5', 'apellidos' =>'ApellidosMedico5',
-        'email' => 'medico5@gmail.com', 'num_colegiado' => '5','fecha_nacimiento' => date('2015-10-10 10:10:10'),
-        'departamento_id' => $dep1->id, 'rol_id' => $medico->id, 'pass' => '1234']);
-        $usuario->save();
+        
         $usuario= new User(['dni' => '00000005B','nombre' => 'Jorge', 'apellidos' =>'González Pérez',
         'email' => 'medico6@gmail.com', 'num_colegiado' => '6','fecha_nacimiento' => date('2015-10-10 10:10:10'),
         'departamento_id' => $dep3->id, 'rol_id' => $medico->id, 'pass' => '1234']);
