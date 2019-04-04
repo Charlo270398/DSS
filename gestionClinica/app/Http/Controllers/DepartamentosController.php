@@ -35,7 +35,7 @@ class DepartamentosController extends Controller
         if($b->addDepartamento($box)){
             return view('/departamento/add', ['departamento' => $box] );
         }else{
-            //return view('/error', ['error' => 'Error añadiendo el departamento'] );
+            return view('/error', ['error' => 'Error añadiendo el departamento'] );
         }
     }
 
