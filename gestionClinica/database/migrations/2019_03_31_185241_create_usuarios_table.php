@@ -27,7 +27,7 @@ class CreateUsuariosTable extends Migration
             //Exclusivo de médico
             $table->string('num_colegiado')->nullable()->unique();
             $table->integer('departamento_id')->nullable()->unsigned();
-            $table->foreign('departamento_id')->references('id')->on('departamentos');
+            $table->foreign('departamento_id')->references('id')->on('departamentos')->onDelete('cascade');
             $table->integer('rol_id')->unsigned();
             $table->foreign('rol_id')->references('id')->on('rols');
 

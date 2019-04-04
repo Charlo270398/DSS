@@ -18,8 +18,8 @@ class CreateDepartamentosTable extends Migration
             $table->increments('id');
             $table->integer('clinica_id')->unsigned();
             $table->foreign('clinica_id')->references('id')->on('clinicas')->onDelete('cascade');
-            $table->string('nombre');
-            $table->string('imagen')->nullable(false);;
+            $table->string('nombre')->unique();
+            $table->string('imagen')->nullable(false);
             $table->timestamps(); 
         });
     }

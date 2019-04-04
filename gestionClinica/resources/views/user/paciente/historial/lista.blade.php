@@ -11,41 +11,39 @@
 <!DOCTYPE html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Médicos</title>
+    <title>Historial</title>
 </head>
 <link href="/css/lists.css" rel="stylesheet">
 <html>
     <header>
-        <h2>Listado de médicos</h2>
+        <h2>Historial clínico</h2>
     </header> 
     <body>
         <br> 
         <div class="listDivContainer">
-            <ol>
-                <h4>Buscar médico:</h4>
-                <input id="myInput" type="text" name="inputMedico" placeholder="Busca por nombre o apellidos">
-                <button onclick="window.location.href='/medicos' + getInput()" type="submit"> Buscar </button>
-            </ol>
+            <a href="/usuario/<?php echo $user->id;?>/historial&antiguas">Fecha ascendente</a>
+            <a href="/usuario/<?php echo $user->id;?>/historial&recientes">Fecha descendente</a>
         </div>
-        <br>
+        <br> 
         <div class="listDivContainer">
+            <h4 style="text-align:left"> Fecha de la entrada </h4>
                 <?php 
-                    if (count($medicos)!=0){
+                    if (count($entradas)!=0){
                        
-                        foreach($medicos as $key=>$value): ?>
+                        foreach($entradas as $key=>$value): ?>
                         <ol>
-                    <a href="/medicos/<?php echo $value->id;?>">
-                         <?php  echo ($value->apellidos . ', ' . $value->nombre) ;?>
+                    <a href="/usuario/<?php echo $user->id;?>/historial/<?php echo $value->id;?>">
+                         <?php  echo substr(($value->fecha), 0, -9); ; ?>
                     </a> 
                 </ol>
                 <?php endforeach;}else{?> 
-                <h4>Búsqueda sin resultados</h4>
+                <h4>Historial vacío</h4>
                 <?php } ?>   
         </div>
             
         <br>
 
-        {{ $medicos->links() }}
+    
       
         
         

@@ -16,7 +16,7 @@ class CreateEntradasTable extends Migration
         Schema::create('entradas', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('usuario_id');
-            $table->foreign('usuario_id')->references('id')->on('users');
+            $table->foreign('usuario_id')->references('id')->on('users')->onDelete('cascade');
             $table->string('texto');
             $table->timestamp('fecha');
             $table->timestamps();
