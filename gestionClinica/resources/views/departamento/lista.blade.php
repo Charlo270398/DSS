@@ -9,6 +9,18 @@
 
 @section('body')
 <!DOCTYPE html>
+<?php 
+    if($op == 'borrar'){
+        $ruta = '/borrar';
+        $header = 'Borrar departamento';
+    }else if($op == 'editar'){
+        $ruta = '/editar';
+        $header = 'Editar departamento';
+    }else{
+        $ruta = '';
+        $header = 'Listado de departamentos';
+    }
+?>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Departamentos</title>
@@ -16,16 +28,15 @@
 <link href="/css/lists.css" rel="stylesheet">
 <html>
     <header>
-        <h2>Listado de departamentos</h2>
+        <h2><?php echo $header;?></h2>
     </header>
-    <body>
-        
+    <body>  
         <br>
         <div class = "listDivContainer">
             <br>
             <?php foreach($departamentos as $key=>$value): ?>
                 <ol class="btn-group">
-                    <a href="/departamentos/<?php echo $value->id;?>">
+                    <a href="/departamentos/<?php echo ($value->id . $ruta);?>">
                         <button><?php echo $value->nombre;?></button>
                     </a> 
                 </ol>

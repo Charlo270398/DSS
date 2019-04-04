@@ -22,7 +22,11 @@ Route::get('/home', function () {
 
 //Departamentos
 Route::get('/departamentos','DepartamentosController@mostrarListaDepartamentos');
+Route::get('/departamentos/editList','DepartamentosController@mostrarListaDepartamentosEditar');
+Route::get('/departamentos/deleteList','DepartamentosController@mostrarListaDepartamentosBorrar');
 Route::get('/departamentos/{id}', 'DepartamentosController@mostrarDepartamento');
+Route::get('/departamentos/{id}/editar', 'DepartamentosController@mostrarEditarForm');
+Route::get('/departamentos/{id}/borrar', 'DepartamentosController@borrarDepartamento');
 
 //Login
 Route::get('/login/medico', function () { return view('/user/sesionmedico');});
@@ -46,6 +50,9 @@ Route::post('clinica/editar_create', [
 
 Route::post('box/editar_create', [
     'uses' => 'BoxController@addBox'
+]);
+Route::post('departamentos/editar_create', [
+    'uses' => 'DepartamentosController@editarDepartamento'
 ]);
 
 //Pacientes
