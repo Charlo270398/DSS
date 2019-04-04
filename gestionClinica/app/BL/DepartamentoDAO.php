@@ -41,8 +41,9 @@ class DepartamentoDAO
         }
     }
 
-    public function borrarDepartamento($departamento){
+    public function borrarDepartamento($id){
         try{
+            $departamento = $this->mostrarDepartamento($id);
             $departamento->delete();
             return true;
         }catch(\Exception $ex){
