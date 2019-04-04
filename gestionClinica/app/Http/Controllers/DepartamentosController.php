@@ -48,6 +48,8 @@ class DepartamentosController extends Controller
             return view('/departamento/add', ['departamento' => $box] );
         }else{
             return view('/error', ['error' => 'Error añadiendo el departamento'] );
+<<<<<<< HEAD
+=======
         }
     }
 
@@ -80,6 +82,7 @@ class DepartamentosController extends Controller
             return view('/departamento/lista', ['departamentos' => $d->mostrarListaDepartamentosAlfabetica(),'op' => 'borrar']);//TODO REDIRECCION
         }else{
             return view('/error', ['error' => 'Error borrando departamento.'] );
+>>>>>>> Develop
         }
     }
 
