@@ -50,7 +50,7 @@ Route::post('clinica/editar_create', [
     'uses' => 'ClinicaController@editarClinica'
 ]);
 
-Route::post('clinica/editar_create', [
+Route::post('departamento/editar_create', [
     'uses' => 'DepartamentosController@addDepartamento'
 ]);
 

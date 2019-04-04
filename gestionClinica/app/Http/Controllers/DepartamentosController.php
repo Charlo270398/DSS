@@ -50,5 +50,33 @@ class DepartamentosController extends Controller
             return view('/error', ['error' => 'Error añadiendo el departamento'] );
         }
     }
+    public function mostrarEditarForm($id) {
+        $d = new DepartamentoDAO();
+        $dep = $d->mostrarDepartamento($id);
+        return view("/departamento/editar", ['departamento' => $dep] );
+    }
+    
+    public function editarDepartamento(Request $request) {
+        $d = new DepartamentoDAO();
+        $dep = $d->mostrarDepartamento($request->input('id'));
+        $dep->id = $request->input('id');
+        $dep->nombre = $request->input('nombre');
+        $dep->imagen = $request->input('imagen');
+        $dep->clinica_id = $request->input('clinica_id');
+       
+        if($d->actualizarDepartamento($dep)){
+            return view("/departamento/editar", ['departamento' => $dep] );
+        }else{
+            return view('/error', ['error' => 'Error actualizando departamento.'] );
+        }  
+    }
+    public function borrarDepartamento($id) {
+        $d = new DepartamentoDAO();
+        if($d->borrarDepartamento($id)){
+            return view('/departamento/lista', ['departamentos' => $d->mostrarListaDepartamentosAlfabetica(),'op' => 'borrar']);//TODO REDIRECCION
+        }else{
+            return view('/error', ['error' => 'Error borrando departamento.'] );
+        }
+    }
 
 }
