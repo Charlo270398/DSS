@@ -12,7 +12,7 @@ class DepartamentosController extends Controller
     public function mostrarListaDepartamentos() {
         
         $d = new DepartamentoDAO();
-        return view('/departamento/lista', ['departamentos' => $d->mostrarListaDepartamentos(), 'op' => 'mostrar']); //La devuelve Alfabeticamente por defecto
+        return view('/departamento/lista', ['departamentos' => $d->mostrarListaDepartamentosAlfabetica(), 'op' => 'mostrar']); //La devuelve Alfabeticamente por defecto
     }
 
     public function mostrarListaDepartamentosEditar() {
@@ -55,10 +55,14 @@ class DepartamentosController extends Controller
     }
 
 
-    public function borrarDepartamento(Request $request) {
+    public function borrarDepartamento($id) {
 
         $d = new DepartamentoDAO();
-        return view('/departamento/departamento', ['departamento' => $d->mostrarDepartamento($id),'medicos' => $d->mostrarMedicosDepartamento($id)]);
+        if($d->borrarDepartamento($id)){
+            return view('/departamento/lista', ['departamentos' => $d->mostrarListaDepartamentosAlfabetica(),'op' => 'borrar']);//TODO REDIRECCION
+        }else{
+            return view('/error', ['error' => 'Error borrando departamento.'] );
+        }
     }
 
 }

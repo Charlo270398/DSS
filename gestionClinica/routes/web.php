@@ -36,6 +36,8 @@ Route::get('/login/paciente', function () { return view('/user/sesionpaciente');
 Route::get('/medicos','MedicosController@mostrarListaMedicos');
 Route::get('/medicos/{id}', 'MedicosController@mostrarMedico');
 Route::get('/medicos&{nombre}', 'MedicosController@mostrarListaMedicosPorNombre');
+Route::get('/medicos/{id}/editar', 'MedicosController@mostrarEditarForm');
+Route::get('/medicos/{id}/borrar', 'MedicosController@borrarMedico');
 
 Route::get('/usuario/{id}','UsuarioController@autenticarUsuario');
 
@@ -47,12 +49,14 @@ Route::get('/box/add','BoxController@mostrarAddForm');
 Route::post('clinica/editar_create', [
     'uses' => 'ClinicaController@editarClinica'
 ]);
-
 Route::post('box/editar_create', [
     'uses' => 'BoxController@addBox'
 ]);
 Route::post('departamentos/editar_create', [
     'uses' => 'DepartamentosController@editarDepartamento'
+]);
+Route::post('medicos/editar_create', [
+    'uses' => 'MedicosController@editarMedico'
 ]);
 
 //Pacientes
