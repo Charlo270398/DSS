@@ -17,7 +17,7 @@
 <html>
     <body>
         <div class ="formDivHeader">
-            <h2>Añadir DEPARTAMENTO</h2>
+            <h2>Añadir médico</h2>
         </div>
         <br>
 
@@ -25,13 +25,14 @@
             {{ csrf_field() }}
             {{ method_field('POST') }}
             <div class = "formDiv">
-                <p><strong>dni:</strong> <input type="inputText" name="dni"></p>
+                <p><strong>DNI:</strong> <input type="inputText" name="dni"></p>
                 <p><strong>Nombre:</strong> <input type="inputText" name="nombre"></p>
                 <p><strong>Contraseña:</strong> <input type="inputText" name="pass"></p>
-                <p><strong>apellidos:</strong> <input type="inpuText" name="apellidos"> </p>
-                <p><strong>e-mail:</strong> <input type="inpuText" name="email"> </p>
-                <p><strong>fecha nacimiento:</strong> <input type="inpuText" name="fecha_nacimiento"> </p>
-                <p><strong>num colegiado:</strong> <input type="inpuText" name="num_colegiado"> </p>
+                <p><strong>Apellidos:</strong> <input type="inpuText" name="apellidos"> </p>
+                <p><strong>E-mail:</strong> <input type="inpuText" name="email"> </p>
+                <p><strong>Fecha nacimiento:</strong> <input type="inpuText" name="fecha_nacimiento"> </p>
+                <p><strong>Num colegiado:</strong> <input type="inpuText" name="num_colegiado"> </p>
+                <p><strong>Departamento_id:</strong> <input type="inpuText" name="departamento_id"> </p>
                 <p><button type="submit">Añadir</button> <button type="button" data-dismiss="modal" onclick="window.location.href='/usuario/1'">Salir</button></p>
             </div>
         </form>

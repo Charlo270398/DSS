@@ -48,6 +48,8 @@ Route::get('/clinica/edit','ClinicaController@mostrarEditarForm');
 Route::get('/box/add','BoxController@mostrarAddForm');
 Route::get('/departamento/add','DepartamentosController@mostrarAddForm');
 Route::get('/medico/add','MedicosController@mostrarAddForm');
+
+
 //Metodos post
 Route::post('clinica/editar_create', [
     'uses' => 'ClinicaController@editarClinica'
@@ -63,13 +65,10 @@ Route::post('box/editar_create', [
 Route::post('departamentos/editar_create', [
     'uses' => 'DepartamentosController@editarDepartamento'
 ]);
-Route::post('medicos/editar_create', [
+Route::post('medicos/add/editar_create', [
     'uses' => 'MedicosController@addMedico'
 ]);
-Route::post('medicos/editar_create', [
-    'uses' => 'MedicosController@borrarMedico'
-]);
-Route::post('medicos/editar_create', [
+Route::post('medicos/edit/editar_create', [
     'uses' => 'MedicosController@editarMedico'
 ]);
 

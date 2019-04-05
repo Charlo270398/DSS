@@ -6,7 +6,7 @@
     </head>
 
     <header>
-        <h1>HAY UN PUTO ERROR</h1>
+        <h1>HAY UN ERROR :(</h1>
     </header>
     <body>
         <p>Error en cuestión: <?php echo $error ?> </p>

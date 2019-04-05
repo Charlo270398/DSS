@@ -12,12 +12,12 @@ class MedicosController extends Controller
 {
     public function mostrarListaMedicos(){
         $u = new UserDAO();
-        return view('/user/medico/lista', ['medicos' => $u->mostrarListaMedicos()->paginate(5)]);
+        return view('/user/medico/lista', ['medicos' => $u->mostrarListaMedicos()->paginate(5), 'op' =>'mostrar']);
     }
 
     public function mostrarListaMedicosPorNombre($nombre){
         $u = new UserDAO();
-        return view('/user/medico/lista', ['medicos' => $u->mostrarListaMedicosPorNombre($nombre)->paginate(5)]);
+        return view('/user/medico/lista', ['medicos' => $u->mostrarListaMedicosPorNombre($nombre)->paginate(5), 'op' =>'mostrar']);
     }
 
     public function mostrarMedico($id) {
@@ -75,12 +75,24 @@ class MedicosController extends Controller
     }
     public function borrarMedico($id) {
 
-                $d = new UserDAO();
-                if($d->borrarMedico($id)){
-                    return view('/user/medico/lista', ['medicos' => $d->mostrarListaMedicos(), 'op' =>'borrar']);//TODO REDIRECCION
-                }else{
-                    return view('/error', ['error' => 'Error borrando el medico.'] );
-                }
-            }
+        $d = new UserDAO();
+        if($d->borrarMedico($id)){
+            return view('/user/medico/lista', ['medicos' => $d->mostrarListaMedicos()->paginate(5), 'op' =>'borrar']);//TODO REDIRECCION
+        }else{
+            return view('/error', ['error' => 'Error borrando el medico.'] );
+        }
+    }
+
+    public function mostrarListaMedicosEditar(){
+        $rol = Rol::where('nombre', '=', 'Medico')->first();
+        $users = User::where('rol_id', '=', $rol->id)->paginate(5); //bootstrap4.blade
+        return view('/user/medico/lista', ['medicos' => $users, 'op' =>'editar']);
+    }
+
+    public function mostrarListaMedicosBorrar(){
+        $rol = Rol::where('nombre', '=', 'Medico')->first();
+        $users = User::where('rol_id', '=', $rol->id)->paginate(5); //bootstrap4.blade
+        return view('/user/medico/lista', ['medicos' => $users, 'op' =>'borrar']);
+    }
 
 }
