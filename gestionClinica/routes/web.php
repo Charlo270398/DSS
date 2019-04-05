@@ -68,3 +68,5 @@ Route::post('medicos/editar_create', [
 //Usuario
 Route::get('/usuario/{id}','UsuarioController@autenticarUsuario');
 Route::get('/usuario/{id}/historial&{modo}','UsuarioController@mostrarHistorial');
+Route::get('/usuario/{id}/citas&{modo}','UsuarioController@mostrarCitas');
+Route::get('/usuario/{id}/citas/add','UsuarioController@mostrarAddCitaForm');

@@ -4,6 +4,7 @@ namespace App\BL;
 use App\User;
 use App\Rol;
 use App\Entrada;
+use App\Cita;
 
 class UserDAO
 {
@@ -66,8 +67,18 @@ class UserDAO
     }
 
     public function mostrarEntradasAntiguas($id) {
-        $entradas  = Entrada::orderBy('fecha')->get();//Ordenado por fecha de reciente a antiguo
+        $entradas  = Entrada::orderBy('fecha')->get();//Ordenado por fecha de antiguo a reciente
         return $entradas;
+    }
+
+    public function mostrarCitasRecientes($id) {
+        $citas  = Cita::orderBy('fecha', 'DESC')->get();//Ordenado por fecha de reciente a antiguo
+        return $citas;
+    }
+
+    public function mostrarCitasAntiguas($id) {
+        $citas  = Cita::orderBy('fecha')->get();//Ordenado por fecha de antiguo a reciente
+        return $citas;
     }
     
 }

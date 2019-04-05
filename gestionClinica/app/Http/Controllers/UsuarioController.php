@@ -23,6 +23,15 @@ class UsuarioController extends Controller
             return view('/user/paciente/historial/lista', ['user' => $u->mostrarUsuario($id), 'entradas' => $u->mostrarEntradasAntiguas($id)]);
         }else{
             return view('/user/paciente/historial/lista', ['user' => $u->mostrarUsuario($id), 'entradas' => $u->mostrarEntradasRecientes($id)]);
+        }    
+    }
+
+    public function mostrarCitas($id, $modo){
+        $u = new UserDAO();
+        if($modo == 'antiguas'){
+            return view('/user/citas/lista', ['user' => $u->mostrarUsuario($id), 'citas' => $u->mostrarCitasAntiguas($id)]);
+        }else{
+            return view('/user/citas/lista', ['user' => $u->mostrarUsuario($id), 'citas' => $u->mostrarCitasRecientes($id)]);
         }
         
     }
