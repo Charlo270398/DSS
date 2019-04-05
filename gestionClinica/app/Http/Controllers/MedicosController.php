@@ -24,12 +24,10 @@ class MedicosController extends Controller
 
     public function mostrarListaMedicosPorNombre($nombre){
         $rol = Rol::where('nombre', '=', 'Medico')->first();
-        $users = User::whereRaw("apellidos like  '%$nombre%' collate utf8_general_ci ")->where('rol_id', '=', $rol->id)->paginate(5); //bootstrap4.blade
-        return view('/user/medico/lista', ['medicos' => $users, 'op' =>'mostrar']);
-    }
 
-    public function mostrarListaMedicosDepartamento($id_dep){
-       //TODO
+        $users = User::whereRaw("(apellidos like  '%$nombre%' or  nombre like  '%$nombre%') and rol_id == $rol->id ")->paginate(5); //bootstrap4.blade
+        return view('/user/medico/lista', ['medicos' => $users,'op' =>'mostrar']);
+
     }
 
     public function mostrarMedico($id) {

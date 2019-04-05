@@ -35,7 +35,7 @@
         <div class="listDivContainer">
             <ol>
                 <h4>Buscar médico:</h4>
-                <input id="myInput" type="text" name="inputMedico" placeholder="Busca por nombre">
+                <input id="myInput" type="text" name="inputMedico" placeholder="Busca por nombre o apellidos">
                 <button onclick="window.location.href='/medicos' + getInput()" type="submit"> Buscar </button>
             </ol>
         </div>

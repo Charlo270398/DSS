@@ -50,7 +50,6 @@ class DepartamentosController extends Controller
             return view('/error', ['error' => 'Error añadiendo el departamento'] );
         }
     }
-
     public function mostrarEditarForm($id) {
         $d = new DepartamentoDAO();
         $dep = $d->mostrarDepartamento($id);
@@ -71,10 +70,7 @@ class DepartamentosController extends Controller
             return view('/error', ['error' => 'Error actualizando departamento.'] );
         }
     }
-
-
     public function borrarDepartamento($id) {
-
         $d = new DepartamentoDAO();
         if($d->borrarDepartamento($id)){
             return view('/departamento/lista', ['departamentos' => $d->mostrarListaDepartamentosAlfabetica(),'op' => 'borrar']);//TODO REDIRECCION

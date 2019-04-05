@@ -41,7 +41,7 @@ Route::get('/medicos&{nombre}', 'MedicosController@mostrarListaMedicosPorNombre'
 Route::get('/medicos/{id}/editar', 'MedicosController@mostrarEditarForm');
 Route::get('/medicos/{id}/borrar', 'MedicosController@borrarMedico');
 
-Route::get('/usuario/{id}','UsuarioController@autenticarUsuario');
+
 
 //Administracion
 Route::get('/clinica/edit','ClinicaController@mostrarEditarForm');
@@ -53,7 +53,7 @@ Route::post('clinica/editar_create', [
     'uses' => 'ClinicaController@editarClinica'
 ]);
 
-Route::post('clinica/editar_create', [
+Route::post('departamento/editar_create', [
     'uses' => 'DepartamentosController@addDepartamento'
 ]);
 
@@ -73,5 +73,9 @@ Route::post('medicos/editar_create', [
 Route::post('medicos/editar_create', [
     'uses' => 'MedicosController@editarMedico'
 ]);
-//Pacientes
-Route::get('/paciente/{id}','UsuarioController@autenticarPaciente');
+
+
+//Usuario
+Route::get('/usuario/{id}','UsuarioController@autenticarUsuario');
+Route::get('/usuario/{id}/historial&{modo}','UsuarioController@mostrarHistorial');
+

@@ -3,6 +3,7 @@
 namespace App\BL;
 use App\User;
 use App\Rol;
+use App\Entrada;
 
 class UserDAO
 {
@@ -75,6 +76,18 @@ class UserDAO
             return false;
         }
     }
+
+
+    public function mostrarEntradasRecientes($id) {
+        $entradas  = Entrada::orderBy('fecha', 'DESC')->get();//Ordenado por fecha de reciente a antiguo
+        return $entradas;
+    }
+
+    public function mostrarEntradasAntiguas($id) {
+        $entradas  = Entrada::orderBy('fecha')->get();//Ordenado por fecha de reciente a antiguo
+        return $entradas;
+    }
+    
 
 }
 ?>

@@ -28,4 +28,6 @@ class ClinicaController extends Controller
                 return view('/error', ['error' => 'Error actualizando.'] );
             }  
     }
+
+    
 }

@@ -11,7 +11,7 @@
             <ul> <h2>Panel del paciente</h2></ul>
             <ul> <a class="aPanel" href="/clinica/edit"> Reservar cita </a></ul>
             <ul> <a class="aPanel" href="/clinica/edit"> Consultar citas </a></ul>
-            <ul> <a class="aPanel" href="/usuario/<?php echo $user->id ?>/historial"> Ver historial </a></ul>
+            <ul> <a class="aPanel" href="/usuario/<?php echo $user->id ?>/historial&recientes"> Ver historial </a></ul>
         </div>
     </body>
 </html>
