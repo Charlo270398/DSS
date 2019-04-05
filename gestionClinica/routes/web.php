@@ -27,7 +27,8 @@ Route::get('/departamentos/deleteList','DepartamentosController@mostrarListaDepa
 Route::get('/departamentos/{id}', 'DepartamentosController@mostrarDepartamento');
 Route::get('/departamentos/{id}/editar', 'DepartamentosController@mostrarEditarForm');
 Route::get('/departamentos/{id}/borrar', 'DepartamentosController@borrarDepartamento');
-
+//Box
+Route::get('/box/{id}/borrar','BoxController@borrarBox');
 //Login
 Route::get('/login/medico', function () { return view('/user/sesionmedico');});
 Route::get('/login/paciente', function () { return view('/user/sesionpaciente');});
@@ -46,6 +47,7 @@ Route::get('/medicos/{id}/borrar', 'MedicosController@borrarMedico');
 //Administracion
 Route::get('/clinica/edit','ClinicaController@mostrarEditarForm');
 Route::get('/box/add','BoxController@mostrarAddForm');
+Route::get('/box/delete','BoxController@mostrarListaBoxBorrar');
 Route::get('/departamento/add','DepartamentosController@mostrarAddForm');
 Route::get('/medico/add','MedicosController@mostrarAddForm');
 

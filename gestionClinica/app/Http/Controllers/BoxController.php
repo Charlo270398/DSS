@@ -6,7 +6,8 @@ use Illuminate\Http\Request;
 
 use App\BL\BoxDAO;
 use App\Box;
-
+use App\Departamento;
+use App\BL\DepartamentoDAO;
 class BoxController extends Controller
 {
     public function mostrarAddForm() {
@@ -17,6 +18,26 @@ class BoxController extends Controller
         $box = $b->mostrarBox($id);
         return view('/box/editar', ['box' => $box] );
     }
+    public function mostrarListaDepartamentos() {
+
+                $d = new BoxDAO();
+                return view('/box/lista', ['departamentos' => $d->mostrarListaBoxes(), 'op' => 'mostrar']); //La devuelve Alfabeticamente por defecto
+    }
+    public function mostrarListaBoxBorrar() {
+
+        $d = new BoxDAO();
+        return view('/box/lista', ['departamentos' => $d->mostrarListaBoxes(), 'op' => 'borrar']); //La devuelve Alfabeticamente por defecto
+    }
+    public function borrarBox($id) {
+        $d = new boxDAO();
+        if($d->borrarBox($id)){
+            return view('/box/lista', ['departamentos' => $d->mostrarListaBoxes(),'op' => 'borrar']);//TODO REDIRECCION
+        }else{
+            return view('/error', ['error' => 'Error borrando box.'] );
+        }
+    }
+
+
     public function mostrarCrearForm() {
         $b = new BoxDAO();
         $box = $b->mostrarBox($id);
@@ -33,6 +54,6 @@ class BoxController extends Controller
             return view('/box/add', ['box' => $box] );
         }else{
             return view('/error', ['error' => 'Error añadiendo.'] );
-        }  
+        }
     }
 }
