@@ -54,7 +54,6 @@ Route::post('departamento/editar_create', [
     'uses' => 'DepartamentosController@addDepartamento'
 ]);
 
-
 Route::post('box/editar_create', [
     'uses' => 'BoxController@addBox'
 ]);
