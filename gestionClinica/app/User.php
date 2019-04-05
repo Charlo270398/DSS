@@ -17,6 +17,10 @@ class User extends Authenticatable
     public function rol(){
         return $this->hasMany('App\Entrada');
     }
+
+    public function cita(){
+        return $this->hasMany('App\Cita');
+    }
     /**
      * The attributes that are mass assignable.
      *

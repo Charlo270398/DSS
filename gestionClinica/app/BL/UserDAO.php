@@ -4,6 +4,8 @@ namespace App\BL;
 use App\User;
 use App\Rol;
 use App\Entrada;
+use App\Cita;
+use App\Departamento;
 
 class UserDAO
 {
@@ -84,9 +86,48 @@ class UserDAO
     }
 
     public function mostrarEntradasAntiguas($id) {
-        $entradas  = Entrada::orderBy('fecha')->get();//Ordenado por fecha de reciente a antiguo
+        $entradas  = Entrada::orderBy('fecha')->get();//Ordenado por fecha de antiguo a reciente
         return $entradas;
     }
+
+    public function mostrarCitasRecientes($id) {
+        $citas  = Cita::orderBy('fecha', 'DESC')->get();//Ordenado por fecha de reciente a antiguo
+        return $citas;
+    }
+
+    public function mostrarCitasAntiguas($id) {
+        $citas  = Cita::orderBy('fecha')->get();//Ordenado por fecha de antiguo a reciente
+        return $citas;
+    }
+
+    //Exclusivo de médico
+    public function mostrarDepartamento($id){
+            $user  = User::findOrFail($id); 
+            $dep  = Departamento::findOrFail($user->departamento_id); 
+            return $dep;
+    }
+    public function mostrarListaMedicos(){
+        try{
+            $rol = Rol::where('nombre', '=', 'Medico')->first();
+            $users = User::where('rol_id', '=', $rol->id);
+            return $users;
+            
+        }catch(\Exception $ex){
+            return false;
+        }
+    }
+    public function mostrarListaMedicosPorNombre($nombre){
+        try{
+            $rol = Rol::where('nombre', '=', 'Medico')->first();
+            $users = User::whereRaw("(apellidos like  '%$nombre%' or  nombre like  '%$nombre%') and rol_id == $rol->id ");
+            return $users;
+            
+        }catch(\Exception $ex){
+            return false;
+        }
+    }
+
+ 
     
 
 }

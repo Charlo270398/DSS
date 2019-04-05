@@ -8,7 +8,7 @@ class Rol extends Model
 {
 
     public function rol(){
-        return $this->hasMany('App\Usuario');
+        return $this->hasMany('App\User');
     }
 
     public function getNombre(){
