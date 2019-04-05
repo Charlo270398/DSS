@@ -16,13 +16,13 @@ class DepartamentosController extends Controller
     }
 
     public function mostrarListaDepartamentosEditar() {
-        
+
         $d = new DepartamentoDAO();
         return view('/departamento/lista', ['departamentos' => $d->mostrarListaDepartamentos(), 'op' => 'editar']); //La devuelve Alfabeticamente por defecto
     }
 
     public function mostrarListaDepartamentosBorrar() {
-        
+
         $d = new DepartamentoDAO();
         return view('/departamento/lista', ['departamentos' => $d->mostrarListaDepartamentos(), 'op' => 'borrar']); //La devuelve Alfabeticamente por defecto
     }
@@ -48,8 +48,6 @@ class DepartamentosController extends Controller
             return view('/departamento/add', ['departamento' => $box] );
         }else{
             return view('/error', ['error' => 'Error añadiendo el departamento'] );
-<<<<<<< HEAD
-=======
         }
     }
 
@@ -58,7 +56,7 @@ class DepartamentosController extends Controller
         $dep = $d->mostrarDepartamento($id);
         return view("/departamento/editar", ['departamento' => $dep] );
     }
-    
+
     public function editarDepartamento(Request $request) {
         $d = new DepartamentoDAO();
         $dep = $d->mostrarDepartamento($request->input('id'));
@@ -66,12 +64,12 @@ class DepartamentosController extends Controller
         $dep->nombre = $request->input('nombre');
         $dep->imagen = $request->input('imagen');
         $dep->clinica_id = $request->input('clinica_id');
-       
+
         if($d->actualizarDepartamento($dep)){
             return view("/departamento/editar", ['departamento' => $dep] );
         }else{
             return view('/error', ['error' => 'Error actualizando departamento.'] );
-        }  
+        }
     }
 
 
@@ -82,7 +80,6 @@ class DepartamentosController extends Controller
             return view('/departamento/lista', ['departamentos' => $d->mostrarListaDepartamentosAlfabetica(),'op' => 'borrar']);//TODO REDIRECCION
         }else{
             return view('/error', ['error' => 'Error borrando departamento.'] );
->>>>>>> Develop
         }
     }
 

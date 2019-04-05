@@ -9,6 +9,18 @@
 
 @section('body')
 <!DOCTYPE html>
+<?php
+    if($op == 'borrar'){
+        $ruta = '/borrar';
+        $header = 'Borrar Médico';
+    }else if($op == 'editar'){
+        $ruta = '/editar';
+        $header = 'Editar Médico';
+    }else{
+        $ruta = '';
+        $header = 'Listado de Médicos';
+    }
+?>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Médicos</title>
@@ -17,9 +29,9 @@
 <html>
     <header>
         <h2>Listado de médicos</h2>
-    </header> 
+    </header>
     <body>
-        <br> 
+        <br>
         <div class="listDivContainer">
             <ol>
                 <h4>Buscar médico:</h4>
@@ -29,26 +41,27 @@
         </div>
         <br>
         <div class="listDivContainer">
-                <?php 
+                <?php
                     if (count($medicos)!=0){
-                       
+
                         foreach($medicos as $key=>$value): ?>
                         <ol>
-                    <a href="/medicos/<?php echo $value->id;?>">
+                    <a href="/medicos/<?php echo ($value->id. $ruta);?>">
                          <?php  echo ($value->apellidos . ', ' . $value->nombre) ;?>
-                    </a> 
+
+                    </a>
                 </ol>
-                <?php endforeach;}else{?> 
+                <?php endforeach;}else{?>
                 <h4>Búsqueda sin resultados</h4>
-                <?php } ?>   
+                <?php } ?>
         </div>
-            
+
         <br>
 
         {{ $medicos->links() }}
-      
-        
-        
+
+
+
     </body>
     <script>
         function getInput(){
