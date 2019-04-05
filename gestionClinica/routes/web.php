@@ -35,6 +35,8 @@ Route::get('/login/paciente', function () { return view('/user/sesionpaciente');
 //Medicos
 Route::get('/medicos','MedicosController@mostrarListaMedicos');
 Route::get('/medicos/{id}', 'MedicosController@mostrarMedico');
+Route::get('/medico/editList','MedicosController@mostrarListaMedicosEditar');
+Route::get('/medico/deleteList','MedicosController@mostrarListaMedicosBorrar');
 Route::get('/medicos&{nombre}', 'MedicosController@mostrarListaMedicosPorNombre');
 Route::get('/medicos/{id}/editar', 'MedicosController@mostrarEditarForm');
 Route::get('/medicos/{id}/borrar', 'MedicosController@borrarMedico');
@@ -45,6 +47,7 @@ Route::get('/medicos/{id}/borrar', 'MedicosController@borrarMedico');
 Route::get('/clinica/edit','ClinicaController@mostrarEditarForm');
 Route::get('/box/add','BoxController@mostrarAddForm');
 Route::get('/departamento/add','DepartamentosController@mostrarAddForm');
+Route::get('/medico/add','MedicosController@mostrarAddForm');
 //Metodos post
 Route::post('clinica/editar_create', [
     'uses' => 'ClinicaController@editarClinica'
@@ -62,9 +65,17 @@ Route::post('departamentos/editar_create', [
     'uses' => 'DepartamentosController@editarDepartamento'
 ]);
 Route::post('medicos/editar_create', [
+    'uses' => 'MedicosController@addMedico'
+]);
+Route::post('medicos/editar_create', [
+    'uses' => 'MedicosController@borrarMedico'
+]);
+Route::post('medicos/editar_create', [
     'uses' => 'MedicosController@editarMedico'
 ]);
+
 
 //Usuario
 Route::get('/usuario/{id}','UsuarioController@autenticarUsuario');
 Route::get('/usuario/{id}/historial&{modo}','UsuarioController@mostrarHistorial');
+
