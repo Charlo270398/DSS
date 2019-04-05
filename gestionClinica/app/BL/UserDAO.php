@@ -40,6 +40,16 @@ class UserDAO
             return false;
         }
     }
+    public function borrarMedico($id){
+        try{
+            $user = $this->mostrarUsuario($id);
+            $user->delete();
+            return true;
+        }catch(\Exception $ex){
+            return false;
+        }
+    }
+
 
     public function mostrarRol($id){
         try{

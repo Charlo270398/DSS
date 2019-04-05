@@ -15,10 +15,11 @@ class MedicosController extends Controller
         $users = User::where('rol_id', '=', $rol->id)->paginate(5); //bootstrap4.blade
         return view('/user/medico/lista', ['medicos' => $users, 'op' =>'mostrar']);
     }
-    public function mostrarListaMedicosEditar(){
+
+    public function mostrarListaMedicosBorrar(){
         $rol = Rol::where('nombre', '=', 'Medico')->first();
         $users = User::where('rol_id', '=', $rol->id)->paginate(5); //bootstrap4.blade
-        return view('/user/medico/lista', ['medicos' => $users, 'op' =>'editar']);
+        return view('/user/medico/lista', ['medicos' => $users, 'op' =>'borrar']);
     }
 
     public function mostrarListaMedicosPorNombre($nombre){
@@ -84,5 +85,14 @@ class MedicosController extends Controller
             return view('/error', ['error' => 'Error ctualizando el medico'] );
         }
     }
+    public function borrarMedico($id) {
+
+                $d = new UserDAO();
+                if($d->borrarMedico($id)){
+                    return view('/user/medico/lista', ['medicos' => $d->mostrarListaMedicos(), 'op' =>'borrar']);//TODO REDIRECCION
+                }else{
+                    return view('/error', ['error' => 'Error borrando el medico.'] );
+                }
+            }
 
 }
