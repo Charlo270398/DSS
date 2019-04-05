@@ -11,17 +11,12 @@ use App\BL\UserDAO;
 class MedicosController extends Controller
 {
     public function mostrarListaMedicos(){
-        $rol = Rol::where('nombre', '=', 'Medico')->first();
-        $users = User::where('rol_id', '=', $rol->id)->paginate(5); //bootstrap4.blade
-        return view('/user/medico/lista', ['medicos' => $users, 'op' =>'mostrar']);
-    }
-    public function mostrarListaMedicosEditar(){
-        $rol = Rol::where('nombre', '=', 'Medico')->first();
-        $users = User::where('rol_id', '=', $rol->id)->paginate(5); //bootstrap4.blade
-        return view('/user/medico/lista', ['medicos' => $users, 'op' =>'editar']);
+        $u = new UserDAO();
+        return view('/user/medico/lista', ['medicos' => $u->mostrarListaMedicos()->paginate(5), 'op' =>'mostrar']);
     }
 
     public function mostrarListaMedicosPorNombre($nombre){
+<<<<<<< HEAD
         $rol = Rol::where('nombre', '=', 'Medico')->first();
 <<<<<<< HEAD
         $users = User::whereRaw("(apellidos like  '%$nombre%' or  nombre like  '%$nombre%') and rol_id == $rol->id ")->paginate(5); //bootstrap4.blade
@@ -30,12 +25,15 @@ class MedicosController extends Controller
         $users = User::whereRaw("apellidos like  '%$nombre%' collate utf8_general_ci ")->where('rol_id', '=', $rol->id)->paginate(5); //bootstrap4.blade
         return view('/user/medico/lista', ['medicos' => $users, 'op' =>'mostrar']);
 >>>>>>> origin/Juan
+=======
+        $u = new UserDAO();
+        return view('/user/medico/lista', ['medicos' => $u->mostrarListaMedicosPorNombre($nombre)->paginate(5), 'op' =>'mostrar']);
+>>>>>>> Develop
     }
 
     public function mostrarMedico($id) {
-        $user = User::findOrFail($id);
-        $dep = Departamento::findOrFail($user->departamento_id);
-        return view('/user/medico/medico', ['medico' => $user, 'departamento' => $dep]);
+        $u = new UserDAO();     
+        return view('/user/medico/medico', ['medico' => $u->mostrarUsuario($id), 'departamento' => $u->mostrarDepartamento($id)]);
     }
     public function mostrarAddForm() {
         return view('/user/medico/add', ['clinica' => 1] );
@@ -54,7 +52,8 @@ class MedicosController extends Controller
         $box->apellidos = $request->input('apellidos');
         $box->email = $request->input('email');
         $box->fecha_nacimiento = $request->input('fecha_nacimiento');
-        $box->num_colegiado= $request->input('num_colegiado');
+        $box->num_colegiado = $request->input('num_colegiado');
+        $box->departamento_id = 1;
         $box->rol_id = 3;
 
 
@@ -84,6 +83,27 @@ class MedicosController extends Controller
         }else{
             return view('/error', ['error' => 'Error ctualizando el medico'] );
         }
+    }
+    public function borrarMedico($id) {
+
+        $d = new UserDAO();
+        if($d->borrarMedico($id)){
+            return view('/user/medico/lista', ['medicos' => $d->mostrarListaMedicos()->paginate(5), 'op' =>'borrar']);//TODO REDIRECCION
+        }else{
+            return view('/error', ['error' => 'Error borrando el medico.'] );
+        }
+    }
+
+    public function mostrarListaMedicosEditar(){
+        $rol = Rol::where('nombre', '=', 'Medico')->first();
+        $users = User::where('rol_id', '=', $rol->id)->paginate(5); //bootstrap4.blade
+        return view('/user/medico/lista', ['medicos' => $users, 'op' =>'editar']);
+    }
+
+    public function mostrarListaMedicosBorrar(){
+        $rol = Rol::where('nombre', '=', 'Medico')->first();
+        $users = User::where('rol_id', '=', $rol->id)->paginate(5); //bootstrap4.blade
+        return view('/user/medico/lista', ['medicos' => $users, 'op' =>'borrar']);
     }
 
 }
