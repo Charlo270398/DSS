@@ -6,7 +6,7 @@ use App\Box;
 class BoxDAO
 {
     public function mostrarBox($id) {
-        $box  = Box::findOrFail($id)->first();
+        $box  = Box::findOrFail($id);
         return $box;
     }
 
