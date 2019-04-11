@@ -12,9 +12,7 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-    <title>Información sobre la cita</title>
+  <title>Información sobre la cita</title>
 </head>
 <link href="/css/lists.css" rel="stylesheet">
 <html>
@@ -29,7 +27,7 @@
             <p><strong>Departamento:</strong> <a href= '/departamentos/<?php echo $medico->departamento_id?>'><?php echo $departamento->nombre?></a></p>
             <p><strong>Motivo de la consulta:</strong> <?php echo $cita->motivo?></p>
             <p><strong>Horario de la consulta: </strong> <?php echo $cita->fecha ?></p>
-            <p><strong>Box:</strong> <?php echo  ('nº' . $cita->box_id)?></p>
+            <p><strong>Box:</strong> <?php echo  ('nº ' . $cita->box_id)?></p>
             <p>
                
                 <a class="btn btn-danger" href="/home"> Cancelar cita </a>

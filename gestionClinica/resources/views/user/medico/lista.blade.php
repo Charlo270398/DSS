@@ -25,14 +25,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Médicos</title>
 </head>
-<link href="/css/lists.css" rel="stylesheet">
+
 <html>
+        
     <header>
         <h2>Listado de médicos</h2>
     </header>
     <body>
         <br>
-        <div class="listDivContainer">
+        <div>
             <ol>
                 <h4>Buscar médico:</h4>
                 <input id="myInput" type="text" name="inputMedico" placeholder="Busca por nombre o apellidos">
@@ -40,7 +41,7 @@
             </ol>
         </div>
         <br>
-        <div class="listDivContainer">
+        <div>
                 <?php
                     if (count($medicos)!=0){
 
