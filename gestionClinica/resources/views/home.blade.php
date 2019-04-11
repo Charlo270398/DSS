@@ -47,30 +47,21 @@
                             <br>
                             <h2>Clínica Alicante, asistencia sanitaria personalizada y de calidad</h2>
                             <h5>Nuestros valores se definen en 3 puntos:</h5>
+                            <br>
+                            <h2>Unidades Especializadas</h2>
                             
                             <p>Some text..</p>
                             </div>
                         </div>
                       </div>
 
-                <div class="card-footer text-right" style="margin-bottom:0; background:#343a40;">
+                <div class="card-footer text-right" style="margin-bottom:0; background:#343a40; color:white">
                     <p>Calle Jaime Segarra, 2</p>
                     <p>03010 Alicante (Alacant), Alicante</p>
                     <p>T. (+34) 966 81 11 11</p>
                     <p>alicante@clinicas.com</p>
                 </div>
-                
-
-                <script>
-                        function myMap() {
-                        var mapProp= {
-                        center:new google.maps.LatLng(51.508742,-0.120850),
-                        zoom:5,
-                        };
-                        var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
-                        }
-                </script>
-                <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY&callback=myMap"></script>
+            
             </html>
         @stop
             
