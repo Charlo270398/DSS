@@ -17,7 +17,8 @@ class MedicosController extends Controller
 
     public function mostrarListaMedicosPorNombre($nombre){
         $u = new UserDAO();
-        return view('/user/medico/lista', ['medicos' => $u->mostrarListaMedicosPorNombre($nombre)->paginate(5), 'op' =>'mostrar']);
+        $users = $u->mostrarListaMedicosPorNombre($nombre);
+        return view('/user/medico/lista', ['medicos' => $users->paginate(5), 'op' =>'mostrar']);
     }
 
     public function mostrarMedico($id) {

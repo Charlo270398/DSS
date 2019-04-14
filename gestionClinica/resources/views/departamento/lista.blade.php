@@ -9,6 +9,7 @@
 
 @section('body')
 <!DOCTYPE html>
+<link href="/css/lists.css" rel="stylesheet">
 <?php 
     if($op == 'borrar'){
         $ruta = '/borrar';
@@ -27,22 +28,26 @@
 </head>
 
 <html>
-    <header>
-        <h2><?php echo $header;?></h2>
+    <header style="text-align: center">
+        <h1><?php echo $header;?></h1>
     </header>
     <body>  
-        <br>
-        <div>
+        
+        <div class="container">
             <br>
+            <br>
+    
+            <div class="btn-group-vertical" style="width: 100%;">
             <?php foreach($departamentos as $key=>$value): ?>
-                <ol class="btn-group">
-                    <a href="/departamentos/<?php echo ($value->id . $ruta);?>">
-                        <button><?php echo $value->nombre;?></button>
-                    </a> 
-                </ol>
+
+                
+                        <button type="submit" class="btn btn-primary depbutton" onclick="window.location.href= 
+                        '/departamentos/<?php echo ($value->id . $ruta);?>'"><?php echo $value->nombre;?></button>
+                  
+            
             <?php endforeach; ?>
-            <br>
             </div>
+        </div>
     </body>
 </html>
 @stop

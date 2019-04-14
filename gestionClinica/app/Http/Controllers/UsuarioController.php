@@ -14,7 +14,10 @@ class UsuarioController extends Controller
         }else{
             return view('/error', ['error' => 'Error autenticando.']);
         }
-        
+    }
+    
+    public function mostrarFormAutenticacion(){
+        return view('/user/login');
     }
 
     public function mostrarHistorial($id, $modo){
@@ -33,6 +36,5 @@ class UsuarioController extends Controller
         }else{
             return view('/user/citas/lista', ['user' => $u->mostrarUsuario($id), 'citas' => $u->mostrarCitasRecientes($id)]);
         }
-        
     }
 }
