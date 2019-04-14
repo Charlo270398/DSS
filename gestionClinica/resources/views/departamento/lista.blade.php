@@ -1,4 +1,3 @@
-
 @extends('layouts.master')
 
 @section('title', 'Page Title')
@@ -8,6 +7,7 @@
 @stop
 
 @section('body')
+
 <!DOCTYPE html>
 <link href="/css/lists.css" rel="stylesheet">
 <?php 
