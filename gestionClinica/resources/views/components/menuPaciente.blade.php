@@ -9,7 +9,7 @@
     <body>
         <div>
             <ul> <h2>Panel del paciente</h2></ul>
-            <ul> <a class="aPanel" href="/usuario/<?php echo $user->id ?>/citas/add"> Reservar cita </a></ul>
+            <ul> <a class="aPanel" href="/usuario/<?php echo $user->id ?>/citas/disponibles&1"> Reservar cita </a></ul>
             <ul> <a class="aPanel" href="/usuario/<?php echo $user->id ?>/citas&recientes"> Consultar citas </a></ul>
             <ul> <a class="aPanel" href="/usuario/<?php echo $user->id ?>/historial&recientes"> Ver historial </a></ul>
         </div>

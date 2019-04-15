@@ -82,6 +82,6 @@ Route::get('/usuario/{id}/historial&{modo}','UsuarioController@mostrarHistorial'
 
 //Usuario-Citas
 Route::get('/usuario/{id}/citas&{modo}','UsuarioController@mostrarCitas');
-Route::get('/usuario/{id}/citas/add','UsuarioController@mostrarAddCitaForm');
+Route::get('/usuario/{id}/citas/disponibles&{idM}','CitasController@mostrarCitasDisponibles');
 Route::get('/usuario/{idU}/citas/{idC}','CitasController@mostrarCita');
 
