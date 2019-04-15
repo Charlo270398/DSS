@@ -95,7 +95,7 @@ class UserDAO
     public function mostrarListaMedicos(){
         try{
             $rol = Rol::where('nombre', '=', 'Medico')->first();
-            $users = User::where('rol_id', '=', $rol->id);
+            $users = User::orderBy('apellidos')->where('rol_id', '=', $rol->id);
             return $users;
             
         }catch(\Exception $ex){

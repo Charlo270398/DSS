@@ -9,16 +9,20 @@
 
 @section('body')
 <!DOCTYPE html>
+<link href="/css/lists.css" rel="stylesheet">
 <?php
     if($op == 'borrar'){
         $ruta = '/borrar';
         $header = 'Borrar Médico';
+        $visible = 'visible';
     }else if($op == 'editar'){
         $ruta = '/editar';
         $header = 'Editar Médico';
+        $visible = 'visible';
     }else{
         $ruta = '';
         $header = 'Listado de Médicos';
+        $visible = 'invisible';
     }
 ?>
 <head>
@@ -28,35 +32,52 @@
 
 <html>
         
-    <header>
-        <h2>Listado de médicos</h2>
+    <header style="text-align: center">
+        <h1>Listado de médicos</h1>
     </header>
     <body>
         <br>
-        <div>
-            <ol>
-                <h4>Buscar médico:</h4>
-                <input id="myInput" type="text" name="inputMedico" placeholder="Busca por nombre o apellidos">
-                <button onclick="window.location.href='/medicos' + getInput()" type="submit"> Buscar </button>
-            </ol>
+        <div class="container">
+            <h4>Buscador</h4>
+            <div class="input-group mb-3">
+                <button type="button" class="btn btn-primary" onclick="window.location.href='/medicos' + getInput()"> Buscar </button>
+                <input id="myInput" type="text" class="form-control" placeholder="Nombre o apellidos" aria-label="Username" aria-describedby="basic-addon1">
+            </div>
         </div>
         <br>
-        <div>
-                <?php
-                    if (count($medicos)!=0){
-
-                        foreach($medicos as $key=>$value): ?>
-                        <ol>
-                    <a href="/medicos/<?php echo ($value->id. $ruta);?>">
-                         <?php  echo ($value->apellidos . ', ' . $value->nombre) ;?>
-
-                    </a>
-                </ol>
-                <?php endforeach;}else{?>
-                <h4>Búsqueda sin resultados</h4>
+        
+            
+        <div class="container">
+                <?php if(count($medicos)!=0){ ?>
+                <table class="table table-bordered">
+                  <thead class="tableHeader">
+                    <tr>
+                      <th>Nombre</th>
+                      <th>Apellidos</th>
+                      <th>Departamento</th>
+                      <th>Acciones</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                   
+                        
+                        <?php  foreach($medicos as $key=>$value): ?>
+                            <tr>
+                                <td><?php  echo $value->nombre;?></td>
+                                <td><?php  echo $value->apellidos;?></td>
+                                <td><?php  echo $value->departamento_id;?></td>
+                                <td><button type="button" onclick="window.location.href='/medicos/<?php echo ($value->id. $ruta);?>'" class="btn btn-primary">Ver ficha</button>
+                                <button id="editBtn" type="button" onclick="window.location.href='/medicos/<?php echo ($value->id. $ruta);?>'" class="btn btn-secondary <?php echo $visible ?>">Editar</button>
+                                <button id="deleteBtn" type="button" onclick="window.location.href='/medicos/<?php echo ($value->id. $ruta);?>'" class="btn btn-danger <?php echo $visible ?>">Borrar</button></td>
+                            </tr>  
+                        <?php endforeach; ?>              
+                  </tbody>
+                </table>
+                <?php }else{?>
+                    <h2>Búsqueda sin resultados</h2>
                 <?php } ?>
         </div>
-
+        
         <br>
 
         {{ $medicos->links() }}

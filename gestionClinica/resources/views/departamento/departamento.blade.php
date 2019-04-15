@@ -15,34 +15,40 @@
 </head>
 <link href="/css/lists.css" rel="stylesheet">
 <html>
-    <header>
-         <h2>Departamento de <?php echo $departamento->nombre; ?></h2>
+    <header style="text-align:center">
+         <h1>Departamento de <?php echo $departamento->nombre; ?></h1>
     </header>
     <br>
-    <div>
-        <img class = "depImages" src='<?php echo $departamento->imagen;?>'>
-    </div>
-    <body>
-        <br>
-        <div class="listDivContainer">
-            <h2>Lista de Médicos:</h2>
-            <?php 
-                if (count($medicos)!=0){
-                    foreach($medicos as $key=>$value): ?>
-                    <ol>
-                        <a href="/medicos/<?php echo $value->id;?>">
-                        <?php 
-                            if($value->departamento_id == $departamento->id)
-                                echo ($value->apellidos . ', ' . $value->nombre) ;
-                        ?>
-                        </a> 
-                    </ol>
-            <?php endforeach;}else{?> 
-            <?php } ?>
-        </div>
-        <br>
-        {{ $medicos->links() }}
-    </body>
+    <br>
+    <div class="container" style="margin-top:30px">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <img  class="rounded-circle float-left" src='<?php echo $departamento->imagen;?>' style="width:350px; height:300px">
+                            </div>
+                            <div class="col-sm-8">
+                                <div class="container" style="text-align:left;">
+                                    <h2>Lista de médicos</h2>
+                                        <?php 
+                                            if (count($medicos)!=0){
+                                                foreach($medicos as $key=>$value): ?>
+                                                
+                                                    <a href="/medicos/<?php echo $value->id;?>">
+                                                    <?php 
+                                                        if($value->departamento_id == $departamento->id)
+                                                            echo ($value->apellidos . ', ' . $value->nombre) ;
+                                                    ?>
+                                                    </a> 
+                                                    <br>
+                                                
+                                            <?php endforeach;}else{?> 
+                                        <?php } ?>
+                                </div>
+                                <br>
+                                {{ $medicos->links() }}
+                                </div>
+                            </div>
+                        </div>
+
 </html>
 @stop
 

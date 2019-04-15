@@ -1,0 +1,14 @@
+.tableHeader{
+    background: #7fb1e0;
+}
+
+.depbutton{
+    padding:15px;
+    margin-bottom: 4px;
+    border-radius: 20px;
+}
+.depbutton:hover{
+    background: orange;
+    border-color: orange;
+    
+}

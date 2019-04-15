@@ -24,7 +24,7 @@
       </ul>
       <ul class="navbar-nav ml-auto">
         <li class="nav-item">
-            <a class="nav-link" href="/medicos"><i class="fas fa-sign-in-alt"></i> Iniciar Sesión</a>
+            <a class="nav-link" href="/login"><i class="fas fa-sign-in-alt"></i> Iniciar Sesión</a>
         </li>
       </ul>
   </nav>
