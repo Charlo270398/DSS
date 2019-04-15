@@ -48,12 +48,29 @@ class CitaDAO
         $dias = array();
         $fechas = array();
         $time = date('Y-m-d H:i:s');
+        $time =  Date('Y-m-d H:i:s', strtotime("+2 hours",strtotime($time))); //Arreglo bug
         $startTime =  Date('Y-m-d H:i:s', strtotime("08:40:00",strtotime($time)));
         $MINUTOS_SESION = 20;
-        $DIAS = 14; //Numero de días que se van a computar
+        $DIAS = 7; //Numero de días que se van a computar
         $SESIONES =  15; //3 sesiones = 1 hora
         $RESTAR_SESIONES = $SESIONES*$MINUTOS_SESION; //Minutos a restar para resetear cada día
+        $diaSemana = date("l", strtotime($startTime));
         
+        if($diaSemana == 'Saturday'){
+            $startTime = Date('Y-m-d H:i:s', strtotime("+2 days",strtotime($startTime)));
+        }
+        if($diaSemana == 'Sunday'){
+            $startTime = Date('Y-m-d H:i:s', strtotime("+1 days",strtotime($startTime)));
+        }
+        else{
+            while($diaSemana != 'Monday'){
+                $startTime = Date('Y-m-d H:i:s', strtotime("-1 days",strtotime($startTime)));
+                $diaSemana = date("l", strtotime($startTime));
+            }
+        }
+        
+       
+        $startTime = Date('Y-m-d H:i:s', strtotime("-1 days",strtotime($startTime)));
         for($i=0; $i<$DIAS; $i++){
             $fechas = array();
             $fechaE = array();
@@ -66,6 +83,7 @@ class CitaDAO
                 if($startTime > $time && $this->disponible($idM, $startTime)){
                     array_push($fechaE, Date('Y-m-d H:i:s',strtotime($startTime)));
                     array_push($fechas, Date("H:i",strtotime($startTime)));
+                   
                 }
                 else{
                     array_push($fechas, '--:--');
