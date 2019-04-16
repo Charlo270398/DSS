@@ -37,4 +37,8 @@ class UsuarioController extends Controller
             return view('/user/citas/lista', ['user' => $u->mostrarUsuario($id), 'citas' => $u->mostrarCitasRecientes($id)]);
         }
     }
+
+    public function mostrarCitasDisponibles(){
+        return view('/user/citas/disponibles');
+    }
 }
