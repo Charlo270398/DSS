@@ -62,11 +62,14 @@ Route::post('medicos/edit/editar_create', [
     'uses' => 'MedicosController@editarMedico'
 ]);
 //----USUARIO----
-Route::get('/usuario/{id}','UsuarioController@autenticarUsuario');
+Route::get('/usuario/{id}','UsuarioController@autenticarUsuario')->middleware('auth');
 Route::get('/login','UsuarioController@mostrarFormAutenticacion');
 //Usuario-Historial
 Route::get('/usuario/{id}/historial&{modo}','UsuarioController@mostrarHistorial');
 //Usuario-Citas
 Route::get('/usuario/{id}/citas&{modo}','UsuarioController@mostrarCitas');
-Route::get('/usuario/{id}/citas/add','UsuarioController@mostrarAddCitaForm');
+Route::get('/usuario/{id}/citas/disponibles&{idM}','CitasController@mostrarCitasDisponibles');
 Route::get('/usuario/{idU}/citas/{idC}','CitasController@mostrarCita');
+//CREADO POR AUTH
+Auth::routes();
+//Route::get('/home', 'HomeController@index')->name('home');
