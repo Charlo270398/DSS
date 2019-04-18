@@ -36,12 +36,11 @@ class UsersTableSeeder extends Seeder
         'email' => 'admin@gmail.com', 'num_colegiado' => null,'fecha_nacimiento' => date('2015-10-10 10:10:10'),
         'departamento_id' => null, 'rol_id' => $admin->id, 'password' => '$2y$10$lmh4A90v470PHSpmBXd6T.PaiyszLJNr1LCpby6IN4x50XXRImyQO']);
         $User->save();
-
-        $User= new User(['dni' => '0000000XD','nombre' => 'Su Florentineza', 'apellidos' =>'DIOS',
+        $User= new User(['dni' => '0000000XD','nombre' => 'Su Florentineza', 'apellidos' =>'Pérez Gutiérrez',
         'email' => 'vivasuflorentineza@gmail.com', 'num_colegiado' => null,'fecha_nacimiento' => date('2015-10-10 10:10:10'),
         'departamento_id' => null, 'rol_id' => $admin->id, 'password' => '$2y$10$lmh4A90v470PHSpmBXd6T.PaiyszLJNr1LCpby6IN4x50XXRImyQO']);
         $User->save();
-    
+
         //En esta sección metemos médicos
         
         $usuario= new User(['dni' => '00000005B','nombre' => 'Jorge', 'apellidos' =>'González Pérez',
@@ -68,8 +67,8 @@ class UsersTableSeeder extends Seeder
         'email' => 'patriciagonzalez@gmail.com', 'num_colegiado' => '11','fecha_nacimiento' => date('2015-10-10 10:10:10'),
         'departamento_id' => $dep6->id, 'rol_id' => $medico->id, 'password' => '$2y$10$lmh4A90v470PHSpmBXd6T.PaiyszLJNr1LCpby6IN4x50XXRImyQO']);
         $usuario->save();
-        $usuario= new User(['dni' => '00000002C','nombre' => 'Sergio', 'apellidos' =>'Moreno Cabral',
-        'email' => 'sergiomoreno@gmail.com', 'num_colegiado' => '12','fecha_nacimiento' => date('2015-10-10 10:10:10'),
+        $usuario= new User(['dni' => '00000002C','nombre' => 'Rodrigo', 'apellidos' =>'Moreno Cabral',
+        'email' => 'rodrigomoreno@gmail.com', 'num_colegiado' => '12','fecha_nacimiento' => date('2015-10-10 10:10:10'),
         'departamento_id' => $dep1->id, 'rol_id' => $medico->id, 'password' => '$2y$10$lmh4A90v470PHSpmBXd6T.PaiyszLJNr1LCpby6IN4x50XXRImyQO']);
         $usuario->save();
         $usuario= new User(['dni' => '00000003C','nombre' => 'Antonio', 'apellidos' =>'Ruiz Estepona',
@@ -139,8 +138,44 @@ class UsersTableSeeder extends Seeder
 
         //En esta sección metemos pacientes
 
-        $User= new User(['dni' => '00000000C','nombre' => 'Luis', 'apellidos' =>'Suárez',
+        $User= new User(['dni' => '00000000Y','nombre' => 'Luis', 'apellidos' =>'Suárez Albertos',
         'email' => 'mordisquitos@gmail.com', 'num_colegiado' => null,'fecha_nacimiento' => date('2015-10-10 10:10:10'),
+        'departamento_id' => null, 'rol_id' => $paciente->id, 'password' => '$2y$10$lmh4A90v470PHSpmBXd6T.PaiyszLJNr1LCpby6IN4x50XXRImyQO']);
+        $User->save();
+        $User= new User(['dni' => '00000001Y','nombre' => 'Pedro', 'apellidos' =>'Díaz Ferrer',
+        'email' => 'pedraco55@gmail.com', 'num_colegiado' => null,'fecha_nacimiento' => date('2015-10-10 10:10:10'),
+        'departamento_id' => null, 'rol_id' => $paciente->id, 'password' => '$2y$10$lmh4A90v470PHSpmBXd6T.PaiyszLJNr1LCpby6IN4x50XXRImyQO']);
+        $User->save();
+        $User= new User(['dni' => '00000002Y','nombre' => 'Samanta', 'apellidos' =>'Pérez Murcia',
+        'email' => 'samanta55@gmail.com', 'num_colegiado' => null,'fecha_nacimiento' => date('2015-10-10 10:10:10'),
+        'departamento_id' => null, 'rol_id' => $paciente->id, 'password' => '$2y$10$lmh4A90v470PHSpmBXd6T.PaiyszLJNr1LCpby6IN4x50XXRImyQO']);
+        $User->save();
+        $User= new User(['dni' => '00000003Y','nombre' => 'María', 'apellidos' =>'Martínez Pagán',
+        'email' => 'maria19@gmail.com', 'num_colegiado' => null,'fecha_nacimiento' => date('2015-10-10 10:10:10'),
+        'departamento_id' => null, 'rol_id' => $paciente->id, 'password' => '$2y$10$lmh4A90v470PHSpmBXd6T.PaiyszLJNr1LCpby6IN4x50XXRImyQO']);
+        $User->save();
+        $User= new User(['dni' => '00000004Y','nombre' => 'Esperanza', 'apellidos' =>'Burgos Goicochea',
+        'email' => 'esperanza95@gmail.com', 'num_colegiado' => null,'fecha_nacimiento' => date('2015-10-10 10:10:10'),
+        'departamento_id' => null, 'rol_id' => $paciente->id, 'password' => '$2y$10$lmh4A90v470PHSpmBXd6T.PaiyszLJNr1LCpby6IN4x50XXRImyQO']);
+        $User->save();
+        $User= new User(['dni' => '00000005Y','nombre' => 'David', 'apellidos' =>'Ferri Campos',
+        'email' => 'davidcampos19@gmail.com', 'num_colegiado' => null,'fecha_nacimiento' => date('2015-10-10 10:10:10'),
+        'departamento_id' => null, 'rol_id' => $paciente->id, 'password' => '$2y$10$lmh4A90v470PHSpmBXd6T.PaiyszLJNr1LCpby6IN4x50XXRImyQO']);
+        $User->save();
+        $User= new User(['dni' => '00000006Y','nombre' => 'Vladimir', 'apellidos' =>'Dimitrovich',
+        'email' => 'vladimir88@gmail.com', 'num_colegiado' => null,'fecha_nacimiento' => date('2015-10-10 10:10:10'),
+        'departamento_id' => null, 'rol_id' => $paciente->id, 'password' => '$2y$10$lmh4A90v470PHSpmBXd6T.PaiyszLJNr1LCpby6IN4x50XXRImyQO']);
+        $User->save();
+        $User= new User(['dni' => '00000007Y','nombre' => 'Carlos', 'apellidos' =>'Pérez Jiménez',
+        'email' => 'carlitos45@gmail.com', 'num_colegiado' => null,'fecha_nacimiento' => date('2015-10-10 10:10:10'),
+        'departamento_id' => null, 'rol_id' => $paciente->id, 'password' => '$2y$10$lmh4A90v470PHSpmBXd6T.PaiyszLJNr1LCpby6IN4x50XXRImyQO']);
+        $User->save();
+        $User= new User(['dni' => '00000008Y','nombre' => 'Paula', 'apellidos' =>'Manavitox Campos',
+        'email' => 'paulacampos@gmail.com', 'num_colegiado' => null,'fecha_nacimiento' => date('2015-10-10 10:10:10'),
+        'departamento_id' => null, 'rol_id' => $paciente->id, 'password' => '$2y$10$lmh4A90v470PHSpmBXd6T.PaiyszLJNr1LCpby6IN4x50XXRImyQO']);
+        $User->save();
+        $User= new User(['dni' => '00000009Y','nombre' => 'Yael', 'apellidos' =>'Durán Izquierdo',
+        'email' => 'yaelduran@gmail.com', 'num_colegiado' => null,'fecha_nacimiento' => date('2015-10-10 10:10:10'),
         'departamento_id' => null, 'rol_id' => $paciente->id, 'password' => '$2y$10$lmh4A90v470PHSpmBXd6T.PaiyszLJNr1LCpby6IN4x50XXRImyQO']);
         $User->save();
         
