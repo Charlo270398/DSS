@@ -23,9 +23,18 @@
         </li>
       </ul>
       <ul class="navbar-nav ml-auto">
-        <li class="nav-item">
-            <a class="nav-link" href="/login"><i class="fas fa-sign-in-alt"></i> Iniciar Sesión</a>
-        </li>
+        <?php if (!Auth::check()) {// El usuario está correctamente autentificado}?>
+          <li class="nav-item">
+              <a class="nav-link" href="/login"><i class="fas fa-sign-in-alt"></i> Iniciar Sesión</a>
+          </li>
+        <?php } else{ ?>
+          <li class="nav-item">
+              <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" ><i class="fas fa-door-open "></i> Logout</a>
+          </li>
+          <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+             @csrf
+          </form>
+        <?php } ?>
       </ul>
   </nav>
 
