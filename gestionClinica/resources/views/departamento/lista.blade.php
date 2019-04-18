@@ -19,7 +19,7 @@
         $header = 'Editar departamento';
     }else{
         $ruta = '';
-        $header = 'Listado de departamentos';
+        $header = 'Especialidades médicas';
     }
 ?>
 <head>
