@@ -13,7 +13,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Menu usuario</title>
 </head>
-<link href="/css/menus.css" rel="stylesheet">
 <html>
     <header>
         <div class = "title">

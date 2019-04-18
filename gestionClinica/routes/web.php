@@ -62,14 +62,24 @@ Route::post('medicos/edit/editar_create', [
     'uses' => 'MedicosController@editarMedico'
 ]);
 //----USUARIO----
+
 Route::get('/usuario/{id}','UsuarioController@autenticarUsuario')->middleware('auth');
-Route::get('/login','UsuarioController@mostrarFormAutenticacion');
+Route::get('/logged', function () { //Para redirigir a panel de usuario una vez iniciamos sesión
+    $currentuser = Auth::user();
+    if(!$currentuser){
+        return redirect("home");
+    }
+    else{
+        return redirect("/usuario/$currentuser->id");
+    }
+});
+
 //Usuario-Historial
-Route::get('/usuario/{id}/historial&{modo}','UsuarioController@mostrarHistorial');
+Route::get('/usuario/{id}/historial&{modo}','UsuarioController@mostrarHistorial')->middleware('auth');
 //Usuario-Citas
-Route::get('/usuario/{id}/citas&{modo}','UsuarioController@mostrarCitas');
-Route::get('/usuario/{id}/citas/disponibles&{idM}','CitasController@mostrarCitasDisponibles');
-Route::get('/usuario/{idU}/citas/{idC}','CitasController@mostrarCita');
+Route::get('/usuario/{id}/citas&{modo}','UsuarioController@mostrarCitas')->middleware('auth');
+Route::get('/usuario/{id}/citas/disponibles&{idM}','CitasController@mostrarCitasDisponibles')->middleware('auth');
+Route::get('/usuario/{idU}/citas/{idC}','CitasController@mostrarCita')->middleware('auth');
 //CREADO POR AUTH
 Auth::routes();
-//Route::get('/home', 'HomeController@index')->name('home');
+//Route::get('/home', 'HomeController@index')->name('home'); 
