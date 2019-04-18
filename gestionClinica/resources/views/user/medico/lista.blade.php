@@ -30,8 +30,7 @@
     <title>Médicos</title>
 </head>
 
-<html>
-        
+<html>  
     <header style="text-align: center">
         <h1>Listado de médicos</h1>
     </header>
@@ -44,9 +43,7 @@
                 <input id="myInput" type="text" class="form-control" placeholder="Nombre o apellidos" aria-label="Username" aria-describedby="basic-addon1">
             </div>
         </div>
-        <br>
-        
-            
+        <br>     
         <div class="container">
                 <?php if(count($medicos)!=0){ ?>
                 <table class="table table-bordered">
@@ -58,14 +55,12 @@
                       <th>Acciones</th>
                     </tr>
                   </thead>
-                  <tbody>
-                   
-                        
+                  <tbody>                     
                         <?php  foreach($medicos as $key=>$value): ?>
                             <tr>
                                 <td><?php  echo $value->nombre;?></td>
                                 <td><?php  echo $value->apellidos;?></td>
-                                <td><?php  echo $value->departamento_id;?></td>
+                                <td><a href= '/departamentos/<?php echo $value->departamento_id?>'><?php echo $value->departamento_id?></a></td>
                                 <td><button type="button" onclick="window.location.href='/medicos/<?php echo ($value->id. $ruta);?>'" class="btn btn-primary">Ver ficha</button>
                                 <button id="editBtn" type="button" onclick="window.location.href='/medicos/<?php echo ($value->id. $ruta);?>'" class="btn btn-secondary <?php echo $visible ?>">Editar</button>
                                 <button id="deleteBtn" type="button" onclick="window.location.href='/medicos/<?php echo ($value->id. $ruta);?>'" class="btn btn-danger <?php echo $visible ?>">Borrar</button></td>
@@ -77,13 +72,8 @@
                     <h2>Búsqueda sin resultados</h2>
                 <?php } ?>
         </div>
-        
         <br>
-
         {{ $medicos->links() }}
-
-
-
     </body>
     <script>
         function getInput(){
