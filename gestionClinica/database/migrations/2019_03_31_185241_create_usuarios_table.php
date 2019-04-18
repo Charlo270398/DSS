@@ -30,6 +30,7 @@ class CreateUsuariosTable extends Migration
             $table->foreign('departamento_id')->references('id')->on('departamentos')->onDelete('cascade');
             $table->integer('rol_id')->unsigned();
             $table->foreign('rol_id')->references('id')->on('rols');
+            $table->string('imagen')->nullable(false);
 
             $table->timestamps();
         });
