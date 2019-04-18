@@ -21,7 +21,7 @@
     </header>
     <body>
         <br>
-        <img  class="rounded-circle mx-auto d-block" src='<?php echo $departamento->imagen;?>' style="width:350px; height:300px"> 
+        <img  class="rounded-circle mx-auto d-block" src='/images/medicos/<?php echo $medico->nombre?>.jpg' style="width:350px; height:300px"> 
         <br>     
         <div class="container">
           <table class="table table-bordered">
