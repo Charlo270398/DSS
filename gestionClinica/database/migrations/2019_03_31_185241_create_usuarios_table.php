@@ -22,7 +22,7 @@ class CreateUsuariosTable extends Migration
             $table->string('pass')->nullable(false);
             $table->string('apellidos');
             $table->string('email')->unique();
-            $table->timestamp('fecha_nacimiento');
+            $table->timestamp('fecha_nacimiento')->nullable();
 
             //Exclusivo de médico
             $table->string('num_colegiado')->nullable()->unique();
