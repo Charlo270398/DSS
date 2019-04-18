@@ -19,11 +19,11 @@ class CreateUsuariosTable extends Migration
             $table->increments('id');
             $table->string('dni')->unique();
             $table->string('nombre');
-            $table->string('pass')->nullable(false);
+            $table->string('password')->nullable(false);
             $table->string('apellidos');
             $table->string('email')->unique();
-            $table->timestamp('fecha_nacimiento');
-
+            $table->timestamp('fecha_nacimiento')->nullable();
+            $table->string('remember_token')->nullable();
             //Exclusivo de médico
             $table->string('num_colegiado')->nullable()->unique();
             $table->integer('departamento_id')->nullable()->unsigned();
