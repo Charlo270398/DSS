@@ -29,6 +29,9 @@
           </li>
         <?php } else{ ?>
           <li class="nav-item">
+              <a class="nav-link" href="/login"><i class="fas fa-user"></i> Área usuario</a>
+          </li>
+          <li class="nav-item">
               <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" ><i class="fas fa-door-open "></i> Logout</a>
           </li>
           <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">

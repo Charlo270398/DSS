@@ -19,7 +19,7 @@ class CreateUsuariosTable extends Migration
             $table->increments('id');
             $table->string('dni')->unique();
             $table->string('nombre');
-            $table->string('pass')->nullable(false);
+            $table->string('password')->nullable(false);
             $table->string('apellidos');
             $table->string('email')->unique();
             $table->timestamp('fecha_nacimiento')->nullable();
