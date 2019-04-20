@@ -63,7 +63,7 @@ Route::post('medicos/edit/editar_create', [
 ]);
 //----USUARIO----
 
-Route::get('/usuario/{id}','UsuarioController@autenticarUsuario')->middleware('auth');
+Route::get('/usuario','UsuarioController@autenticarUsuario')->middleware('auth');
 Route::get('/logged', function () { //Para redirigir a panel de usuario una vez iniciamos sesión
     $currentuser = Auth::user();
     if(!$currentuser){
