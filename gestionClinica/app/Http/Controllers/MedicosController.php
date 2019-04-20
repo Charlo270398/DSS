@@ -4,17 +4,21 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Rol;
 use App\Departamento;
+use App\BL\DepartamentoDAO;
 use App\BL\UserDAO;
 class MedicosController extends Controller
 {
     public function mostrarListaMedicos(){
         $u = new UserDAO();
-        return view('/user/medico/lista', ['medicos' => $u->mostrarListaMedicos()->paginate(5), 'op' =>'mostrar']);
+        $med = $u->mostrarListaMedicos();
+        $d = new DepartamentoDAO();
+        return view('/user/medico/lista', ['medicos' => $med->paginate(5), 'departamentos'=>$d->mostrarListaDepartamentos(), 'op' =>'mostrar']);
     }
     public function mostrarListaMedicosPorNombre($nombre){
         $u = new UserDAO();
+        $d = new DepartamentoDAO();
         $users = $u->mostrarListaMedicosPorNombre($nombre);
-        return view('/user/medico/lista', ['medicos' => $users->paginate(5), 'op' =>'mostrar']);
+        return view('/user/medico/lista', ['medicos' => $users->paginate(5), 'departamentos'=>$d->mostrarListaDepartamentos(), 'op' =>'mostrar']);
     }
     public function mostrarMedico($id) {
         $u = new UserDAO();     
