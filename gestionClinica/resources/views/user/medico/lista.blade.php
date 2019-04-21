@@ -10,7 +10,7 @@
 @section('body')
 <!DOCTYPE html>
 <link href="/css/lists.css" rel="stylesheet">
-<?php
+<?php 
     if($op == 'borrar'){
         $ruta = '/borrar';
         $header = 'Borrar Médico';
@@ -54,11 +54,13 @@
                       <th>Acciones</th>
                     </tr>
                   </thead>
-                  <tbody>                     
-                        <?php  foreach($medicos as $key=>$value): ?>
+                  <tbody>     
+                        <?php                
+                            foreach($medicos as $value): ?>
                             <tr>
                                 <td><?php  echo $value->nombre;?></td>
                                 <td><?php  echo $value->apellidos;?></td>
+<<<<<<< HEAD
                                 <td><a href= '/departamentos/<?php echo $value->departamento_id?>'>
                                     <?php 
                                         if($value->departamento_id == 1)
@@ -74,6 +76,12 @@
                                         else
                                              echo 'Dermatología';?>
                                 </a></td>
+=======
+                                <?php foreach($departamentos as $dep): 
+                                    if($dep->id == $value->departamento_id){ ?>
+                                    <td><a href= '/departamentos/<?php echo $value->departamento_id ?>'><?php echo $dep->nombre ?></a></td>
+                                <?php } endforeach; ?>
+>>>>>>> Develop
                                 <td><button type="button" onclick="window.location.href='/medicos/<?php echo ($value->id. $ruta);?>'" class="btn btn-primary">Ver ficha</button>
                                 <button id="editBtn" type="button" onclick="window.location.href='/medicos/<?php echo ($value->id. $ruta);?>'" class="btn btn-secondary <?php echo $visible ?>">Editar</button>
                                 <button id="deleteBtn" type="button" onclick="window.location.href='/medicos/<?php echo ($value->id. $ruta);?>'" class="btn btn-danger <?php echo $visible ?>">Borrar</button></td>

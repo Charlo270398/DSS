@@ -15,13 +15,13 @@
 </head>
 <html>
     <header>
-        <div class = "title">
-            <h2>Bienvenido <?php echo $user->nombre ?> </h2>
+        <div class = "container" style="text-align: center">
+            <h1><strong> Bienvenid@ <?php echo Auth::user()->nombre ?> </strong></h1>
         </div>
     </header>
     <br>
     <body>
-         @include('components/menu' . $tipo->nombre, array('user'=>$user)) 
+         @include('components/menu' . $tipo->nombre) 
     </body>
 </html>
 @stop
