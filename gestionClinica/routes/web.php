@@ -70,7 +70,7 @@ Route::get('/logged', function () { //Para redirigir a panel de usuario una vez 
         return redirect("home");
     }
     else{
-        return redirect("/usuario/$currentuser->id");
+        return redirect("/usuario");
     }
 });
 
