@@ -85,7 +85,10 @@ class CitaDAO
                     array_push($fechas, Date("H:i",strtotime($startTime)));
                    
                 }
-                else{
+                else if($startTime > $time && !$this->disponible($idM, $startTime)){
+                    array_push($fechas, 'Hora ocupada');
+                    array_push($fechaE, -1);
+                }else{
                     array_push($fechas, '--:--');
                     array_push($fechaE, -1);
                 }
@@ -102,7 +105,7 @@ class CitaDAO
     //AUXILIAR MOSTRAR HORARIO
     public function disponible($idM, $hora){
 
-        $idM = 3;//ID DE PRUEBA HASTA QUE SE IMPLEMENTE
+     
         $cita = Cita::where('medico_id', '=', $idM)->where('fecha', '=', $hora)->first();
         
         if($cita == null){

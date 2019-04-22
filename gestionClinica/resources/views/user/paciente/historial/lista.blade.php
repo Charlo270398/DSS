@@ -15,17 +15,16 @@
 </head>
 <link href="/css/lists.css" rel="stylesheet">
 <html>
-    <header>
-        <h2>Historial clínico</h2>
-    </header> 
     <body>
         <br> 
-        <div class="listDivContainer">
-            <a href="/usuario/<?php echo $user->id;?>/historial&antiguas">Fecha ascendente</a>
-            <a href="/usuario/<?php echo $user->id;?>/historial&recientes">Fecha descendente</a>
-        </div>
-        <br> 
-        <div class="listDivContainer">
+        <div class="container">
+            <h1><strong>Historial clínico</strong></h1>
+            <a href="/historial&antiguas">Fecha ascendente</a>
+            <a href="/historial&recientes">Fecha descendente</a>
+
+           <br> 
+           <br>
+
             <h4 style="text-align:left"> Fecha de la entrada </h4>
                 <?php 
                     if (count($entradas)!=0){

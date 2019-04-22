@@ -54,6 +54,7 @@
                             </div>
                         </div>
                       </div>
+                      <br>
 
                 <div class="card-footer text-right" style="margin-bottom:0; background:#343a40; color:white">
                     <p>Calle Jaime Segarra, 2</p>

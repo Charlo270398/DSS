@@ -24,21 +24,34 @@ class UsuarioController extends Controller
         return view('/user/login');
     }
 
-    public function mostrarHistorial($id, $modo){
+    public function mostrarHistorial($modo){
         $u = new UserDAO();
-        if($modo == 'antiguas'){
-            return view('/user/paciente/historial/lista', ['user' => $u->mostrarUsuario($id), 'entradas' => $u->mostrarEntradasAntiguas($id)]);
+        if (Auth::check()) {
+            $id = Auth::user()->id;
+            if($modo == 'antiguas'){
+                return view('/user/paciente/historial/lista', ['user' => $u->mostrarUsuario($id), 'entradas' => $u->mostrarEntradasAntiguas($id)]);
+            }else{
+                return view('/user/paciente/historial/lista', ['user' => $u->mostrarUsuario($id), 'entradas' => $u->mostrarEntradasRecientes($id)]);
+            }  
         }else{
-            return view('/user/paciente/historial/lista', ['user' => $u->mostrarUsuario($id), 'entradas' => $u->mostrarEntradasRecientes($id)]);
-        }    
+            //Excepcion??
+            return view('/error', ['error' => 'Error autenticando.']);
+        }  
     }
 
-    public function mostrarCitas($id, $modo){
-        $u = new UserDAO();
-        if($modo == 'antiguas'){
-            return view('/user/citas/lista', ['user' => $u->mostrarUsuario($id), 'citas' => $u->mostrarCitasAntiguas($id)]);
+    public function mostrarCitas($modo){
+
+        if (Auth::check()) {
+            $id = Auth::user()->id;
+            $u = new UserDAO();
+            if($modo == 'antiguas'){
+                return view('/user/citas/lista', ['user' => $u->mostrarUsuario($id), 'citas' => $u->mostrarCitasAntiguas($id)]);
+            }else{
+                return view('/user/citas/lista', ['user' => $u->mostrarUsuario($id), 'citas' => $u->mostrarCitasRecientes($id)]);
+            }
         }else{
-            return view('/user/citas/lista', ['user' => $u->mostrarUsuario($id), 'citas' => $u->mostrarCitasRecientes($id)]);
+            //Excepcion??
+            return view('/error', ['error' => 'Error autenticando.']);
         }
     }
 

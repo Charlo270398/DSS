@@ -10,23 +10,29 @@
 <!DOCTYPE html>
 <link href="/css/lists.css" rel="stylesheet">
 <?php 
-    if($op == 'borrar'){
-        $ruta = '/borrar';
-        $header = 'Borrar Médico';
-        $visible = 'visible';
+    if($op == 'reservar'){
+        $ruta = '/horarios';
+        $head = 'Reserva de citas';
+        $header = 'Seleccione un médico';
+        $visible = false;
+        $disp = true;
     }else if($op == 'editar'){
         $ruta = '/editar';
+        $head = 'Edición';
         $header = 'Editar Médico';
-        $visible = 'visible';
+        $visible = true;
+        $disp = false;
     }else{
         $ruta = '';
+        $head = 'Listado de Médicos';
         $header = 'Listado de Médicos';
-        $visible = 'invisible';
+        $visible = false;
+        $disp = false;
     }
 ?>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Médicos</title>
+    <title><?php echo $head ?></title>
 </head>
 
 <html>  
@@ -65,8 +71,9 @@
                                     <td><a href= '/departamentos/<?php echo $value->departamento_id ?>'><?php echo $dep->nombre ?></a></td>
                                 <?php } endforeach; ?>
                                 <td><button type="button" onclick="window.location.href='/medicos/<?php echo ($value->id. $ruta);?>'" class="btn btn-primary">Ver ficha</button>
-                                <button id="editBtn" type="button" onclick="window.location.href='/medicos/<?php echo ($value->id. $ruta);?>'" class="btn btn-secondary <?php echo $visible ?>">Editar</button>
-                                <button id="deleteBtn" type="button" onclick="window.location.href='/medicos/<?php echo ($value->id. $ruta);?>'" class="btn btn-danger <?php echo $visible ?>">Borrar</button></td>
+                                <?php if($visible){ ?> <button id="editBtn" type="button" onclick="window.location.href='/medicos/<?php echo ($value->id. $ruta);?>'" class="btn btn-secondary ">Editar</button>
+                                <button id="deleteBtn" type="button" onclick="window.location.href='/medicos/<?php echo ($value->id. $ruta);?>'" class="btn btn-danger ">Borrar</button>
+                                <?php }else if($disp){ ?> <button id="dispBtn" type="button" onclick="window.location.href='/medico/<?php echo ($value->id. $ruta);?>'" class="btn btn-primary ">Consultar disponibilidad</button> <?php } ?></td>
                             </tr>  
                         <?php endforeach; ?>              
                   </tbody>
