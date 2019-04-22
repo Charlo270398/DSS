@@ -7,17 +7,25 @@ use App\BL\CitaDAO;
 use App\BL\UserDAO;
 use App\BL\DepartamentoDAO;
 use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Support\Facades\Auth;
 
 class CitasController extends Controller
 {
-    public function mostrarCita($idU, $idC) {
-        $c = new CitaDAO();  
-        $u = new UserDAO();   
-        $d = new DepartamentoDAO();
-        return view('/user/citas/cita', ['cita' => $c->mostrarCita($idC), 'medico' => $u->mostrarUsuario($c->mostrarCita($idC)->medico_id), 
-        'departamento' => $d->mostrarDepartamento($c->mostrarCita($idC)->medico_id)]);
+    public function mostrarCita($idC) {
+
+        if (Auth::check()) {
+            $idU = Auth::user()->id;
+            $c = new CitaDAO();  
+            $u = new UserDAO();   
+            $d = new DepartamentoDAO();
+            return view('/user/citas/cita', ['cita' => $c->mostrarCita($idC), 'medico' => $u->mostrarUsuario($c->mostrarCita($idC)->medico_id), 
+            'departamento' => $d->mostrarDepartamento($c->mostrarCita($idC)->medico_id)]);
+        }
+        else{
+
+        }
     }
-    public function borrarCita($idU, $idC) {
+    public function borrarCita($idC) {
         $c = new CitaDAO();  
         return view('/user/citas/cita', ['cita' => $c->mostrarCita($idC), 'medico' => $u->mostrarUsuario($c->mostrarCita($idC)->medico_id), 
         'departamento' => $d->mostrarDepartamento($c->mostrarCita($idC)->medico_id)]);

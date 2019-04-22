@@ -88,4 +88,10 @@ class MedicosController extends Controller
         $users = User::where('rol_id', '=', $rol->id)->paginate(5); //bootstrap4.blade
         return view('/user/medico/lista', ['medicos' => $users, 'departamentos'=>$d->mostrarListaDepartamentos(), 'op' =>'borrar']);
     }
+    public function mostrarListaMedicosReserva(){
+        $rol = Rol::where('nombre', '=', 'Medico')->first();
+        $d = new DepartamentoDAO();
+        $users = User::where('rol_id', '=', $rol->id)->paginate(5); //bootstrap4.blade
+        return view('/user/medico/lista', ['medicos' => $users, 'departamentos'=>$d->mostrarListaDepartamentos(), 'op' =>'reservar']);
+    }
 }

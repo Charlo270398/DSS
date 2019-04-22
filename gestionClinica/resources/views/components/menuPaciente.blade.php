@@ -6,11 +6,12 @@
 </head>
 <html>
     <body>
-        <div>
-            <ul> <h2>Panel del paciente</h2></ul>
-            <ul> <a class="aPanel" href="/usuario/<?php echo $user->id ?>/citas/disponibles&1"> Reservar cita </a></ul>
-            <ul> <a class="aPanel" href="/usuario/<?php echo $user->id ?>/citas&recientes"> Consultar citas </a></ul>
-            <ul> <a class="aPanel" href="/usuario/<?php echo $user->id ?>/historial&recientes"> Ver historial </a></ul>
+        <br>
+        <div class="container">
+            <ul> <h2><strong>Panel del paciente</strong></h2></ul>
+            <ul> <a class="aPanel" href="/medico/reservas"> Reservar cita </a></ul>
+            <ul> <a class="aPanel" href="/citas&recientes"> Consultar citas </a></ul>
+            <ul> <a class="aPanel" href="/historial&recientes"> Ver historial </a></ul>
         </div>
     </body>
 </html>

@@ -47,7 +47,7 @@
                         for($i=0; $i<sizeof($fechas[0][1]); $i++){ ?>
                         <tr>
                             <?php for($j=0; $j<sizeof($fechas); $j++){
-                                if($fechas[$j][1][$i] == '--:--'){?>
+                                if($fechas[$j][1][$i] == '--:--' || $fechas[$j][1][$i] == 'Hora ocupada'){?>
                                     <th><?php echo $fechas[$j][1][$i] ?></th>
                                 <?php }else{?>
                                     <th><a href=""><?php echo $fechas[$j][1][$i]?></a></th>

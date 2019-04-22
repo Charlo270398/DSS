@@ -36,6 +36,10 @@ Route::get('/medico/deleteList','MedicosController@mostrarListaMedicosBorrar');
 Route::get('/medicos&{nombre}', 'MedicosController@mostrarListaMedicosPorNombre');
 Route::get('/medicos/{id}/editar', 'MedicosController@mostrarEditarForm');
 Route::get('/medicos/{id}/borrar', 'MedicosController@borrarMedico');
+Route::get('/medico/reservas', 'MedicosController@mostrarListaMedicosReserva');
+Route::get('/medico/{id}/horarios', function ($id) { return redirect("/citas/disponibles&$id");});
+
+
 //Administracion
 Route::get('/clinica/edit','ClinicaController@mostrarEditarForm');
 Route::get('/box/add','BoxController@mostrarAddForm');
@@ -75,10 +79,10 @@ Route::get('/logged', function () { //Para redirigir a panel de usuario una vez 
 });
 
 //Usuario-Historial
-Route::get('/usuario/{id}/historial&{modo}','UsuarioController@mostrarHistorial')->middleware('auth');
+Route::get('/historial&{modo}','UsuarioController@mostrarHistorial')->middleware('auth');
 //Usuario-Citas
-Route::get('/usuario/{id}/citas&{modo}','UsuarioController@mostrarCitas')->middleware('auth');
-Route::get('/usuario/{id}/citas/disponibles&{idM}','CitasController@mostrarCitasDisponibles')->middleware('auth');
+Route::get('/citas&{modo}','UsuarioController@mostrarCitas')->middleware('auth');
+Route::get('/citas/disponibles&{idM}','CitasController@mostrarCitasDisponibles')->middleware('auth');
 Route::get('/usuario/{idU}/citas/{idC}','CitasController@mostrarCita')->middleware('auth');
 //CREADO POR AUTH
 Auth::routes();
