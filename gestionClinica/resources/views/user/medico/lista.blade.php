@@ -1,4 +1,3 @@
-
 @extends('layouts.master')
 
 @section('title', 'Page Title')
@@ -32,14 +31,15 @@
 
 <html>  
     <header style="text-align: center">
-        <h1>Cuadro médico</h1>
+        <h1>Listado de médicos</h1>
     </header>
     <body>
         <br>
         <div class="container">
+            <h4>Buscador</h4>
             <div class="input-group mb-3">
                 <button type="button" class="btn btn-primary" onclick="window.location.href='/medicos' + getInput()"> Buscar </button>
-                <input id="myInput" type="text" class="form-control" placeholder="Buscar médico por nombre o apellidos" aria-label="Username" aria-describedby="basic-addon1">
+                <input id="myInput" type="text" class="form-control" placeholder="Nombre o apellidos" aria-label="Username" aria-describedby="basic-addon1">
             </div>
         </div>
         <br>     
@@ -60,28 +60,10 @@
                             <tr>
                                 <td><?php  echo $value->nombre;?></td>
                                 <td><?php  echo $value->apellidos;?></td>
-<<<<<<< HEAD
-                                <td><a href= '/departamentos/<?php echo $value->departamento_id?>'>
-                                    <?php 
-                                        if($value->departamento_id == 1)
-                                            echo 'Odontología';
-                                        else if($value->departamento_id == 2)
-                                            echo 'Ginecología';
-                                        else if($value->departamento_id == 3)
-                                            echo 'Fisioterapia';
-                                        else if($value->departamento_id == 4)
-                                            echo 'Oncología';
-                                        else if($value->departamento_id == 5)
-                                            echo 'Radioterapia';
-                                        else
-                                             echo 'Dermatología';?>
-                                </a></td>
-=======
                                 <?php foreach($departamentos as $dep): 
                                     if($dep->id == $value->departamento_id){ ?>
                                     <td><a href= '/departamentos/<?php echo $value->departamento_id ?>'><?php echo $dep->nombre ?></a></td>
                                 <?php } endforeach; ?>
->>>>>>> Develop
                                 <td><button type="button" onclick="window.location.href='/medicos/<?php echo ($value->id. $ruta);?>'" class="btn btn-primary">Ver ficha</button>
                                 <button id="editBtn" type="button" onclick="window.location.href='/medicos/<?php echo ($value->id. $ruta);?>'" class="btn btn-secondary <?php echo $visible ?>">Editar</button>
                                 <button id="deleteBtn" type="button" onclick="window.location.href='/medicos/<?php echo ($value->id. $ruta);?>'" class="btn btn-danger <?php echo $visible ?>">Borrar</button></td>
@@ -107,4 +89,3 @@
     </script>
 </html>
 @stop
-
