@@ -11,20 +11,18 @@
 <!DOCTYPE html>
 <link href="/css/lists.css" rel="stylesheet">
 <?php 
+    $rutaModal ='';
     if($op == 'reservar'){
-        $ruta = '/horarios';
         $head = 'Reserva de citas';
         $header = 'Seleccione un médico';
         $visible = false;
         $disp = true;
     }else if($op == 'editar'){
-        $ruta = '/editar';
         $head = 'Edición';
         $header = 'Editar Médico';
         $visible = true;
         $disp = false;
     }else{
-        $ruta = '';
         $head = 'Listado de Médicos';
         $header = 'Listado de Médicos';
         $visible = false;
@@ -71,10 +69,10 @@
                                     if($dep->id == $value->departamento_id){ ?>
                                     <td><a href= '/departamentos/<?php echo $value->departamento_id ?>'><?php echo $dep->nombre ?></a></td>
                                 <?php } endforeach; ?>
-                                <td><button type="button" onclick="window.location.href='/medicos/<?php echo ($value->id. $ruta);?>'" class="btn btn-primary">Ver ficha</button>
-                                <?php if($visible){ ?> <button id="editBtn" type="button" onclick="window.location.href='/medicos/<?php echo ($value->id. $ruta);?>'" class="btn btn-secondary ">Editar</button>
-                                <button id="deleteBtn" type="button" onclick="window.location.href='/medicos/<?php echo ($value->id. $ruta);?>'" class="btn btn-danger ">Borrar</button>
-                                <?php }else if($disp){ ?> <button id="dispBtn" type="button" onclick="window.location.href='/medico/<?php echo ($value->id. $ruta);?>'" class="btn btn-primary ">Consultar disponibilidad</button> <?php } ?></td>
+                                <td><button type="button" onclick="window.location.href='/medicos/<?php echo ($value->id);?>'" class="btn btn-primary">Ver ficha</button>
+                                <?php if($visible){ ?> <button id="editBtn" type="button" onclick="window.location.href='/medicos/<?php echo ($value->id. '/editar');?>'" class="btn btn-secondary ">Editar</button>
+                                <button id="deleteBtn" data-toggle="modal" data-target="#exampleModalCenter" type="button" onclick="$rutaModal='/medicos/<?php echo ($value->id. '/borrar');?>'" class="btn btn-danger ">Borrar</button>
+                                <?php }else if($disp){ ?> <button id="dispBtn" type="button" onclick="window.location.href='/medico/<?php echo ($value->id. '/horarios');?>'" class="btn btn-primary ">Consultar disponibilidad</button> <?php } ?></td>
                             </tr>  
                         <?php endforeach; ?>              
                   </tbody>
@@ -86,6 +84,7 @@
         <br>
         {{ $medicos->links() }}
     </body>
+    </div>
     <script>
         function getInput(){
             if(document.getElementById("myInput").value != ''){
@@ -95,6 +94,27 @@
             }
         }
     </script>
+
+    <!-- Modal Borrar-->
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            ¿Seguro que quieres borrar el médico seleccionado?
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Volver</button>
+            <button type="button" onclick="window.location.href=$rutaModal" class="btn btn-primary">Borrar</button>
+        </div>
+        </div>
+    </div>
+
 </html>
 @stop
 
