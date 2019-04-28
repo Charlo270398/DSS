@@ -71,7 +71,7 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
             'dni' => $data['dni'],
-            'rol_id' => 3
+            'rol_id' => 2 //TODO asignar a paciente de forma correcta
         ]);
     }
 }
