@@ -50,7 +50,6 @@ class MedicosController extends Controller
                 return view('/user/menuusuario', ['tipo' => $d->mostrarRol($userId), 'error' =>'No tienes permisos de administrador!']);
             }
         }
-        
     }
     public function addMedico(Request $request) {
         $u = new UserDAO();
@@ -89,30 +88,49 @@ class MedicosController extends Controller
         }
     }
     public function borrarMedico($id) {
-        $u = new UserDAO();
-        $d = new DepartamentoDAO();
-        if($u->borrarMedico($id)){
-            return view('/user/medico/lista', ['medicos' => $u->mostrarListaMedicos()->paginate(5), 'departamentos'=>$d->mostrarListaDepartamentos(), 'op' =>'editar']);//TODO REDIRECCION
-        }else{
-            return view('/error', ['error' => 'Error borrando el medico.'] );
+
+        if (Auth::check()) {
+            $userId = Auth::user()->id;
+            $d = new UserDAO();
+            if($d->mostrarRol($userId)->id==1){
+                $rol = Rol::where('nombre', '=', 'Medico')->first();
+                $d = new DepartamentoDAO();
+                $users = User::where('rol_id', '=', $rol->id)->orderBy('apellidos')->paginate(5); //bootstrap4.blade
+                return view('/user/medico/lista', ['medicos' => $u->mostrarListaMedicos()->paginate(5), 'departamentos'=>$d->mostrarListaDepartamentos(), 'op' =>'editar']);//TODO REDIRECCION
+            }
+            else{
+                return view('/user/menuusuario', ['tipo' => $d->mostrarRol($userId), 'error' =>'No tienes permisos de administrador!']);
+            }
         }
     }
     public function mostrarListaMedicosEditar(){
-        $rol = Rol::where('nombre', '=', 'Medico')->first();
-        $d = new DepartamentoDAO();
-        $users = User::where('rol_id', '=', $rol->id)->orderBy('apellidos')->paginate(5); //bootstrap4.blade
-        return view('/user/medico/lista', ['medicos' => $users, 'departamentos'=>$d->mostrarListaDepartamentos(), 'op' =>'editar']);
-    }
-    public function mostrarListaMedicosBorrar(){
-        $rol = Rol::where('nombre', '=', 'Medico')->first();
-        $d = new DepartamentoDAO();
-        $users = User::where('rol_id', '=', $rol->id)->paginate(5); //bootstrap4.blade
-        return view('/user/medico/lista', ['medicos' => $users, 'departamentos'=>$d->mostrarListaDepartamentos(), 'op' =>'borrar']);
+        if (Auth::check()) {
+            $userId = Auth::user()->id;
+            $d = new UserDAO();
+            if($d->mostrarRol($userId)->id==1){
+                $rol = Rol::where('nombre', '=', 'Medico')->first();
+                $d = new DepartamentoDAO();
+                $users = User::where('rol_id', '=', $rol->id)->orderBy('apellidos')->paginate(5); //bootstrap4.blade
+                return view('/user/medico/lista', ['medicos' => $users, 'departamentos'=>$d->mostrarListaDepartamentos(), 'op' =>'editar']);
+            }
+            else{
+                return view('/user/menuusuario', ['tipo' => $d->mostrarRol($userId), 'error' =>'No tienes permisos de administrador!']);
+            }
+        }
     }
     public function mostrarListaMedicosReserva(){
-        $rol = Rol::where('nombre', '=', 'Medico')->first();
-        $d = new DepartamentoDAO();
-        $users = User::where('rol_id', '=', $rol->id)->paginate(5); //bootstrap4.blade
-        return view('/user/medico/lista', ['medicos' => $users, 'departamentos'=>$d->mostrarListaDepartamentos(), 'op' =>'reservar']);
+        if (Auth::check()) {
+            $userId = Auth::user()->id;
+            $d = new UserDAO();
+            if($d->mostrarRol($userId)->id==2){//Id de paciente es 2
+                $rol = Rol::where('nombre', '=', 'Medico')->first();
+                $d = new DepartamentoDAO();
+                $users = User::where('rol_id', '=', $rol->id)->paginate(5); //bootstrap4.blade
+                return view('/user/medico/lista', ['medicos' => $users, 'departamentos'=>$d->mostrarListaDepartamentos(), 'op' =>'reservar']);
+            }
+            else{
+                return view('/user/menuusuario', ['tipo' => $d->mostrarRol($userId), 'error' =>'No eres paciente!']);
+            }
+        }
     }
 }
