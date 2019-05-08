@@ -34,9 +34,18 @@ class CitasController extends Controller
 
         $c = new CitaDAO();  
         $items = $c->mostrarHorario($idM);
-
-        
-        return view('/user/citas/disponibles', ['fechas' => $items]);
+        if (Auth::check()) {
+            $id = Auth::user()->id;
+            $u = new UserDAO();
+            if($u->mostrarRol($id)->id==2){//ID PACIENTE = 2
+                return view('/user/citas/disponibles', ['fechas' => $items]);
+            }else{
+                return view('/user/menuusuario', ['tipo' => $u->mostrarRol($id), 'error' =>'No puedes reservar citas porque no eres un paciente!']); 
+            }
+        }else{
+            //Excepcion??
+            return view('/error', ['error' => 'Error autenticando.']);
+        }
     }
 
 }
