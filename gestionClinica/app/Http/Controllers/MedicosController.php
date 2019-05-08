@@ -6,6 +6,8 @@ use App\Rol;
 use App\Departamento;
 use App\BL\DepartamentoDAO;
 use App\BL\UserDAO;
+use Illuminate\Support\Facades\Auth;
+
 class MedicosController extends Controller
 {
     public function mostrarListaMedicos(){
@@ -28,42 +30,51 @@ class MedicosController extends Controller
         return view('/user/medico/add', ['clinica' => 1] );
     }
     public function mostrarEditarForm($id) {
-        $d = new UserDAO();
-        $dep = $d->mostrarUsuario($id);
-        return view("/user/medico/editar", ['medico' => $dep] );
+        if (Auth::check()) {
+            $userId = Auth::user()->id;
+            $d = new UserDAO();
+            if($d->mostrarRol($userId)->id==1){
+                $dep = $d->mostrarUsuario($id);
+                return view("/user/medico/editar", ['medico' => $dep] );
+            }
+            else{
+                return view('/user/menuusuario', ['tipo' => $d->mostrarRol($userId)]);
+            }
+        }
+        
     }
     public function addMedico(Request $request) {
-        $b = new UserDAO();
-        $box = new User();
-        $box->dni = $request->input('dni');
-        $box->nombre = $request->input('nombre');
-        $box->pass = $request->input('pass');
-        $box->apellidos = $request->input('apellidos');
-        $box->email = $request->input('email');
-        $box->fecha_nacimiento = $request->input('fecha_nacimiento');
-        $box->num_colegiado = $request->input('num_colegiado');
-        $box->departamento_id = 1;
-        $box->rol_id = 3;
-        if($b->addMedico($box)){
-            return view('/user/medico/add', ['medico' => $box] );
+        $u = new UserDAO();
+        $user = new User();
+        $user->dni = $request->input('dni');
+        $user->nombre = $request->input('nombre');
+        $user->pass = $request->input('pass');
+        $user->apellidos = $request->input('apellidos');
+        $user->email = $request->input('email');
+        $user->fecha_nacimiento = $request->input('fecha_nacimiento');
+        $user->num_colegiado = $request->input('num_colegiado');
+        $user->departamento_id = 1;
+        $user->rol_id = 3;
+        if($u->addMedico($user)){
+            return view('/user/medico/add', ['medico' => $user] );
         }else{
             return view('/error', ['error' => 'Error añadiendo el medico'] );
         }
     }
     public function editarMedico(Request $request) {
-        $b = new UserDAO();
-        $box = new User();
-        $box = $b->mostrarUsuario($request->input('id'));
-        $box->dni = $request->input('dni');
-        $box->nombre = $request->input('nombre');
-        $box->pass = $request->input('pass');
-        $box->apellidos = $request->input('apellidos');
-        $box->email = $request->input('email');
-        $box->fecha_nacimiento = $request->input('fecha_nacimiento');
-        $box->num_colegiado= $request->input('num_colegiado');
-        $box->rol_id = 3;
-        if($b->addMedico($box)){
-            return view('/user/medico/editar', ['medico' => $box] );
+        $u = new UserDAO();
+        $user = new User();
+        $user = $u->mostrarUsuario($request->input('id'));
+        $user->dni = $request->input('dni');
+        $user->nombre = $request->input('nombre');
+        $user->pass = $request->input('pass');
+        $user->apellidos = $request->input('apellidos');
+        $user->email = $request->input('email');
+        $user->fecha_nacimiento = $request->input('fecha_nacimiento');
+        $user->num_colegiado= $request->input('num_colegiado');
+        $user->rol_id = 3;
+        if($u->addMedico($user)){
+            return view('/user/medico/editar', ['medico' => $user] );
         }else{
             return view('/error', ['error' => 'Error ctualizando el medico'] );
         }
