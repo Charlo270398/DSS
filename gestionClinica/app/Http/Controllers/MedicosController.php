@@ -27,7 +27,16 @@ class MedicosController extends Controller
         return view('/user/medico/medico', ['medico' => $u->mostrarUsuario($id), 'departamento' => $u->mostrarDepartamento($id)]);
     }
     public function mostrarAddForm() {
-        return view('/user/medico/add', ['clinica' => 1] );
+        if (Auth::check()) {
+            $userId = Auth::user()->id;
+            $d = new UserDAO();
+            if($d->mostrarRol($userId)->id==1){
+                return view('/user/medico/add', ['clinica' => 1] );
+            }
+            else{
+                return view('/user/menuusuario', ['tipo' => $d->mostrarRol($userId), 'error' =>'No tienes permisos de administrador!']);
+            }
+        }
     }
     public function mostrarEditarForm($id) {
         if (Auth::check()) {
@@ -38,7 +47,7 @@ class MedicosController extends Controller
                 return view("/user/medico/editar", ['medico' => $dep] );
             }
             else{
-                return view('/user/menuusuario', ['tipo' => $d->mostrarRol($userId)]);
+                return view('/user/menuusuario', ['tipo' => $d->mostrarRol($userId), 'error' =>'No tienes permisos de administrador!']);
             }
         }
         

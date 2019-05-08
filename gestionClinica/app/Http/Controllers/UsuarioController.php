@@ -13,7 +13,7 @@ class UsuarioController extends Controller
         if (Auth::check()) {
             $id = Auth::user()->id;
             $u = new UserDAO();
-            return view('/user/menuusuario', ['user' => $u->mostrarUsuario($id), 'tipo' => $u->mostrarRol($id)]);
+            return view('/user/menuusuario', ['tipo' => $u->mostrarRol($id), 'error' =>'']);
         }else{
             return view('/error', ['error' => 'Error autenticando.']);
         }
