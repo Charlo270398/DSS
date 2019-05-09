@@ -18,26 +18,25 @@ Route::get('/home', function () {
 });
 //Departamentos
 Route::get('/departamentos','DepartamentosController@mostrarListaDepartamentos');
-Route::get('/departamentos/editList','DepartamentosController@mostrarListaDepartamentosEditar');
-Route::get('/departamentos/deleteList','DepartamentosController@mostrarListaDepartamentosBorrar');
+Route::get('/departamentos/editList','DepartamentosController@mostrarListaDepartamentosEditar')->middleware('auth');;
+Route::get('/departamentos/deleteList','DepartamentosController@mostrarListaDepartamentosBorrar')->middleware('auth');;
 Route::get('/departamentos/{id}', 'DepartamentosController@mostrarDepartamento');
-Route::get('/departamentos/{id}/editar', 'DepartamentosController@mostrarEditarForm');
-Route::get('/departamentos/{id}/borrar', 'DepartamentosController@borrarDepartamento');
+Route::get('/departamentos/{id}/editar', 'DepartamentosController@mostrarEditarForm')->middleware('auth');;
+Route::get('/departamentos/{id}/borrar', 'DepartamentosController@borrarDepartamento')->middleware('auth');;
+
 //Box
-Route::get('/box/{id}/borrar','BoxController@borrarBox');
-//Login
-Route::get('/login/medico', function () { return view('/user/sesionmedico');});
-Route::get('/login/paciente', function () { return view('/user/sesionpaciente');});
+Route::get('/box/{id}/borrar','BoxController@borrarBox')->middleware('auth');;
+
 //Medicos
 Route::get('/medicos','MedicosController@mostrarListaMedicos');
 Route::get('/medicos/{id}', 'MedicosController@mostrarMedico');
-Route::get('/medico/editList','MedicosController@mostrarListaMedicosEditar');
-Route::get('/medico/deleteList','MedicosController@mostrarListaMedicosBorrar');
+Route::get('/medico/editList','MedicosController@mostrarListaMedicosEditar')->middleware('auth');;
+Route::get('/medico/deleteList','MedicosController@mostrarListaMedicosBorrar')->middleware('auth');;
 Route::get('/medicos&{nombre}', 'MedicosController@mostrarListaMedicosPorNombre');
-Route::get('/medicos/{id}/editar', 'MedicosController@mostrarEditarForm');
-Route::get('/medicos/{id}/borrar', 'MedicosController@borrarMedico');
-Route::get('/medico/reservas', 'MedicosController@mostrarListaMedicosReserva');
-Route::get('/medico/{id}/horarios', function ($id) { return redirect("/citas/disponibles&$id");});
+Route::get('/medicos/{id}/editar', 'MedicosController@mostrarEditarForm')->middleware('auth');;
+Route::get('/medicos/{id}/borrar', 'MedicosController@borrarMedico')->middleware('auth');;
+Route::get('/medico/reservas', 'MedicosController@mostrarListaMedicosReserva')->middleware('auth');;
+Route::get('/medico/{id}/horarios', function ($id) { return redirect("/citas/disponibles&$id");})->middleware('auth');;
 
 
 //Administracion
@@ -46,25 +45,26 @@ Route::get('/box/add','BoxController@mostrarAddForm');
 Route::get('/box/delete','BoxController@mostrarListaBoxBorrar');
 Route::get('/departamento/add','DepartamentosController@mostrarAddForm');
 Route::get('/medico/add','MedicosController@mostrarAddForm');
+
 //Metodos post
 Route::post('clinica/editar_create', [
     'uses' => 'ClinicaController@editarClinica'
-]);
+])->middleware('auth');
 Route::post('departamento/editar_create', [
     'uses' => 'DepartamentosController@addDepartamento'
-]);
+])->middleware('auth');
 Route::post('box/editar_create', [
     'uses' => 'BoxController@addBox'
-]);
+])->middleware('auth');
 Route::post('departamentos/editar_create', [
     'uses' => 'DepartamentosController@editarDepartamento'
-]);
+])->middleware('auth');
 Route::post('medicos/add/editar_create', [
     'uses' => 'MedicosController@addMedico'
-]);
+])->middleware('auth');
 Route::post('medicos/edit/editar_create', [
     'uses' => 'MedicosController@editarMedico'
-]);
+])->middleware('auth');
 //----USUARIO----
 
 Route::get('/usuario','UsuarioController@autenticarUsuario')->middleware('auth');

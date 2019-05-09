@@ -21,6 +21,14 @@
     </header>
     <br>
     <body>
+        <?php 
+        if($error!=''){ ?>
+            <div class="container">
+                    <div class="alert alert-danger" role="alert">
+                        <?php  echo $error  ?>
+                    </div>
+            </div>
+        <?php } ?>
          @include('components/menu' . $tipo->nombre) 
     </body>
 </html>

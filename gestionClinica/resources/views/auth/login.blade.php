@@ -1,6 +1,10 @@
 @extends('layouts.master')
 
 @section('body')
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Login</title>
+</head>
 <br>
 <br>
 <div class="container">
