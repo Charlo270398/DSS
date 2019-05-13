@@ -118,7 +118,7 @@ class CitasController extends Controller
             $id = Auth::user()->id;
             $u = new UserDAO();
             if($u->mostrarRol($id)->id==2){//ID PACIENTE = 2
-                return view('/user/citas/disponibles', ['error' =>'', 'fechas' => $items, 'idMedico' => $idM]);
+                return view('/user/citas/horasdisponibles', ['error' =>'', 'fechas' => $items, 'idMedico' => $idM]);
             }else{
                 return view('/user/menuusuario', ['tipo' => $u->mostrarRol($id), 'error' =>'¡No puedes reservar citas porque no eres un paciente!']); 
             }
