@@ -11,7 +11,6 @@
 <!DOCTYPE html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
   <title>Información sobre la cita</title>
 </head>
 <link href="/css/lists.css" rel="stylesheet">

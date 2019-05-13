@@ -87,6 +87,7 @@ class MedicosController extends Controller
             return view('/error', ['error' => 'Error ctualizando el medico'] );
         }
     }
+    
     public function borrarMedico($id) {
 
         if (Auth::check()) {
