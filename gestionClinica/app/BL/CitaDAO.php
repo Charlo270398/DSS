@@ -16,8 +16,9 @@ class CitaDAO
         return $citas;
     }
 
-    public function reservarCita($fechaE){
-        
+    public function mostrarListaCitasMedico($idMedico){
+        $citas  = Cita::where('medico_id', '=', $idMedico)->get();
+        return $citas;
     }
     
     public function generarCita($dia, $hora, $idMedico){

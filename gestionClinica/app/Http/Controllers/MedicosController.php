@@ -6,6 +6,7 @@ use App\Rol;
 use App\Departamento;
 use App\BL\DepartamentoDAO;
 use App\BL\UserDAO;
+use App\BL\CitaDAO;
 use Illuminate\Support\Facades\Auth;
 
 class MedicosController extends Controller
@@ -131,6 +132,20 @@ class MedicosController extends Controller
             }
             else{
                 return view('/user/menuusuario', ['tipo' => $d->mostrarRol($userId), 'error' =>'No eres paciente!']);
+            }
+        }
+    }
+
+    public function mostrarListaCitas(){
+        if (Auth::check()) {
+            $userId = Auth::user()->id;
+            $d = new UserDAO();
+            $c = new CitaDAO();
+            if($d->mostrarRol($userId)->id==3){//Id de medico es 3
+                return view('/user/citas/lista', ['citas' => $c->mostrarListaCitasMedico($userId)]);
+            }
+            else{
+                return view('/user/menuusuario', ['tipo' => $d->mostrarRol($userId), 'error' =>'No eres médico!']);
             }
         }
     }

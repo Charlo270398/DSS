@@ -50,9 +50,9 @@ class UsuarioController extends Controller
             $u = new UserDAO();
             if($u->mostrarRol($id)->id==2){//ID PACIENTE = 2
                 if($modo == 'antiguas'){
-                    return view('/user/citas/lista', ['user' => $u->mostrarUsuario($id), 'citas' => $u->mostrarCitasAntiguas($id)]);
+                    return view('/user/citas/lista', ['citas' => $u->mostrarCitasAntiguas($id)]);
                 }else{
-                    return view('/user/citas/lista', ['user' => $u->mostrarUsuario($id), 'citas' => $u->mostrarCitasRecientes($id)]);
+                    return view('/user/citas/lista', ['citas' => $u->mostrarCitasRecientes($id)]);
                 }
             }else{
                 return view('/user/menuusuario', ['tipo' => $u->mostrarRol($id), 'error' =>'No puedes acceder a las citas porque no eres un paciente!']); 
