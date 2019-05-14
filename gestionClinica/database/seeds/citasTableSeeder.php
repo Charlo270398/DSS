@@ -34,7 +34,6 @@ class citasTableSeeder extends Seeder
             'fecha' => $time, 'motivo' => 'Consulta',]);
             $ent->save();
             $time =  Date('Y-m-d H:i:s', strtotime("+1 days",strtotime($time))); 
-
         }
         
         
