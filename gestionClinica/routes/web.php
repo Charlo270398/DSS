@@ -65,6 +65,9 @@ Route::post('medicos/add/editar_create', [
 Route::post('medicos/edit/editar_create', [
     'uses' => 'MedicosController@editarMedico'
 ])->middleware('auth');
+Route::post('citas/reservar', [
+    'uses' => 'CitasController@reservar'
+])->middleware('auth');
 //----USUARIO----
 
 Route::get('/usuario','UsuarioController@autenticarUsuario')->middleware('auth');
@@ -84,6 +87,9 @@ Route::get('/historial&{modo}','UsuarioController@mostrarHistorial')->middleware
 Route::get('/citas&{modo}','UsuarioController@mostrarCitas')->middleware('auth');
 Route::get('/citas/disponibles&{idM}','CitasController@mostrarCitasDisponibles')->middleware('auth');
 Route::get('/usuario/{idU}/citas/{idC}','CitasController@mostrarCita')->middleware('auth');
+Route::get('/citas/confirmar/d={dia}&h={hora}&m={idMedico}','CitasController@mostrarConfirmarCita')->middleware('auth');
+Route::get('/medico/citas','MedicosController@mostrarListaCitas')->middleware('auth');//MEDICO
+
 //CREADO POR AUTH
 Auth::routes();
 //Route::get('/home', 'HomeController@index')->name('home'); 
