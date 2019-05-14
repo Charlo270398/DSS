@@ -33,7 +33,14 @@ class CitasController extends Controller
         //Hay que comprobar que los dias son correctos 
         //Hay que comprobar que las horas son correctas, solo a en punto, y 20 y menos 20 
         $u = new UserDAO();
-        $validado = true;
+        $validado = false;
+        $time = date('Y-m-d');
+        for($i=0; $i<7; $i++){ //7 proximos dias
+            if($time == $dia && 'Saturday' != date("l", strtotime($time)) && 'Sunday' != date("l", strtotime($time))){ //El día está dentro del intervalo y no es Sabado ni Domingo
+                $validado = true;
+            } 
+            $time =  Date('Y-m-d', strtotime("+1 days",strtotime($time)));
+        }
 
         if($u->mostrarUsuario($idMedico)->rol_id != 3){//El medico que se mete es medico
             $validado = false;
@@ -54,15 +61,6 @@ class CitasController extends Controller
 
         if(strlen($dia)!=10){//La longitud del dia que se mete es de 10 si o si
             $validado = false;
-        }
-
-        $validado = false;
-        $time = date('Y-m-d');
-        for($i=0; $i<7; $i++){ //7 proximos dias
-            if($time == $dia && 'Saturday' != date("l", strtotime($time)) && 'Sunday' != date("l", strtotime($time))){ //El día está dentro del intervalo y no es Sabado ni Domingo
-                $validado = true;
-            } 
-            $time =  Date('Y-m-d', strtotime("+1 days",strtotime($time)));
         }
 
         if (Auth::check() && $validado) {
