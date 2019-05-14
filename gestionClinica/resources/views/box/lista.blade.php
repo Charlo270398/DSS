@@ -24,7 +24,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Boxes</title>
 </head>
-<link href="/css/lists.css" rel="stylesheet">
+
 <html>
     <header>
         <h2><?php echo $header;?></h2>
@@ -37,11 +37,15 @@
                 <ol class="btn-group">
                     <a href="/box/<?php echo ($value->id . $ruta);?>">
                         <button><?php echo $value->id;?></button>
+                        <button id="deleteBtn" data-toggle="modal" data-target="#exampleModalCenter" type="button"  class="btn btn-danger ">Borrar box <?php echo $value->id;?></button>
+
                     </a>
                 </ol>
             <?php endforeach; ?>
             <br>
             </div>
     </body>
+
+
 </html>
 @stop

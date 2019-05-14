@@ -7,6 +7,9 @@ use App\Departamento;
 use App\BL\DepartamentoDAO;
 use App\BL\UserDAO;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Foundation\Auth\RegistersUsers;;
 
 class MedicosController extends Controller
 {
@@ -23,7 +26,7 @@ class MedicosController extends Controller
         return view('/user/medico/lista', ['medicos' => $users->paginate(5), 'departamentos'=>$d->mostrarListaDepartamentos(), 'op' =>'mostrar']);
     }
     public function mostrarMedico($id) {
-        $u = new UserDAO();     
+        $u = new UserDAO();
         return view('/user/medico/medico', ['medico' => $u->mostrarUsuario($id), 'departamento' => $u->mostrarDepartamento($id)]);
     }
     public function mostrarAddForm() {
@@ -56,12 +59,12 @@ class MedicosController extends Controller
         $user = new User();
         $user->dni = $request->input('dni');
         $user->nombre = $request->input('nombre');
-        $user->pass = $request->input('pass');
+        $user->password = $request->input('password');
         $user->apellidos = $request->input('apellidos');
         $user->email = $request->input('email');
         $user->fecha_nacimiento = $request->input('fecha_nacimiento');
         $user->num_colegiado = $request->input('num_colegiado');
-        $user->departamento_id = 1;
+        $user->departamento_id = $request->input('departamento_id');
         $user->rol_id = 3;
         if($u->addMedico($user)){
             return view('/user/medico/add', ['medico' => $user] );
@@ -75,7 +78,8 @@ class MedicosController extends Controller
         $user = $u->mostrarUsuario($request->input('id'));
         $user->dni = $request->input('dni');
         $user->nombre = $request->input('nombre');
-        $user->pass = $request->input('pass');
+        //$user->password = $request->input('password'); Hash::make($data['password'])
+        $user->password = Hash::make($request->input ('password'));
         $user->apellidos = $request->input('apellidos');
         $user->email = $request->input('email');
         $user->fecha_nacimiento = $request->input('fecha_nacimiento');
