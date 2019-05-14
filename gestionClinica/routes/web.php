@@ -19,7 +19,6 @@ Route::get('/home', function () {
 //Departamentos
 Route::get('/departamentos','DepartamentosController@mostrarListaDepartamentos');
 Route::get('/departamentos/editList','DepartamentosController@mostrarListaDepartamentosEditar')->middleware('auth');;
-Route::get('/departamentos/deleteList','DepartamentosController@mostrarListaDepartamentosBorrar')->middleware('auth');;
 Route::get('/departamentos/{id}', 'DepartamentosController@mostrarDepartamento');
 Route::get('/departamentos/{id}/editar', 'DepartamentosController@mostrarEditarForm')->middleware('auth');;
 Route::get('/departamentos/{id}/borrar', 'DepartamentosController@borrarDepartamento')->middleware('auth');;
@@ -40,7 +39,7 @@ Route::get('/medico/{id}/horarios', function ($id) { return redirect("/citas/dis
 //Comprobamos que el usuario autenticado tiene rol == 1
 Route::get('/clinica/edit','ClinicaController@mostrarEditarForm')->middleware('auth');
 Route::get('/box/add','BoxController@mostrarAddForm')->middleware('auth');
-Route::get('/box/delete','BoxController@mostrarListaBoxBorrar')->middleware('auth');
+Route::get('/box/deleteList','BoxController@mostrarListaBoxBorrar')->middleware('auth');
 Route::get('/departamento/add','DepartamentosController@mostrarAddForm')->middleware('auth');
 Route::get('/medico/add','MedicosController@mostrarAddForm')->middleware('auth');
 Route::get('/box/{id}/borrar','BoxController@borrarBox')->middleware('auth');
