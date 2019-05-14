@@ -10,11 +10,11 @@ class User extends Authenticatable
 {
     use Notifiable;
 
-    public function user(){
+    public function rol(){
         return $this->belongsTo('App\Rol');
     }
 
-    public function rol(){
+    public function entrada(){
         return $this->hasMany('App\Entrada');
     }
 

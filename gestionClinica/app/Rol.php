@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Rol extends Model
 {
 
-    public function rol(){
+    public function user(){
         return $this->hasMany('App\User');
     }
 
