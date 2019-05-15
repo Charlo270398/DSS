@@ -49,7 +49,7 @@
                         <br>
                         <table>
                             <tr>
-                                <th>Numero de Colegiado</th>
+                                <th>Número de Colegiado</th>
                                 <th>Nombre</th>
                                 <th>Contacto</th>
                             </tr>

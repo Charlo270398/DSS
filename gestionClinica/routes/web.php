@@ -87,9 +87,8 @@ Route::get('/citas&{modo}','UsuarioController@mostrarCitas')->middleware('auth')
 Route::get('/citas/disponibles&{idM}','CitasController@mostrarCitasDisponibles')->middleware('auth');
 Route::get('/citas/{idC}','CitasController@mostrarCita')->middleware('auth');//Comprobar que esa cita es del paciente autenticado en ese momento
 Route::get('/citas/confirmar/d={dia}&h={hora}&m={idMedico}','CitasController@mostrarConfirmarCita')->middleware('auth');
+Route::get('/citas/{idC}/borrar','CitasController@borrarCita')->middleware('auth');
 Route::get('/medico/citas','MedicosController@mostrarListaCitas')->middleware('auth');//MEDICO
-Route::get('/citas/vercita/d={dia}&h={hora}&m={idMedico}','CitasController@verCita')->middleware('auth');
-
 
 
 

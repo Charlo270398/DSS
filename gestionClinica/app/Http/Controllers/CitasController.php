@@ -19,11 +19,16 @@ class CitasController extends Controller
             $c = new CitaDAO();  
             $u = new UserDAO();   
             $d = new DepartamentoDAO();
-            return view('/user/citas/cita', ['cita' => $c->mostrarCita($idC), 'medico' => $u->mostrarUsuario($c->mostrarCita($idC)->medico_id), 
-            'departamento' => $d->mostrarDepartamento($c->mostrarCita($idC)->medico_id)]);
+            $cita = $c->mostrarCita($idC);
+            if($cita->paciente_id == $idU || $cita->medico_id == $idU){
+                return view('/user/citas/cita', ['cita' => $cita, 'medico' => $u->mostrarUsuario($c->mostrarCita($idC)->medico_id), 
+                'departamento' => $d->mostrarDepartamento($c->mostrarCita($idC)->medico_id)]);
+            }else{
+                return view('/user/menuusuario', ['tipo' => $u->mostrarRol($idU), 'error' =>'¡Estás metiéndote donde no debes campeón!']);
+            }
         }
         else{
-
+            return redirect('/login');
         }
     }
 
@@ -129,9 +134,20 @@ class CitasController extends Controller
     }
 
     public function borrarCita($idC) {
-        $c = new CitaDAO();  
-        return view('/user/citas/cita', ['cita' => $c->mostrarCita($idC), 'medico' => $u->mostrarUsuario($c->mostrarCita($idC)->medico_id), 
-        'departamento' => $d->mostrarDepartamento($c->mostrarCita($idC)->medico_id)]);
+
+        if (Auth::check()) {
+            $c = new CitaDAO();
+            $u = new UserDAO();
+            $idU = Auth::user()->id;
+            $cita = $c->mostrarCita($idC);
+            if($cita->paciente_id == $idU || $cita->medico_id == $idU){//Quien borra es o el paciente que reservó o el médico
+                return redirect('/citas&recientes');
+            }else{
+                return view('/user/menuusuario', ['tipo' => $u->mostrarRol($idU), 'error' =>'¡Estás metiéndote donde no debes campeón!']);
+            }
+        }else{
+            return redirect('/home');
+        }
     }
 
     public function mostrarCitasDisponibles($idM){

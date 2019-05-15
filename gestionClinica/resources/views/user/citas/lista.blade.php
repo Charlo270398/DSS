@@ -10,38 +10,11 @@
 @section('body')
 <!DOCTYPE html>
 <head>
+    <?php use App\Util; $x = new Util(); ?>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Historial</title>
 </head>
 
-<?php function meses($num){
-    switch($num){
-        case '01':
-            return 'Enero';
-        case '02':
-            return 'Febrero';
-        case '03':
-            return 'Marzo';
-        case '04':
-            return 'Mayo';
-        case '05':
-            return 'Abril';
-        case '06':
-            return 'Junio';
-        case '07':
-            return 'Julio';
-        case '08':
-            return 'Agosto';
-        case '09':
-            return 'Septiembre';
-        case '10':
-            return 'Octubre';
-        case '11':
-            return 'Noviembre';
-        default:
-            return 'Diciembre';
-    }
-}?>
 <link href="/css/lists.css" rel="stylesheet">
 <html>
     <body>
@@ -49,8 +22,8 @@
         <div class="container">
             <h1>Citas registradas</h1>
             <div>
-                <a href="/citas&antiguas">Fecha ascendente</a>
-                <a href="/citas&recientes">Fecha descendente</a>
+                <a href="/citas&antiguas">Antiguas</a>
+                <a href="/citas&recientes">Recientes</a>
             </div>
             <br> 
             <div class="container">
@@ -62,19 +35,20 @@
                             <tr>
                             <th>Día</th>
                             <th>Hora</th>
-                            <th>Paciente</th>
+                            <th>Médico</th>
                             <th>Acciones</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <?php foreach ($citas as $c){ ?>
+                            <?php $i=0;
+                                foreach ($citas as $c){ ?>
                                 <tr>
-                                    <td> <?php echo (substr($c->fecha, 8, 2) . ' de ' . meses(substr($c->fecha, 5, 2)) . ' de ' . substr($c->fecha, 0, 4))  ?> </td>
+                                    <td> <?php echo (substr($c->fecha, 8, 2) . ' de ' . $x->meses(substr($c->fecha, 5, 2)) . ' de ' . substr($c->fecha, 0, 4))  ?> </td>
                                     <td> <?php echo substr($c->fecha, -8, -3) ?> </td>
                                     <td> <?php echo($c->paciente_id) ?> </td>
                                     <td> 
-                                        <button onclick="window.location.href='citas/vercita/d=<?php echo (substr($c->fecha, 8, 2)) ?>&h=<?php echo substr($c->fecha, -8, -3) ?>&m=<?php echo substr($c->fecha, 5, 2) ?> '" class="btn btn-primary ">Ver cita</button> 
-                                        <button class="btn btn-danger ">Cancelar cita</button> 
+                                        <button onclick="window.location.href='citas/<?php echo $c->id ?>'"  class="btn btn-primary ">Ver cita</button> 
+                                        <button onclick="window.location.href='citas/<?php echo $c->id ?>/borrar'"  class="btn btn-danger ">Cancelar cita</button> 
                                     </td>
                                 </tr> 
                             <?php }  ?> 
