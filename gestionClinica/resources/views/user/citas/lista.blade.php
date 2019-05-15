@@ -12,7 +12,7 @@
 <head>
     <?php use App\Util; $x = new Util(); ?>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Historial</title>
+    <title>Citas</title>
 </head>
 
 <link href="/css/lists.css" rel="stylesheet">
@@ -35,7 +35,7 @@
                             <tr>
                             <th>Día</th>
                             <th>Hora</th>
-                            <th>Médico</th>
+                            <th><?php echo($perfil) ?></th>
                             <th>Acciones</th>
                             </tr>
                         </thead>
@@ -45,13 +45,13 @@
                                 <tr>
                                     <td> <?php echo (substr($c->fecha, 8, 2) . ' de ' . $x->meses(substr($c->fecha, 5, 2)) . ' de ' . substr($c->fecha, 0, 4))  ?> </td>
                                     <td> <?php echo substr($c->fecha, -8, -3) ?> </td>
-                                    <td> <?php echo($c->medico_id) ?> </td>
+                                    <td> <?php echo($nombre[$i]->apellidos . ', ' . $nombre[$i]->nombre) ?> </td>
                                     <td> 
                                         <button onclick="window.location.href='citas/<?php echo $c->id ?>'"  class="btn btn-primary ">Ver cita</button> 
                                         <button onclick="window.location.href='citas/<?php echo $c->id ?>/borrar'"  class="btn btn-danger ">Cancelar cita</button> 
                                     </td>
                                 </tr> 
-                            <?php }  ?> 
+                            <?php $i++; }  ?> 
                         </tbody>
                     </table>
               

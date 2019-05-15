@@ -14,7 +14,7 @@
 
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Médicos</title>
+    <title>Horas disponibles</title>
 </head>
 
 <html>

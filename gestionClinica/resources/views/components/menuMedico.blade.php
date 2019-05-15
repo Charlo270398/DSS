@@ -9,7 +9,7 @@
     <br>
         <div class="container">
             <h2><strong>Panel del médico</strong></h2>
-            <a class="aPanel" href="/medico/citas"> Consulta de citas </a>
+            <a class="aPanel" href="/citas&recientes"> Consulta de citas </a>
         </div>
     </body>
 </html>

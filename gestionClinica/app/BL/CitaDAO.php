@@ -3,6 +3,7 @@
 namespace App\BL;
 use App\Cita;
 use App\BL\BoxDAO;
+use App\BL\UserDAO;
 
 class CitaDAO
 {
@@ -171,7 +172,20 @@ class CitaDAO
         return $meses[$mes-1];
     }
 
-    
+    public function nombresCitas($citas, $medico ){//Si medico es true busca los nombres de medicos, si falso busca los de pacientes
+
+        $dev = array();
+        $u = new UserDAO();
+        foreach ($citas as $c){
+            if($medico){
+                array_push($dev, $u->mostrarUsuario($c->medico_id));
+            }else{
+                array_push($dev, $u->mostrarUsuario($c->paciente_id));
+            }
+        }
+        return $dev;
+
+    }
 }
 ?>
 
