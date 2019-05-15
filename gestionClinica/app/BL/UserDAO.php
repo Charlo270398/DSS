@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Auth;
 class UserDAO
 {
     public function mostrarUsuario($id) {
-        $user  = User::findOrFail($id); //Puesto que solo tenemos clinica alicante usamos el primero
+        $user  = User::findOrFail($id);
         return $user;
     }
     public function mostrarListaUsuarios() {

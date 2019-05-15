@@ -45,7 +45,7 @@
                                 <tr>
                                     <td> <?php echo (substr($c->fecha, 8, 2) . ' de ' . $x->meses(substr($c->fecha, 5, 2)) . ' de ' . substr($c->fecha, 0, 4))  ?> </td>
                                     <td> <?php echo substr($c->fecha, -8, -3) ?> </td>
-                                    <td> <?php echo($c->paciente_id) ?> </td>
+                                    <td> <?php echo($c->medico_id) ?> </td>
                                     <td> 
                                         <button onclick="window.location.href='citas/<?php echo $c->id ?>'"  class="btn btn-primary ">Ver cita</button> 
                                         <button onclick="window.location.href='citas/<?php echo $c->id ?>/borrar'"  class="btn btn-danger ">Cancelar cita</button> 
