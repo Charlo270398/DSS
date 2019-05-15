@@ -22,12 +22,12 @@ Pasos a seguir:
 
 ### Usuarios de prueba
 Pasos a seguir: 
-* Entrar en Iniciarsesión (arriba a la derecha)
-* Para entrar en el área de administración escribir introducir los siguientes datos: EMAIL-> admin@gmail.com PASS->1234
-* Para entrar en el área de médico eintroducir los siguientes datos: EMAIL-> jorgegonzalez@gmail.com PASS->1234
+* Entrar en Iniciar Sesión (arriba a la derecha)
+* Para entrar en el área de administración e introducir los siguientes datos: EMAIL-> admin@gmail.com PASS->1234
+* Para entrar en el área de médico e introducir los siguientes datos: EMAIL-> jorgegonzalez@gmail.com PASS->1234
 * Para entrar en el área de paciente introducir los siguientes datos: EMAIL-> yaelduran@gmail.com PASS->1234
 
 
-Para resolver cualquier consultar al equipo desarrollador.
+Para resolver cualquier duda consultar al equipo desarrollador.
 
 
