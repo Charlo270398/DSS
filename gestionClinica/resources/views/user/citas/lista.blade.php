@@ -73,7 +73,7 @@
                                     <td> <?php echo substr($c->fecha, -8, -3) ?> </td>
                                     <td> <?php echo($c->paciente_id) ?> </td>
                                     <td> 
-                                        <button class="btn btn-primary ">Ver cita</button> 
+                                        <button onclick="window.location.href='citas/vercita/d=<?php echo (substr($c->fecha, 8, 2)) ?>&h=<?php echo substr($c->fecha, -8, -3) ?>&m=<?php echo substr($c->fecha, 5, 2) ?> '" class="btn btn-primary ">Ver cita</button> 
                                         <button class="btn btn-danger ">Cancelar cita</button> 
                                     </td>
                                 </tr> 

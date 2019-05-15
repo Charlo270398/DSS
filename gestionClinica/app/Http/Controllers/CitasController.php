@@ -71,6 +71,28 @@ class CitasController extends Controller
         }
     }
 
+    public function verCita($dia, $hora, $idMedico){
+
+        //Hay que comprobar que la long de los string de dia y hora 
+        //Hay que comprobar que los dias son correctos 
+        //Hay que comprobar que las horas son correctas, solo a en punto, y 20 y menos 20 
+
+        if (Auth::check()) {
+            $idU = Auth::user()->id;
+            $c = new CitaDAO();  
+            $u = new UserDAO();   
+            $d = new DepartamentoDAO();
+            $cita = $c->generarCita($dia, $hora, $idMedico);
+            if($cita == null){//Cita no disponible (porque no hay boxes)      
+                return $this->mostrarCitasDisponiblesError($idMedico, 'No hay boxes disponibles para esa fecha');
+            }else{
+                return view('/user/citas/vercita', ['cita' => $cita, 'medico' => $u->mostrarUsuario($idMedico), 
+            'departamento' => $d->mostrarDepartamento($idMedico)]);
+            }
+            
+        }
+    }
+
     public function borrarCita($idC) {
         $c = new CitaDAO();  
         return view('/user/citas/cita', ['cita' => $c->mostrarCita($idC), 'medico' => $u->mostrarUsuario($c->mostrarCita($idC)->medico_id), 

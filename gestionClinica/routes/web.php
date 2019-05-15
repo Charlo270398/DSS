@@ -89,6 +89,8 @@ Route::get('/citas/disponibles&{idM}','CitasController@mostrarCitasDisponibles')
 Route::get('/usuario/{idU}/citas/{idC}','CitasController@mostrarCita')->middleware('auth');
 Route::get('/citas/confirmar/d={dia}&h={hora}&m={idMedico}','CitasController@mostrarConfirmarCita')->middleware('auth');
 Route::get('/medico/citas','MedicosController@mostrarListaCitas')->middleware('auth');//MEDICO
+Route::get('/citas/vercita/d={dia}&h={hora}&m={idMedico}','CitasController@verCita')->middleware('auth');
+
 
 //CREADO POR AUTH
 Auth::routes();
