@@ -97,15 +97,18 @@ class MedicosController extends Controller
 
         if (Auth::check()) {
             $userId = Auth::user()->id;
-            $d = new UserDAO();
-            if($d->mostrarRol($userId)->id==1){
-                $rol = Rol::where('nombre', '=', 'Medico')->first();
-                $d = new DepartamentoDAO();
-                $users = User::where('rol_id', '=', $rol->id)->orderBy('apellidos')->paginate(5); //bootstrap4.blade
-                return view('/user/medico/lista', ['medicos' => $u->mostrarListaMedicos()->paginate(5), 'departamentos'=>$d->mostrarListaDepartamentos(), 'op' =>'editar']);//TODO REDIRECCION
+            $u = new UserDAO();
+            if($u->mostrarRol($userId)->id==1){//ID de admin es 1
+                if($u->mostrarRol($id)->id==3){//ID de médico es 3
+                    $u -> borrarUsuario($id);
+                    return redirect('/medico/editList');
+                }else{
+                    return view('/user/menuusuario', ['tipo' => $u->mostrarRol($userId), 'error' =>'¡Intentas borrar un usuario que no es médico!']);
+                }
+                
             }
             else{
-                return view('/user/menuusuario', ['tipo' => $d->mostrarRol($userId), 'error' =>'No tienes permisos de administrador!']);
+                return view('/user/menuusuario', ['tipo' => $u->mostrarRol($userId), 'error' =>'¡No tienes permisos de administrador!']);
             }
         }
     }

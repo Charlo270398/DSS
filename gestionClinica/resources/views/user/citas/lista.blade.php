@@ -48,7 +48,7 @@
                                     <td> <?php echo($nombre[$i]->apellidos . ', ' . $nombre[$i]->nombre) ?> </td>
                                     <td> 
                                         <button onclick="window.location.href='citas/<?php echo $c->id ?>'"  class="btn btn-primary ">Ver cita</button> 
-                                        <button onclick="window.location.href='citas/<?php echo $c->id ?>/borrar'"  class="btn btn-danger ">Cancelar cita</button> 
+                                        <button data-toggle="modal" data-target="#exampleModalCenter" onclick="$rutaModal='citas/<?php echo $c->id ?>/borrar'"   class="btn btn-danger ">Cancelar cita</button> 
                                     </td>
                                 </tr> 
                             <?php $i++; }  ?> 
@@ -57,10 +57,26 @@
               
                 <?php }else{ ?> 
                     <h4>Sin citas pendientes</h4>
-                <?php } ?>     
-                        
-                            
-                                   
+                <?php } ?>                      
+            </div>
+        </div>
+        <!-- Modal Borrar-->
+        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Cancelar cita</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                ¿Seguro que quieres cancelar la cita seleccionada?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Volver</button>
+                <button type="button" onclick="window.location.href=$rutaModal" class="btn btn-danger">Cancelar</button>
+            </div>
             </div>
         </div>
     </body>

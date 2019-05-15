@@ -28,10 +28,11 @@
                                 <li>Año 2018: Premio a la mejor clínica de la Comunidad Valenciana</li>
                             </ul>
                             <h3><strong>Dónde estamos</strong></h3>
+                            <br>
                             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3128.6023092109285!2d-0.4869592496841535!3d38.35818578605269!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd6237009bb58a09%3A0x1c5ba53430ca8fbe!2sCl%C3%ADnica+Alicante!5e0!3m2!1ses!2ses!4v1555016635164!5m2!1ses!2ses" width="350" height="300" frameborder="0" style="border:0" allowfullscreen></iframe>
                             <br>
                             </div>
-                          <div class="col-sm-8" style="margin-top:50px;">
+                          <div class="col-sm-8" style="margin-top:30px;">
                             <h2><strong>Asistencia sanitaria de calidad</strong></h2>
                             <p style="font-family:verdana;">Clínica Alicante está situada en la ciudad de Alicante, ofreciendo asistencia
                                     sanitaria multidisciplinar a toda la provincia de Alicante.Este 
