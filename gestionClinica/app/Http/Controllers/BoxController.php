@@ -31,7 +31,7 @@ class BoxController extends Controller
     public function borrarBox($id) {
         $d = new boxDAO();
         if($d->borrarBox($id)){
-            return view('/box/lista', ['departamentos' => $d->mostrarListaBoxes(),'op' => 'borrar']);//TODO REDIRECCION
+            return redirect('/box/deleteList');
         }else{
             return view('/error', ['error' => 'Error borrando box.'] );
         }

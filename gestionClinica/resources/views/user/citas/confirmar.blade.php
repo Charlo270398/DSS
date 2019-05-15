@@ -17,7 +17,7 @@
 <html>
     <body>
         <div class = "container">
-            <form action="{{action('CitasController@reservar')}}" method="POST">
+            <form action="{{action('CitasController@reservar')}}" method="POST" class="was-validated">
                 {{ csrf_field() }}
                 {{ method_field('POST') }}
                 <h1 style="text-align:center">Resumen de la cita</h1>
@@ -29,12 +29,9 @@
                 <p><strong>Box:</strong> <?php echo  ('nº ' . $cita->box_id)?> </p>
                 <p>
                     <label><strong>Escriba el motivo de la consulta:</strong></label>
-                    <input name="motivo" type="text" class="form-control" placeholder="Ejemplo: Consulta rutinaria" aria-label="Motivo" aria-describedby="basic-addon2">
+                    <input name="motivo" type="text" class="form-control" placeholder="Ejemplo: Consulta rutinaria" aria-label="Motivo" aria-describedby="basic-addon2" required>
                 </p>
                 <br>
-                <?php 
-                    $linkOnClick =  ('/citas/reservar/'. 'a')
-                ?>
                 <input type="hidden" name="idM" value="<?php echo $medico->id?>">
                 <input type="hidden" name="idB" value="<?php echo $cita->box_id ?>">
                 <input type="hidden" name="fecha" value="<?php echo $cita->fecha ?>">

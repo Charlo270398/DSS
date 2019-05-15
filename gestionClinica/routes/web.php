@@ -19,32 +19,30 @@ Route::get('/home', function () {
 //Departamentos
 Route::get('/departamentos','DepartamentosController@mostrarListaDepartamentos');
 Route::get('/departamentos/editList','DepartamentosController@mostrarListaDepartamentosEditar')->middleware('auth');;
-Route::get('/departamentos/deleteList','DepartamentosController@mostrarListaDepartamentosBorrar')->middleware('auth');;
 Route::get('/departamentos/{id}', 'DepartamentosController@mostrarDepartamento');
 Route::get('/departamentos/{id}/editar', 'DepartamentosController@mostrarEditarForm')->middleware('auth');;
 Route::get('/departamentos/{id}/borrar', 'DepartamentosController@borrarDepartamento')->middleware('auth');;
 
-//Box
-Route::get('/box/{id}/borrar','BoxController@borrarBox')->middleware('auth');;
-
 //Medicos
 Route::get('/medicos','MedicosController@mostrarListaMedicos');
 Route::get('/medicos/{id}', 'MedicosController@mostrarMedico');
-Route::get('/medico/editList','MedicosController@mostrarListaMedicosEditar')->middleware('auth');;
-Route::get('/medico/deleteList','MedicosController@mostrarListaMedicosBorrar')->middleware('auth');;
+Route::get('/medico/editList','MedicosController@mostrarListaMedicosEditar')->middleware('auth');
+Route::get('/medico/deleteList','MedicosController@mostrarListaMedicosBorrar')->middleware('auth');
 Route::get('/medicos&{nombre}', 'MedicosController@mostrarListaMedicosPorNombre');
-Route::get('/medicos/{id}/editar', 'MedicosController@mostrarEditarForm')->middleware('auth');;
-Route::get('/medicos/{id}/borrar', 'MedicosController@borrarMedico')->middleware('auth');;
-Route::get('/medico/reservas', 'MedicosController@mostrarListaMedicosReserva')->middleware('auth');;
-Route::get('/medico/{id}/horarios', function ($id) { return redirect("/citas/disponibles&$id");})->middleware('auth');;
+Route::get('/medicos/{id}/editar', 'MedicosController@mostrarEditarForm')->middleware('auth');
+Route::get('/medicos/{id}/borrar', 'MedicosController@borrarMedico')->middleware('auth');
+Route::get('/medico/reservas', 'MedicosController@mostrarListaMedicosReserva')->middleware('auth');
+Route::get('/medico/{id}/horarios', function ($id) { return redirect("/citas/disponibles&$id");})->middleware('auth');
 
 
 //Administracion
-Route::get('/clinica/edit','ClinicaController@mostrarEditarForm');
-Route::get('/box/add','BoxController@mostrarAddForm');
-Route::get('/box/delete','BoxController@mostrarListaBoxBorrar');
-Route::get('/departamento/add','DepartamentosController@mostrarAddForm');
-Route::get('/medico/add','MedicosController@mostrarAddForm');
+//Comprobamos que el usuario autenticado tiene rol == 1
+Route::get('/clinica/edit','ClinicaController@mostrarEditarForm')->middleware('auth');
+Route::get('/box/add','BoxController@mostrarAddForm')->middleware('auth');
+Route::get('/box/deleteList','BoxController@mostrarListaBoxBorrar')->middleware('auth');
+Route::get('/departamento/add','DepartamentosController@mostrarAddForm')->middleware('auth');
+Route::get('/medico/add','MedicosController@mostrarAddForm')->middleware('auth');
+Route::get('/box/{id}/borrar','BoxController@borrarBox')->middleware('auth');
 
 //Metodos post
 Route::post('clinica/editar_create', [
@@ -68,6 +66,7 @@ Route::post('medicos/edit/editar_create', [
 Route::post('citas/reservar', [
     'uses' => 'CitasController@reservar'
 ])->middleware('auth');
+
 //----USUARIO----
 
 Route::get('/usuario','UsuarioController@autenticarUsuario')->middleware('auth');
@@ -86,10 +85,12 @@ Route::get('/historial&{modo}','UsuarioController@mostrarHistorial')->middleware
 //Usuario-Citas
 Route::get('/citas&{modo}','UsuarioController@mostrarCitas')->middleware('auth');
 Route::get('/citas/disponibles&{idM}','CitasController@mostrarCitasDisponibles')->middleware('auth');
-Route::get('/usuario/{idU}/citas/{idC}','CitasController@mostrarCita')->middleware('auth');
+Route::get('/citas/{idC}','CitasController@mostrarCita')->middleware('auth');//Comprobar que esa cita es del paciente autenticado en ese momento
 Route::get('/citas/confirmar/d={dia}&h={hora}&m={idMedico}','CitasController@mostrarConfirmarCita')->middleware('auth');
 Route::get('/medico/citas','MedicosController@mostrarListaCitas')->middleware('auth');//MEDICO
 Route::get('/citas/vercita/d={dia}&h={hora}&m={idMedico}','CitasController@verCita')->middleware('auth');
+
+
 
 
 //CREADO POR AUTH
