@@ -40,12 +40,12 @@ class CitasController extends Controller
         //Hay que comprobar que las horas son correctas, solo a en punto, y 20 y menos 20 
         $u = new UserDAO();
         $validado = false;
-        $time = date('Y-m-d');
+        $time = date('d-m-Y');
         for($i=0; $i<7; $i++){ //7 proximos dias
             if($time == $dia && 'Saturday' != date("l", strtotime($time)) && 'Sunday' != date("l", strtotime($time))){ //El día está dentro del intervalo y no es Sabado ni Domingo
                 $validado = true;
             } 
-            $time =  Date('Y-m-d', strtotime("+1 days",strtotime($time)));
+            $time =  Date('d-m-Y', strtotime("+1 days",strtotime($time)));
         }
 
         if($u->mostrarUsuario($idMedico)->rol_id != 3){//El medico que se mete es medico

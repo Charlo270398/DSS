@@ -33,7 +33,7 @@
                 background-color: #dddddd;
                 }
         </style>
-        <h1>Departamento de <?php echo $departamento->nombre; ?></h1>
+        <h1><strong>Departamento de <?php echo $departamento->nombre; ?></strong></h1>
     </header>
     
     <br>
@@ -49,9 +49,9 @@
                         <br>
                         <table>
                             <tr>
-                                <th>Número de Colegiado</th>
-                                <th>Nombre</th>
-                                <th>Contacto</th>
+                                
+                                
+                                
                             </tr>
                             <?php 
                                 if (count($medicos)!=0){
@@ -59,24 +59,14 @@
                                         <a href="/medicos/<?php echo $value->id;?>">
                                             <tr>
                                                 <td>
-                                                <?php 
-                                                    if($value->departamento_id == $departamento->id)
-                                                        echo ($value->num_colegiado) ;
-                                                ?></td>
-                                                <td>
                                                 <a href="/medicos/<?php echo $value->id;?>">
                                                 <?php 
                                                     if($value->departamento_id == $departamento->id)
                                                         echo ($value->apellidos . ', ' . $value->nombre) ;
                                                 ?></td>
                                                 </a>
-                                                <td>
-                                                <?php 
-                                                    if($value->departamento_id == $departamento->id)
-                                                        echo ($value->email) ;
-                                                ?></td>
                                             </tr>
-                                    </a> 
+                                        </a> 
                             <?php endforeach;}else{?> 
                         <?php } ?>
                         </table>

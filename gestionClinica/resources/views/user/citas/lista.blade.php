@@ -20,7 +20,7 @@
     <body>
         <br> 
         <div class="container">
-            <h1>Citas registradas</h1>
+            <h1><strong>Citas registradas</strong></h1>
             <div>
                 <a href="/citas&antiguas">Antiguas</a>
                 <a href="/citas&recientes">Recientes</a>
@@ -43,7 +43,7 @@
                             <?php $i=0;
                                 foreach ($citas as $c){ ?>
                                 <tr>
-                                    <td> <?php echo (substr($c->fecha, 8, 2) . ' de ' . $x->meses(substr($c->fecha, 5, 2)) . ' de ' . substr($c->fecha, 0, 4))  ?> </td>
+                                    <td> <?php echo (substr($c->fecha, 0, 2) . ' de ' . $x->meses(substr($c->fecha, 3, 2)) . ' de ' . substr($c->fecha, 6, 4))  ?> </td>
                                     <td> <?php echo substr($c->fecha, -8, -3) ?> </td>
                                     <td> <?php echo($nombre[$i]->apellidos . ', ' . $nombre[$i]->nombre) ?> </td>
                                     <td> 
