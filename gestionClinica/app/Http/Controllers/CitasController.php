@@ -20,10 +20,12 @@ class CitasController extends Controller
             $u = new UserDAO();   
             $d = new DepartamentoDAO();
             $cita = $c->mostrarCita($idC);
-            if($cita->paciente_id == $idU || $cita->medico_id == $idU){
-                return view('/user/citas/cita', ['cita' => $cita, 'medico' => $u->mostrarUsuario($cita->medico_id), 
-                'departamento' => $d->mostrarDepartamento($u->mostrarUsuario($cita->medico_id)->departamento_id)]);
-                
+            if($cita->paciente_id == $idU){//Acceso como paciente
+                return view('/user/citas/cita', ['cita' => $cita, 'usuario' => $u->mostrarUsuario($cita->medico_id), 
+                'departamento' => $d->mostrarDepartamento($u->mostrarUsuario($cita->medico_id)->departamento_id), 'esMedico' => false]);
+            }else if($cita->medico_id == $idU){//Acceso como médico
+                return view('/user/citas/cita', ['cita' => $cita, 'usuario' => $u->mostrarUsuario($cita->paciente_id), 
+                'departamento' => $d->mostrarDepartamento($u->mostrarUsuario($cita->medico_id)->departamento_id), 'esMedico' => true]);           
             }else{
                 return view('/user/menuusuario', ['tipo' => $u->mostrarRol($idU), 'error' =>'¡Estás metiéndote donde no debes campeón!']);
             }
