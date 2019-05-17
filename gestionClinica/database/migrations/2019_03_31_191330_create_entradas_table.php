@@ -19,7 +19,8 @@ class CreateEntradasTable extends Migration
             $table->foreign('paciente_id')->references('id')->on('users')->onDelete('cascade');
             $table->integer('medico_id');
             $table->foreign('medico_id')->references('id')->on('users')->onDelete('cascade');
-            $table->string('texto');
+            $table->string('asunto');
+            $table->string('descripcion');
             $table->timestamp('fecha');
             $table->timestamps();
         });

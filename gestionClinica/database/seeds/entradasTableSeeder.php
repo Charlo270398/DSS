@@ -18,12 +18,12 @@ class entradasTableSeeder extends Seeder
 
         for($i=0; $i<2; $i++){
             $time =  Date('d-m-Y H:i:s', strtotime("+1 days",strtotime($time)));
-            $ent= new Entrada(['paciente_id' => 35, 'medico_id' => 3, 'texto' =>'Texto prueba 2',
+            $ent= new Entrada(['paciente_id' => 35, 'medico_id' => 3, 'asunto' => 'Asunto 1', 'descripcion' =>'DESC 1',
             'fecha' => $time]);
             $ent->save();
         }
         $time =  Date('d-m-Y H:i:s', strtotime("+1 hours",strtotime($time)));
-        $ent= new Entrada(['paciente_id' => 35, 'medico_id' => 4, 'texto' =>'Texto prueba 2',
+        $ent= new Entrada(['paciente_id' => 35, 'medico_id' => 4, 'asunto' => 'Asunto 2', 'descripcion' =>'DESC 2',
         'fecha' => $time]);
         $ent->save();
 

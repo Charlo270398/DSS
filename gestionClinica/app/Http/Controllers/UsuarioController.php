@@ -77,17 +77,4 @@ class UsuarioController extends Controller
         }
     }
 
-    public function mostrarAddEntradaForm($pacienteId) {
-        if (Auth::check()) {
-            $userId = Auth::user()->id;
-            $d = new UserDAO();
-            if($d->mostrarRol($userId)->id==3){
-                return view('/user/paciente/historial/add', ['usuario' => $d->mostrarUsuario($pacienteId)] );
-            }
-            else{
-                return view('/user/menuusuario', ['tipo' => $d->mostrarRol($userId), 'error' =>'No tienes permisos de administrador!']);
-            }
-        }
-    }
-
 }
