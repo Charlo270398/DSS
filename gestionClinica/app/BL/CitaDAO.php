@@ -3,6 +3,7 @@
 namespace App\BL;
 use App\Cita;
 use App\BL\BoxDAO;
+use App\BL\UserDAO;
 
 class CitaDAO
 {
@@ -85,13 +86,21 @@ class CitaDAO
         $SESIONES =  15; //3 sesiones = 1 hora
         $RESTAR_SESIONES = $SESIONES*$MINUTOS_SESION; //Minutos a restar para resetear cada día
         $diaSemana = date("l", strtotime($startTime));
-        
+
+        if($diaSemana == 'Friday'){
+            $endTime =  Date('Y-m-d H:i:s', strtotime("13:40:00",strtotime($time)));
+            if($time > $endTime){
+                $startTime = Date('Y-m-d H:i:s', strtotime("+7 days",strtotime($startTime)));
+            }
+        }
         if($diaSemana == 'Saturday'){
             $startTime = Date('Y-m-d H:i:s', strtotime("+2 days",strtotime($startTime)));
         }
         if($diaSemana == 'Sunday'){
             $startTime = Date('Y-m-d H:i:s', strtotime("+1 days",strtotime($startTime)));
         }
+        
+
         else{
             while($diaSemana != 'Monday'){
                 $startTime = Date('Y-m-d H:i:s', strtotime("-1 days",strtotime($startTime)));
@@ -171,7 +180,20 @@ class CitaDAO
         return $meses[$mes-1];
     }
 
-    
+    public function nombresCitas($citas, $medico ){//Si medico es true busca los nombres de medicos, si falso busca los de pacientes
+
+        $dev = array();
+        $u = new UserDAO();
+        foreach ($citas as $c){
+            if($medico){
+                array_push($dev, $u->mostrarUsuario($c->medico_id));
+            }else{
+                array_push($dev, $u->mostrarUsuario($c->paciente_id));
+            }
+        }
+        return $dev;
+
+    }
 }
 ?>
 

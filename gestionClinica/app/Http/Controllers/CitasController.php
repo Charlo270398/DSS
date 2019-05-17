@@ -20,10 +20,12 @@ class CitasController extends Controller
             $u = new UserDAO();   
             $d = new DepartamentoDAO();
             $cita = $c->mostrarCita($idC);
-            if($cita->paciente_id == $idU || $cita->medico_id == $idU){
-                return view('/user/citas/cita', ['cita' => $cita, 'medico' => $u->mostrarUsuario($cita->medico_id), 
-                'departamento' => $d->mostrarDepartamento($u->mostrarUsuario($cita->medico_id)->departamento_id)]);
-                
+            if($cita->paciente_id == $idU){//Acceso como paciente
+                return view('/user/citas/cita', ['cita' => $cita, 'usuario' => $u->mostrarUsuario($cita->medico_id), 
+                'departamento' => $d->mostrarDepartamento($u->mostrarUsuario($cita->medico_id)->departamento_id), 'esMedico' => false]);
+            }else if($cita->medico_id == $idU){//Acceso como médico
+                return view('/user/citas/cita', ['cita' => $cita, 'usuario' => $u->mostrarUsuario($cita->paciente_id), 
+                'departamento' => $d->mostrarDepartamento($u->mostrarUsuario($cita->medico_id)->departamento_id), 'esMedico' => true]);           
             }else{
                 return view('/user/menuusuario', ['tipo' => $u->mostrarRol($idU), 'error' =>'¡Estás metiéndote donde no debes campeón!']);
             }
@@ -40,12 +42,12 @@ class CitasController extends Controller
         //Hay que comprobar que las horas son correctas, solo a en punto, y 20 y menos 20 
         $u = new UserDAO();
         $validado = false;
-        $time = date('Y-m-d');
+        $time = date('d-m-Y');
         for($i=0; $i<7; $i++){ //7 proximos dias
             if($time == $dia && 'Saturday' != date("l", strtotime($time)) && 'Sunday' != date("l", strtotime($time))){ //El día está dentro del intervalo y no es Sabado ni Domingo
                 $validado = true;
             } 
-            $time =  Date('Y-m-d', strtotime("+1 days",strtotime($time)));
+            $time =  Date('d-m-Y', strtotime("+1 days",strtotime($time)));
         }
 
         if($u->mostrarUsuario($idMedico)->rol_id != 3){//El medico que se mete es medico

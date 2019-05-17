@@ -29,7 +29,7 @@
 
 <html>
     <header style="text-align: center">
-        <h1><?php echo $header;?></h1>
+        <h1><strong><?php echo $header;?></strong></h1>
     </header>
     <body>  
         

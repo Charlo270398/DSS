@@ -16,7 +16,7 @@
 </head>
 <html> 
     <header style="text-align: center">
-        <h1>Ficha del doctor</h1>
+        <h1><strong>Ficha del doctor</strong></h1>
     </header>
     <body>
         <br>

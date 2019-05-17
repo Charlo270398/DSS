@@ -66,6 +66,9 @@ Route::post('medicos/edit/editar_create', [
 Route::post('citas/reservar', [
     'uses' => 'CitasController@reservar'
 ])->middleware('auth');
+Route::post('entradas/add', [
+    'uses' => 'EntradasController@addEntrada'
+])->middleware('auth');
 
 //----USUARIO----
 
@@ -82,8 +85,12 @@ Route::get('/logged', function () { //Para redirigir a panel de usuario una vez 
 
 //Usuario-Historial
 Route::get('/historial&{modo}','UsuarioController@mostrarHistorial')->middleware('auth');
+<<<<<<< HEAD
 Route::get('/historial/{idH}','EntradaController@mostrarHistorialPaciente')->middleware('auth');//Comprobar que el historial es del paciente autenticado en ese momento
 
+=======
+Route::get('/historial/add&{idPaciente}','EntradasController@mostrarAddEntradaForm')->middleware('auth');
+>>>>>>> origin/Carlos
 //Usuario-Citas
 Route::get('/citas&{modo}','UsuarioController@mostrarCitas')->middleware('auth');
 Route::get('/citas/disponibles&{idM}','CitasController@mostrarCitasDisponibles')->middleware('auth');

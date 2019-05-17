@@ -33,15 +33,8 @@ class UserDAO
             return false;
         }
     }
-    public function borrarUsuario($user){
-        try{
-            $user->delete();
-            return true;
-        }catch(\Exception $ex){
-            return false;
-        }
-    }
-    public function borrarMedico($id){
+    
+    public function borrarUsuario($id){
         try{
             $user = $this->mostrarUsuario($id);
             $user->delete();
@@ -129,6 +122,11 @@ class UserDAO
         }catch(\Exception $ex){
             return false;
         }
+    }
+
+    public function citaToday(){
+
+        return false;
     }
  
     

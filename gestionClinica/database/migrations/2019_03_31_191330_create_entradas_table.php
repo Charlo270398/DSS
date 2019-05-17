@@ -15,9 +15,12 @@ class CreateEntradasTable extends Migration
     {
         Schema::create('entradas', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('usuario_id');
-            $table->foreign('usuario_id')->references('id')->on('users')->onDelete('cascade');
-            $table->string('texto');
+            $table->integer('paciente_id');
+            $table->foreign('paciente_id')->references('id')->on('users')->onDelete('cascade');
+            $table->integer('medico_id');
+            $table->foreign('medico_id')->references('id')->on('users')->onDelete('cascade');
+            $table->string('asunto');
+            $table->string('descripcion');
             $table->timestamp('fecha');
             $table->timestamps();
         });
@@ -30,6 +33,6 @@ class CreateEntradasTable extends Migration
      */
     public function down()
     {
-        
+
     }
 }
