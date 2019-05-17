@@ -14,7 +14,7 @@ class UserDAO
         return $user;
     }
     public function mostrarListaUsuarios() {
-        $user  = User::orderBy('apellidos')->get();//Ordenado por apelidos
+        $user  = User::orderBy('apellidos');//Ordenado por apelidos
         return $user;
     }
     public function actualizarUsuario($user){
@@ -113,6 +113,7 @@ class UserDAO
             return false;
         }
     }
+
     public function mostrarListaMedicosPorNombre($nombre){
         try{
             $rol = Rol::where('nombre', '=', 'Medico')->first();
