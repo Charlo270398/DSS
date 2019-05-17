@@ -86,13 +86,21 @@ class CitaDAO
         $SESIONES =  15; //3 sesiones = 1 hora
         $RESTAR_SESIONES = $SESIONES*$MINUTOS_SESION; //Minutos a restar para resetear cada día
         $diaSemana = date("l", strtotime($startTime));
-        
+
+        if($diaSemana == 'Friday'){
+            $endTime =  Date('Y-m-d H:i:s', strtotime("13:40:00",strtotime($time)));
+            if($time > $endTime){
+                $startTime = Date('Y-m-d H:i:s', strtotime("+7 days",strtotime($startTime)));
+            }
+        }
         if($diaSemana == 'Saturday'){
             $startTime = Date('Y-m-d H:i:s', strtotime("+2 days",strtotime($startTime)));
         }
         if($diaSemana == 'Sunday'){
             $startTime = Date('Y-m-d H:i:s', strtotime("+1 days",strtotime($startTime)));
         }
+        
+
         else{
             while($diaSemana != 'Monday'){
                 $startTime = Date('Y-m-d H:i:s', strtotime("-1 days",strtotime($startTime)));
