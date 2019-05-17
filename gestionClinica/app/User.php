@@ -14,8 +14,12 @@ class User extends Authenticatable
         return $this->belongsTo('App\Rol');
     }
 
-    public function entrada(){
-        return $this->hasMany('App\Entrada');
+    public function entradaM(){
+        return $this->hasMany('App\Entrada', 'medico_id');
+    }
+
+    public function entradaP(){
+        return $this->hasMany('App\Entrada', 'paciente_id');
     }
 
     public function medico_cita(){

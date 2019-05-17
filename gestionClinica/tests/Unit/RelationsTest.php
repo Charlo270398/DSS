@@ -65,25 +65,31 @@ class RelationsTest extends TestCase
         $paciente->rol_id = '2';
         $paciente->save();
 
-        $cita->fecha = 'ayer';
+        $cita->fecha = date('Y-m-d');
         $cita->medico_id = $medico->id;
         $cita->paciente_id = $paciente->id;
         $cita->box_id = $box->id;
         $cita->motivo = 'porque si';
         $cita->save();
-        $entrada->fecha = 'hoy';
+        $entrada->medico_id = $medico->id;
+        $entrada->paciente_id = $paciente->id;
+        $entrada->fecha = date('Y-m-d');
         $entrada->texto = 'hola';
-        $medico->entrada()->save($entrada);
+        $entrada->save();
         $rol->user()->save($medico);
 
-        /*$this->assertEquals($medico->cita[0]->fecha, 'ayer');*/
-        $this->assertEquals($medico->entrada[0]->fecha, 'hoy');
+        $this->assertEquals($medico->medico_cita[0]->fecha, date('Y-m-d'));
+        $this->assertEquals($paciente->paciente_cita[0]->fecha, date('Y-m-d'));
+        $this->assertEquals($medico->entradaM[0]->fecha, date('Y-m-d'));
+        $this->assertEquals($paciente->entradaP[0]->fecha, date('Y-m-d'));
         $this->assertEquals($rol->user[0]->nombre, 'Pepe');
         $cita->delete();
         $medico->delete();
+        $paciente->delete();
         $entrada->delete();
         $rol->delete();
         $departamento->delete();
         $clinica->delete();
+        $box->delete();
     }
 }
