@@ -19,11 +19,19 @@ class CitasController extends Controller
             $c = new CitaDAO();
             $u = new UserDAO();
             $d = new DepartamentoDAO();
-            return view('/user/citas/cita', ['cita' => $c->mostrarCita($idC), 'medico' => $u->mostrarUsuario($c->mostrarCita($idC)->medico_id),
-            'departamento' => $d->mostrarDepartamento($c->mostrarCita($idC)->medico_id)]);
+            $cita = $c->mostrarCita($idC);
+            if($cita->paciente_id == $idU){//Acceso como paciente
+                return view('/user/citas/cita', ['cita' => $cita, 'usuario' => $u->mostrarUsuario($cita->medico_id),
+                'departamento' => $d->mostrarDepartamento($u->mostrarUsuario($cita->medico_id)->departamento_id), 'esMedico' => false]);
+            }else if($cita->medico_id == $idU){//Acceso como médico
+                return view('/user/citas/cita', ['cita' => $cita, 'usuario' => $u->mostrarUsuario($cita->paciente_id),
+                'departamento' => $d->mostrarDepartamento($u->mostrarUsuario($cita->medico_id)->departamento_id), 'esMedico' => true]);
+            }else{
+                return view('/user/menuusuario', ['tipo' => $u->mostrarRol($idU), 'error' =>'¡Estás metiéndote donde no debes campeón!']);
+            }
         }
         else{
-
+            return redirect('/login');
         }
     }
 
@@ -34,12 +42,12 @@ class CitasController extends Controller
         //Hay que comprobar que las horas son correctas, solo a en punto, y 20 y menos 20
         $u = new UserDAO();
         $validado = false;
-        $time = date('Y-m-d');
+        $time = date('d-m-Y');
         for($i=0; $i<7; $i++){ //7 proximos dias
             if($time == $dia && 'Saturday' != date("l", strtotime($time)) && 'Sunday' != date("l", strtotime($time))){ //El día está dentro del intervalo y no es Sabado ni Domingo
                 $validado = true;
             }
-            $time =  Date('Y-m-d', strtotime("+1 days",strtotime($time)));
+            $time =  Date('d-m-Y', strtotime("+1 days",strtotime($time)));
         }
 
         if($u->mostrarUsuario($idMedico)->rol_id != 3){//El medico que se mete es medico
@@ -84,32 +92,22 @@ class CitasController extends Controller
         }
     }
 
-    public function confirmarCita($dia, $hora, $idMedico){
-
-        //Hay que comprobar que la long de los string de dia y hora
-        //Hay que comprobar que los dias son correctos
-        //Hay que comprobar que las horas son correctas, solo a en punto, y 20 y menos 20
+    public function borrarCita($idC) {
 
         if (Auth::check()) {
-            $idU = Auth::user()->id;
             $c = new CitaDAO();
             $u = new UserDAO();
-            $d = new DepartamentoDAO();
-            $cita = $c->generarCita($dia, $hora, $idMedico);
-            if($cita == null){//Cita no disponible (porque no hay boxes)
-                return $this->mostrarCitasDisponiblesError($idMedico, 'No hay boxes disponibles para esa fecha');
+            $idU = Auth::user()->id;
+            $cita = $c->mostrarCita($idC);
+            if($cita->paciente_id == $idU || $cita->medico_id == $idU){//Quien borra es o el paciente que reservó o el médico
+                $cita->delete();
+                return redirect('/citas&recientes');
             }else{
-                return view('/user/citas/confirmar', ['cita' => $cita, 'medico' => $u->mostrarUsuario($idMedico),
-            'departamento' => $d->mostrarDepartamento($idMedico)]);
+                return view('/user/menuusuario', ['tipo' => $u->mostrarRol($idU), 'error' =>'¡Estás metiéndote donde no debes campeón!']);
             }
-
+        }else{
+            return redirect('/home');
         }
-    }
-
-    public function borrarCita($idC) {
-        $c = new CitaDAO();
-        return view('/user/citas/cita', ['cita' => $c->mostrarCita($idC), 'medico' => $u->mostrarUsuario($c->mostrarCita($idC)->medico_id),
-        'departamento' => $d->mostrarDepartamento($c->mostrarCita($idC)->medico_id)]);
     }
 
     public function mostrarCitasDisponibles($idM){

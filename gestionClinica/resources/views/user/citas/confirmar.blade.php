@@ -10,6 +10,7 @@
 @section('body')
 <!DOCTYPE html>
 <head>
+    <?php use App\Util; $x = new Util(); ?>
     <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Información sobre la cita</title>
 </head>
@@ -25,7 +26,8 @@
                 <br>
                 <p><strong>Médico: </strong><?php echo $medico->nombre . ' ' . $medico->apellidos; ?></p>
                 <p><strong>Departamento:</strong> <a href= '/departamentos/<?php echo $medico->departamento_id?>'><?php echo $departamento->nombre?></a></p>
-                <p><strong>Horario de la consulta: </strong> <?php echo substr($cita->fecha, 0, 10) . ' a las ' . substr($cita->fecha, -8, -3)?></p>
+                <p><strong>Día de la consulta: </strong> <?php echo substr($cita->fecha,0,2) . ' de ' . $x->meses(substr($cita->fecha,3,2)) . ' de ' . substr($cita->fecha,6,4) ?></p>
+                <p><strong>Hora de la consulta: </strong> <?php echo substr($cita->fecha,11,5) ?></p>
                 <p><strong>Box:</strong> <?php echo  ('nº ' . $cita->box_id)?> </p>
                 <p>
                     <label><strong>Escriba el motivo de la consulta:</strong></label>

@@ -5,10 +5,12 @@ use App\Rol;
 use App\Entrada;
 use App\Cita;
 use App\Departamento;
+use Illuminate\Support\Facades\Auth;
+
 class UserDAO
 {
     public function mostrarUsuario($id) {
-        $user  = User::findOrFail($id); //Puesto que solo tenemos clinica alicante usamos el primero
+        $user  = User::findOrFail($id);
         return $user;
     }
     public function mostrarListaUsuarios() {
@@ -31,15 +33,8 @@ class UserDAO
             return false;
         }
     }
-    public function borrarUsuario($user){
-        try{
-            $user->delete();
-            return true;
-        }catch(\Exception $ex){
-            return false;
-        }
-    }
-    public function borrarMedico($id){
+    
+    public function borrarUsuario($id){
         try{
             $user = $this->mostrarUsuario($id);
             $user->delete();
@@ -78,13 +73,29 @@ class UserDAO
         $entradas  = Entrada::orderBy('fecha')->get();//Ordenado por fecha de antiguo a reciente
         return $entradas;
     }
-    public function mostrarCitasRecientes($id) {
-        $citas  = Cita::orderBy('fecha', 'DESC')->get();//Ordenado por fecha de reciente a antiguo
-        return $citas;
+    public function mostrarCitasRecientes() {
+        if (Auth::check()) {
+            $id = Auth::user()->id;
+            $u = new UserDAO();
+            if($u->mostrarRol($id)->id==2){//ID PACIENTE = 2
+                $cita  = Cita::orderBy('fecha', 'DESC')->where('paciente_id', '=', "$id")->get();//Ordenado por fecha de antiguo a reciente
+            }else{
+                $cita  = Cita::orderBy('fecha', 'DESC')->where('medico_id', '=', "$id")->get();//Ordenado por fecha de antiguo a reciente
+            }
+        }
+        return $cita;
     }
-    public function mostrarCitasAntiguas($id) {
-        $citas  = Cita::orderBy('fecha')->get();//Ordenado por fecha de antiguo a reciente
-        return $citas;
+    public function mostrarCitasAntiguas() {
+        if (Auth::check()) {
+            $id = Auth::user()->id;
+            $u = new UserDAO();
+            if($u->mostrarRol($id)->id==2){//ID PACIENTE = 2
+                $cita  = Cita::orderBy('fecha')->where('paciente_id', '=', "$id")->get();//Ordenado por fecha de antiguo a reciente
+            }else{
+                $cita  = Cita::orderBy('fecha')->where('medico_id', '=', "$id")->get();//Ordenado por fecha de antiguo a reciente
+            }
+        }
+        return $cita;
     }
     //Exclusivo de médico
     public function mostrarDepartamento($id){
@@ -111,6 +122,11 @@ class UserDAO
         }catch(\Exception $ex){
             return false;
         }
+    }
+
+    public function citaToday(){
+
+        return false;
     }
  
     

@@ -9,7 +9,7 @@ class DepartamentoDAO
 {
 
     public function mostrarDepartamento($id) {
-        $departamento = Departamento::where('id', '=', $id)->first();
+        $departamento = Departamento::findOrFail($id);
         return $departamento;
     }
 
