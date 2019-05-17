@@ -35,7 +35,7 @@
                     <tr>
                         <th>Boxes</th>
                         <th><a href="/box/add" class="btn btn-primary">Añadir</a>
-                        <a href="/box/delete" class="btn btn-primary">Editar/Eliminar</a></th>
+                        <a href="/box/deleteList" class="btn btn-primary">Eliminar</a></th>
                     </tr>  
                     <tr>
                         <th>Medicos</th>

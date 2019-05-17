@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\BL\UserDAO;
+use App\BL\CitaDAO;
 use Illuminate\Support\Facades\Auth;
 
 class UsuarioController extends Controller
@@ -25,18 +26,22 @@ class UsuarioController extends Controller
     }
 
     public function mostrarHistorial($modo){
+
         $u = new UserDAO();
         if (Auth::check()) {
             $id = Auth::user()->id;
-            if($modo == 'antiguas'){
-                return view('/user/paciente/historial/lista', ['user' => $u->mostrarUsuario($id), 'entradas' => $u->mostrarEntradasAntiguas($id)]);
+            if($u->mostrarRol($id)->id==2){//ID PACIENTE = 2
+                if($modo == 'antiguas'){
+                    return view('/user/paciente/historial/lista', ['user' => $u->mostrarUsuario($id), 'entradas' => $u->mostrarEntradasAntiguas($id)]);
+                }else{
+                    return view('/user/paciente/historial/lista', ['user' => $u->mostrarUsuario($id), 'entradas' => $u->mostrarEntradasRecientes($id)]);
+                }  
             }else{
-                return view('/user/paciente/historial/lista', ['user' => $u->mostrarUsuario($id), 'entradas' => $u->mostrarEntradasRecientes($id)]);
-            }  
-        }else{
             //Excepcion??
-            return view('/error', ['error' => 'Error autenticando.']);
-        }  
+                return view('/user/menuusuario', ['tipo' => $u->mostrarRol($id), 'error' =>'No puedes acceder al historial porque no eres un paciente!']);
+            }  
+        }
+        
     }
 
     public function mostrarCitas($modo){
@@ -44,10 +49,27 @@ class UsuarioController extends Controller
         if (Auth::check()) {
             $id = Auth::user()->id;
             $u = new UserDAO();
-            if($modo == 'antiguas'){
-                return view('/user/citas/lista', ['user' => $u->mostrarUsuario($id), 'citas' => $u->mostrarCitasAntiguas($id)]);
+            $c = new CitaDAO();
+            if($u->mostrarRol($id)->id==2 || $u->mostrarRol($id)->id==3){//ID PACIENTE = 2, MEDICO = 3
+
+                if($modo == 'antiguas'){
+                    $citas = $u->mostrarCitasAntiguas($id);
+                }else{
+                    $citas = $u->mostrarCitasRecientes($id);
+                }
+                
+                if($u->mostrarRol($id)->id==2){//Si es paciente en la tabla indica con que medico tiene la cita y viceversa
+                    $perfil = 'Médico';
+                    $nombres = $c->nombresCitas($citas, true);
+                }else{
+                    $perfil = 'Paciente';
+                    $nombres = $c->nombresCitas($citas, false);
+                }
+                
+                return view('/user/citas/lista', ['citas' => $citas, 'perfil'=> $perfil, 'nombre'=> $nombres]);
+
             }else{
-                return view('/user/citas/lista', ['user' => $u->mostrarUsuario($id), 'citas' => $u->mostrarCitasRecientes($id)]);
+                return view('/user/menuusuario', ['tipo' => $u->mostrarRol($id), 'error' =>'¡No puedes acceder a las citas porque no eres un paciente!']); 
             }
         }else{
             //Excepcion??
@@ -55,7 +77,17 @@ class UsuarioController extends Controller
         }
     }
 
-    public function mostrarCitasDisponibles(){
-        return view('/user/citas/disponibles');
+    public function mostrarAddEntradaForm($pacienteId) {
+        if (Auth::check()) {
+            $userId = Auth::user()->id;
+            $d = new UserDAO();
+            if($d->mostrarRol($userId)->id==3){
+                return view('/user/paciente/historial/add', ['usuario' => $d->mostrarUsuario($pacienteId)] );
+            }
+            else{
+                return view('/user/menuusuario', ['tipo' => $d->mostrarRol($userId), 'error' =>'No tienes permisos de administrador!']);
+            }
+        }
     }
+
 }

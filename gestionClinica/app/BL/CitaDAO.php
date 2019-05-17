@@ -2,6 +2,8 @@
 
 namespace App\BL;
 use App\Cita;
+use App\BL\BoxDAO;
+use App\BL\UserDAO;
 
 class CitaDAO
 {
@@ -13,6 +15,35 @@ class CitaDAO
     public function mostrarListaCitas() {
         $citas  = Cita::all();
         return $citas;
+    }
+
+    public function mostrarListaCitasMedico($idMedico){
+        $citas  = Cita::where('medico_id', '=', $idMedico)->get();
+        return $citas;
+    }
+    
+    public function generarCita($dia, $hora, $idMedico){
+        $b = new BoxDAO();
+        $box = $b->comprobarCitasHora($dia, $hora);
+
+        if($box == 0){ //No hay citas en esa hora
+            $cita = new Cita();
+            $cita->fecha = $dia . ' ' . $hora . ':00';
+            $cita->box_id = 1;//Comprobar que hay disponibles
+            return $cita;
+        }
+        else{//Si hay citas en esa hora
+            $box = $b->devolverDisponible($dia, $hora);
+            if($box == -1){//Todos los boxes ocupados
+                return null;
+            }else{
+                $cita = new Cita();
+                $cita->fecha = $dia . ' ' . $hora . ':00';
+                $cita->box_id = $box;
+                return $cita;
+            }
+        }
+        
     }
 
     public function actualizarCita($cita){
@@ -81,7 +112,7 @@ class CitaDAO
             for($j=0; $j<$SESIONES; $j++){
                 $startTime = Date('Y-m-d H:i:s', strtotime("+$MINUTOS_SESION minutes",strtotime($startTime)));
                 if($startTime > $time && $this->disponible($idM, $startTime)){
-                    array_push($fechaE, Date('Y-m-d H:i:s',strtotime($startTime)));
+                    array_push($fechaE, Date('Y-m-d',strtotime($startTime)));
                     array_push($fechas, Date("H:i",strtotime($startTime)));
                    
                 }
@@ -141,7 +172,20 @@ class CitaDAO
         return $meses[$mes-1];
     }
 
-    
+    public function nombresCitas($citas, $medico ){//Si medico es true busca los nombres de medicos, si falso busca los de pacientes
+
+        $dev = array();
+        $u = new UserDAO();
+        foreach ($citas as $c){
+            if($medico){
+                array_push($dev, $u->mostrarUsuario($c->medico_id));
+            }else{
+                array_push($dev, $u->mostrarUsuario($c->paciente_id));
+            }
+        }
+        return $dev;
+
+    }
 }
 ?>
 

@@ -63,9 +63,9 @@ class DepartamentosController extends Controller
         $dep->nombre = $request->input('nombre');
         $dep->imagen = $request->input('imagen');
         $dep->clinica_id = $request->input('clinica_id');
-
+        
         if($d->actualizarDepartamento($dep)){
-            return view("/departamento/editar", ['departamento' => $dep] );
+            return redirect("/departamentos/editList");
         }else{
             return view('/error', ['error' => 'Error actualizando departamento.'] );
         }

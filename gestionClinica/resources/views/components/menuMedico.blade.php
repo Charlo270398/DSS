@@ -6,9 +6,10 @@
 </head>
 <html>
     <body>
-        <div>
-            <ul> <h2>Panel del médico</h2></ul>
-            <ul> <a class="aPanel" href="/clinica/edit"> Consulta de citas </a></ul>
+    <br>
+        <div class="container">
+            <h2><strong>Panel del médico</strong></h2>
+            <a class="aPanel" href="/citas&recientes"> Consulta de citas </a>
         </div>
     </body>
 </html>

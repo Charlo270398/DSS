@@ -16,8 +16,26 @@
 <link href="/css/lists.css" rel="stylesheet">
 <html>
     <header style="text-align:center">
-         <h1>Departamento de <?php echo $departamento->nombre; ?></h1>
+        <style>
+                table {
+                font-family: arial, sans-serif;
+                border-collapse: collapse;
+                width: 100%;
+                }
+
+                td, th {
+                border: 1px solid #dddddd;
+                text-align: left;
+                padding: 8px;
+                }
+
+                tr:nth-child(even) {
+                background-color: #dddddd;
+                }
+        </style>
+        <h1><strong>Departamento de <?php echo $departamento->nombre; ?></strong></h1>
     </header>
+    
     <br>
     <br>
     <div class="container" style="margin-top:30px">
@@ -27,27 +45,31 @@
             </div>
             <div class="col-sm-8">
                 <div class="container" style="text-align:left;">
-                    <h2>Médicos asginados a este departamento</h2>
+                    <h2>Médicos asignados a este departamento</h2>
                         <br>
-                        <?php 
-                            if (count($medicos)!=0){
-                                foreach($medicos as $key=>$value): ?>
-
-                                    <a href="/medicos/<?php echo $value->id;?>">
-                                    <ul style="list-style-type:circle;">
-                                    <li>
-                                    <h5><strong>
-                                    <?php 
-                                        if($value->departamento_id == $departamento->id)
-                                            echo ($value->apellidos . ', ' . $value->nombre) ;
-                                    ?>
-                                    </h5></strong>
-                                    </li>
-                                    </ul> 
-                                    </a> 
+                        <table>
+                            <tr>
                                 
+                                
+                                
+                            </tr>
+                            <?php 
+                                if (count($medicos)!=0){
+                                    foreach($medicos as $key=>$value): ?>
+                                        <a href="/medicos/<?php echo $value->id;?>">
+                                            <tr>
+                                                <td>
+                                                <a href="/medicos/<?php echo $value->id;?>">
+                                                <?php 
+                                                    if($value->departamento_id == $departamento->id)
+                                                        echo ($value->apellidos . ', ' . $value->nombre) ;
+                                                ?></td>
+                                                </a>
+                                            </tr>
+                                        </a> 
                             <?php endforeach;}else{?> 
                         <?php } ?>
+                        </table>
                 </div>
                 <br>
                 {{ $medicos->links() }}
