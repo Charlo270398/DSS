@@ -8,8 +8,10 @@
     <body>
     <br>
         <div class="container">
-            <h2><strong>Panel del médico</strong></h2>
-            <a class="aPanel" href="/citas&recientes"> Consulta de citas </a>
+            <ul><h2><strong>Panel del médico</strong></h2></ul>
+            <ul><a class="aPanel" href="/citas&recientes"> Registro de citas </a></ul>
+            <ul><a class="aPanel" href="/citas&hoy"> Citas para hoy </a></ul>
+            <ul><a class="aPanel" href="/pacientes"> Buscar ficha de paciente </a></ul>
         </div>
     </body>
 </html>
