@@ -10,7 +10,7 @@ class Entrada extends Model
 
     private $descripcion;
 
-    public function entrada(){
+    public function entrada() {
         return $this->belongsTo('App\User');
     }
 }
