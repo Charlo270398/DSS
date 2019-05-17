@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\BL\CitaDAO;
 use App\BL\UserDAO;
 use App\BL\EntradaDAO;
+use App\BL\DepartamentoDAO;
 use App\Entrada;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\Auth;
@@ -37,6 +38,26 @@ class EntradasController extends Controller
             }
         }else{
             return redirect('/home');
+        }
+    }
+
+    public function mostrarHistorialPaciente($idH) {
+
+        if (Auth::check()) {
+            $idU = Auth::user()->id;
+            $h = new EntradaDAO();  
+            $u = new UserDAO();   
+            $d = new DepartamentoDAO();
+            $historial = $h->mostrarHistorialPaciente($idH);
+            if($historial->paciente_id == $idU){
+                return view('');
+                
+            }else{
+                return view('/user/menuusuario', ['tipo' => $u->mostrarRol($idU), 'error' =>'¡Error, sitio incorrecto!']);
+            }
+        }
+        else{
+            return redirect('/login');
         }
     }
 
