@@ -18,8 +18,12 @@ class User extends Authenticatable
         return $this->hasMany('App\Entrada');
     }
 
-    public function cita(){
-        return $this->hasMany('App\Cita');
+    public function medico_cita(){
+        return $this->hasMany('App\Cita', 'medico_id');
+    }
+
+    public function paciente_cita(){
+        return $this->hasMany('App\Cita', 'paciente_id');
     }
     /**
      * The attributes that are mass assignable.

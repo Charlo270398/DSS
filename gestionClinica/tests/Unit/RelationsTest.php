@@ -35,16 +35,15 @@ class RelationsTest extends TestCase
         $departamento->nombre = 'uno';
         $departamento->imagen = 'dos';
         $clinica->departamentos()->save($departamento);
-        $clinica->box()->save($box);
+        $box->clinica_id = $clinica->id;
+        $box->save();
 
         $this->assertEquals($clinica->departamentos[0]->nombre, 'uno');
         $this->assertEquals($clinica->departamentos[0]->imagen, 'dos');
         $this->assertEquals($clinica->box[0]->numero, '10000');
-        $departamento->delete();
-        $box->delete();
-        $clinica->delete();
 
         $medico = new User();
+        $paciente = new User();
         $entrada = new Entrada();
         $cita = new Cita();
         $rol = new Rol();
@@ -58,11 +57,22 @@ class RelationsTest extends TestCase
         $medico->password = '1234';
         $medico->rol_id = '1';
         $medico->save();
+        $paciente->dni = '4321';
+        $paciente->nombre = 'Paco';
+        $paciente->apellidos = 'Lopez';
+        $paciente->email = 'paco@email.xd';
+        $paciente->password = '12345';
+        $paciente->rol_id = '2';
+        $paciente->save();
 
         $cita->fecha = 'ayer';
+        $cita->medico_id = $medico->id;
+        $cita->paciente_id = $paciente->id;
+        $cita->box_id = $box->id;
+        $cita->motivo = 'porque si';
+        $cita->save();
         $entrada->fecha = 'hoy';
         $entrada->texto = 'hola';
-       /* $medico->cita()->save($cita);*/
         $medico->entrada()->save($entrada);
         $rol->user()->save($medico);
 
@@ -73,5 +83,7 @@ class RelationsTest extends TestCase
         $medico->delete();
         $entrada->delete();
         $rol->delete();
+        $departamento->delete();
+        $clinica->delete();
     }
 }
