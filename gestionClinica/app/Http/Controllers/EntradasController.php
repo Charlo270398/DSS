@@ -50,7 +50,8 @@ class EntradasController extends Controller
             $d = new DepartamentoDAO();
             $historial = $h->mostrarHistorialPaciente($idH);
             if($historial->paciente_id == $idU){
-                return view('');
+                //return view('/user/paciente/historial/entrada');
+                return view('/home');
                 
             }else{
                 return view('/user/menuusuario', ['tipo' => $u->mostrarRol($idU), 'error' =>'¡Error, sitio incorrecto!']);
