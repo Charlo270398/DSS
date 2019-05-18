@@ -10,8 +10,9 @@
 @section('body')
 <!DOCTYPE html>
 <head>
+    <?php use App\Util; $x = new Util(); ?>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Historial</title>
+    <title>Historial clínico</title>
 </head>
 <link href="/css/lists.css" rel="stylesheet">
 <html>
@@ -20,8 +21,8 @@
         <div class="container">
             <h1><strong>Historial clínico</strong></h1>
             <br>
-            <a href="/historial&antiguas">Fecha ascendente</a>
-            <a href="/historial&recientes">Fecha descendente</a>
+            <a href="/historial&antiguas">Antiguas</a>
+            <a href="/historial&recientes">Recientes</a>
 
            <br> 
            <br>
@@ -35,11 +36,11 @@
                 </thead>
                 <?php 
                     if (count($entradas)!=0){   
-                        foreach($entradas as $key=>$value): ?>
+                        foreach($entradas as $e): ?>
                         <tbody>   
-                            <td> <?php  echo substr(($value->fecha), 0, -9); ; ?> </td>  
-                            <td> <?php echo $value->asunto ; ?> </td>
-                            <td> <button type="button" onclick="window.location.href='/usuario/<?php echo $user->id;?>/historial/<?php echo $value->id;?>'" class="btn btn-primary">Ver Entrada</button> </td> 
+                            <td> <?php echo (substr($e->fecha, 0, 2) . ' de ' . $x->meses(substr($e->fecha, 3, 2)) . ' de ' . substr($e->fecha, 6, 4)) . ' a las ' . substr($e->fecha, 10, 6) ?> </td>               
+                            <td> <?php echo $e->asunto ; ?> </td>
+                            <td> <button type="button" onclick="window.location.href='/historial/<?php echo $e->id;?>'" class="btn btn-primary">Ver Entrada</button> </td> 
                         </tbody>
                     <?php endforeach;}else{?> 
                     <h4>Historial vacío</h4>

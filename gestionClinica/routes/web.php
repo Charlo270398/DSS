@@ -80,7 +80,7 @@ Route::get('/logged', function () { //Para redirigir a panel de usuario una vez 
 });
 //Usuario-Historial
 Route::get('/historial&{modo}','UsuarioController@mostrarHistorial')->middleware('auth');
-Route::get('/historial/entrada&{idH}','EntradaController@mostrarHistorialPaciente')->middleware('auth');//Comprobar que el historial es del paciente autenticado en ese momento
+Route::get('/historial/{idE}','EntradasController@mostrarEntrada')->middleware('auth');//Comprobar que el historial es del paciente autenticado en ese momento
 Route::get('/historial/add&{idPaciente}','EntradasController@mostrarAddEntradaForm')->middleware('auth');
 //Usuario-Citas
 Route::get('/citas&{modo}','UsuarioController@mostrarCitas')->middleware('auth');

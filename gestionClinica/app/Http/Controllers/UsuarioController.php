@@ -54,7 +54,7 @@ class UsuarioController extends Controller
                     $mostrarOrden = true;
                 }else{
                     $citas = $u->mostrarCitasProximas($id);
-                    $titulo = 'Reservas pendientes';
+                    $titulo = 'Citas pendientes';
                     $mostrarOrden = false;
                 }
                 
