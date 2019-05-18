@@ -2,7 +2,6 @@
 
 namespace App\BL;
 use App\Entrada;
-<<<<<<< HEAD
 use App\BL\UserDAO;
 use App\BL\CitaDAO;
 use App\BL\DepartamentoDAO;
@@ -14,14 +13,7 @@ class EntradaDAO
         $historial  = Entrada::findOrFail($id);
         return $historial;
     }
-
-}
-?>
-=======
-
-class EntradaDAO
-{
-
+    
     public function mostrarEntrada($id) {
         $Entrada  = Entrada::findOrFail($id);
         return $Entrada;
@@ -61,4 +53,3 @@ class EntradaDAO
     }
 }
 ?>
->>>>>>> origin/Carlos

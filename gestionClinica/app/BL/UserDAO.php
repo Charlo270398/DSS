@@ -14,7 +14,7 @@ class UserDAO
         return $user;
     }
     public function mostrarListaUsuarios() {
-        $user  = User::orderBy('apellidos')->get();//Ordenado por apelidos
+        $user  = User::orderBy('apellidos');//Ordenado por apelidos
         return $user;
     }
     public function actualizarUsuario($user){
@@ -77,10 +77,12 @@ class UserDAO
         if (Auth::check()) {
             $id = Auth::user()->id;
             $u = new UserDAO();
+            $time = date('d-m-Y H:i:s');
+            $time =  Date('d-m-Y H:i:s', strtotime("+2 hours",strtotime($time)));
             if($u->mostrarRol($id)->id==2){//ID PACIENTE = 2
-                $cita  = Cita::orderBy('fecha', 'DESC')->where('paciente_id', '=', "$id")->get();//Ordenado por fecha de antiguo a reciente
+                $cita  = Cita::orderBy('fecha', 'DESC')->where('fecha', '<', "$time")->where('paciente_id', '=', "$id")->get();//Ordenado por fecha de antiguo a reciente
             }else{
-                $cita  = Cita::orderBy('fecha', 'DESC')->where('medico_id', '=', "$id")->get();//Ordenado por fecha de antiguo a reciente
+                $cita  = Cita::orderBy('fecha', 'DESC')->where('fecha', '<', "$time")->where('medico_id', '=', "$id")->get();//Ordenado por fecha de antiguo a reciente
             }
         }
         return $cita;
@@ -89,10 +91,12 @@ class UserDAO
         if (Auth::check()) {
             $id = Auth::user()->id;
             $u = new UserDAO();
+            $time = date('d-m-Y H:i:s');
+            $time =  Date('d-m-Y H:i:s', strtotime("+2 hours",strtotime($time)));
             if($u->mostrarRol($id)->id==2){//ID PACIENTE = 2
-                $cita  = Cita::orderBy('fecha')->where('paciente_id', '=', "$id")->get();//Ordenado por fecha de antiguo a reciente
+                $cita  = Cita::orderBy('fecha')->where('paciente_id', '=', "$id")->where('fecha', '<', "$time")->get();//Ordenado por fecha de antiguo a reciente
             }else{
-                $cita  = Cita::orderBy('fecha')->where('medico_id', '=', "$id")->get();//Ordenado por fecha de antiguo a reciente
+                $cita  = Cita::orderBy('fecha')->where('medico_id', '=', "$id")->where('fecha', '<', "$time")->get();//Ordenado por fecha de antiguo a reciente
             }
         }
         return $cita;
@@ -113,6 +117,7 @@ class UserDAO
             return false;
         }
     }
+
     public function mostrarListaMedicosPorNombre($nombre){
         try{
             $rol = Rol::where('nombre', '=', 'Medico')->first();

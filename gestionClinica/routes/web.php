@@ -32,7 +32,7 @@ Route::get('/medicos&{nombre}', 'MedicosController@mostrarListaMedicosPorNombre'
 Route::get('/medicos/{id}/editar', 'MedicosController@mostrarEditarForm')->middleware('auth');
 Route::get('/medicos/{id}/borrar', 'MedicosController@borrarMedico')->middleware('auth');
 Route::get('/medico/reservas', 'MedicosController@mostrarListaMedicosReserva')->middleware('auth');
-Route::get('/medico/{id}/horarios', function ($id) { return redirect("/citas/disponibles&$id");})->middleware('auth');
+
 
 
 //Administracion
@@ -62,6 +62,9 @@ Route::post('medicos/add/editar_create', [
 ])->middleware('auth');
 Route::post('medicos/edit/editar_create', [
     'uses' => 'MedicosController@editarMedico'
+])->middleware('auth');
+Route::post('medicos', [
+    'uses' => 'MedicosController@mostrarListaMedicosPorNombre'
 ])->middleware('auth');
 Route::post('citas/reservar', [
     'uses' => 'CitasController@reservar'

@@ -20,12 +20,20 @@ class MedicosController extends Controller
         $d = new DepartamentoDAO();
         return view('/user/medico/lista', ['medicos' => $med->paginate(5), 'departamentos'=>$d->mostrarListaDepartamentos(), 'op' =>'mostrar']);
     }
-    public function mostrarListaMedicosPorNombre($nombre){
+    public function mostrarListaMedicosPorNombre(Request $request){
         $u = new UserDAO();
         $d = new DepartamentoDAO();
-        $users = $u->mostrarListaMedicosPorNombre($nombre);
-        return view('/user/medico/lista', ['medicos' => $users->paginate(5), 'departamentos'=>$d->mostrarListaDepartamentos(), 'op' =>'mostrar']);
+        $nombre = $request->input('nombre');
+        $op = $request->input('op');
+        if($nombre == null){
+            $users = $u->mostrarListaMedicos();
+        }else{
+            $users = $u->mostrarListaMedicosPorNombre($nombre);
+        }
+
+        return view('/user/medico/lista', ['medicos' => $users->paginate(5), 'departamentos'=>$d->mostrarListaDepartamentos(), 'op' =>"$op"]);
     }
+
     public function mostrarMedico($id) {
         $u = new UserDAO();
         return view('/user/medico/medico', ['medico' => $u->mostrarUsuario($id), 'departamento' => $u->mostrarDepartamento($id)]);
