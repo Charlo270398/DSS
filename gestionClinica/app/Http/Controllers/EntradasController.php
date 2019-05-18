@@ -1,7 +1,5 @@
 <?php
-
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
 use App\BL\CitaDAO;
 use App\BL\UserDAO;
@@ -10,19 +8,15 @@ use App\BL\DepartamentoDAO;
 use App\Entrada;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\Auth;
-
 class EntradasController extends Controller
 {
     public function addEntrada(Request $request) {
-
         if (Auth::check()) {
-
             $userId = Auth::user()->id;
             $d = new UserDAO();
             if($d->mostrarRol($userId)->id==3){//ID MEDICO
                 $e = new EntradaDAO();
                 $entrada = new Entrada();
-
                 $entrada->paciente_id = $request->input('paciente_id');
                 $entrada->medico_id = $userId;
                 $entrada->asunto = $request->input('asunto');
@@ -40,9 +34,7 @@ class EntradasController extends Controller
             return redirect('/home');
         }
     }
-
     public function mostrarHistorialPaciente($idH) {
-
         if (Auth::check()) {
             $idU = Auth::user()->id;
             $h = new EntradaDAO();  
@@ -50,8 +42,7 @@ class EntradasController extends Controller
             $d = new DepartamentoDAO();
             $historial = $h->mostrarHistorialPaciente($idH);
             if($historial->paciente_id == $idU){
-                //return view('/user/paciente/historial/entrada');
-                return view('/home');
+                return view('');
                 
             }else{
                 return view('/user/menuusuario', ['tipo' => $u->mostrarRol($idU), 'error' =>'¡Error, sitio incorrecto!']);
@@ -61,7 +52,6 @@ class EntradasController extends Controller
             return redirect('/login');
         }
     }
-
     public function mostrarAddEntradaForm($pacienteId) {
         if (Auth::check()) {
             $userId = Auth::user()->id;

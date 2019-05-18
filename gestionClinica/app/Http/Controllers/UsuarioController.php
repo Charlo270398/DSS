@@ -1,12 +1,9 @@
 <?php
-
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
 use App\BL\UserDAO;
 use App\BL\CitaDAO;
 use Illuminate\Support\Facades\Auth;
-
 class UsuarioController extends Controller
 {
     public function autenticarUsuario(){
@@ -24,9 +21,7 @@ class UsuarioController extends Controller
     public function mostrarFormAutenticacion(){
         return view('/user/login');
     }
-
     public function mostrarHistorial($modo){
-
         $u = new UserDAO();
         if (Auth::check()) {
             $id = Auth::user()->id;
@@ -43,15 +38,12 @@ class UsuarioController extends Controller
         }
         
     }
-
     public function mostrarCitas($modo){
-
         if (Auth::check()) {
             $id = Auth::user()->id;
             $u = new UserDAO();
             $c = new CitaDAO();
             if($u->mostrarRol($id)->id==2 || $u->mostrarRol($id)->id==3){//ID PACIENTE = 2, MEDICO = 3
-
                 if($modo == 'antiguas'){
                     $citas = $u->mostrarCitasAntiguas($id);
                 }else{
@@ -67,7 +59,6 @@ class UsuarioController extends Controller
                 }
                 
                 return view('/user/citas/lista', ['citas' => $citas, 'perfil'=> $perfil, 'nombre'=> $nombres]);
-
             }else{
                 return view('/user/menuusuario', ['tipo' => $u->mostrarRol($id), 'error' =>'¡No puedes acceder a las citas porque no eres un paciente!']); 
             }
@@ -76,5 +67,4 @@ class UsuarioController extends Controller
             return view('/error', ['error' => 'Error autenticando.']);
         }
     }
-
 }

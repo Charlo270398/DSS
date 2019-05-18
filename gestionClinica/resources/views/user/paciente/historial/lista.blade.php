@@ -39,11 +39,12 @@
                         <tbody>   
                             <td> <?php  echo substr(($value->fecha), 0, -9); ; ?> </td>  
                             <td> <?php echo $value->asunto ; ?> </td>
-                            <td> <button type="button" onclick="window.location.href='/usuario/<?php echo $user->id;?>/historial/<?php echo $value->id;?>'" class="btn btn-primary">Ver Entrada</button> </td>
+                            <!-- <td> <button type="button" onclick="window.location.href='/usuario/<?php echo $user->id;?>/historial/<?php echo $value->id;?>'" class="btn btn-primary">Ver Entrada</button> </td> -->
+                            <td> <button type="button" onclick="window.location.href='/historial/<?php echo $value->id;?>'" class="btn btn-primary">Ver Entrada</button> </td>
                         </tbody>
-                <?php endforeach;}else{?> 
+                    <?php endforeach;}else{?> 
                     <h4>Historial vacío</h4>
-                    <?php } ?> 
+                <?php } ?> 
             </table>
         </div>
         <br>

@@ -11,37 +11,21 @@
 <!DOCTYPE html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Historial Médico</title>
+  <title>Información sobre la Entrada</title>
 </head>
 <link href="/css/lists.css" rel="stylesheet">
 <html>
     <body>
         <div class = "container">
-            <form action="{{action('CitasController@reservar')}}" method="POST">
-                {{ csrf_field() }}
-                {{ method_field('POST') }}
-                <h1 style="text-align:center">FICHA DE IDENTIFICACIÓN</h1>
-                <br>
-                <br>
-                <table class="table table-bordered">
-                  <thead class="tableHeader">
-                      <tr> 
-                          <th><strong>Nombre</strong></th>
-                          <th><strong>Apellidos</strong></th>
-                          <th><strong>Fecha de nacimiento</strong></th>
-                          <th><strong>Contacto</strong></th>
-                      </tr>
-                    </thead>
-                    <tbody>     
-                        <tr>
-                           <!-- FALTA POR COMPLETAR -->
-                        </tr>               
-                    </tbody>
-                </table>
-            </form>
+            <br>
+            <h2><strong>HISTORIAL MÉDICO</strong></h2>
+            <br>
+            <p></strong>Paciente:</strong> <?php echo $usuario->nombre . ' ' . $usuario->apellidos; ?></p>
+            <p><strong>Fecha de la Entrada:</strong> <?php echo substr(($historial->fecha), 0, -9); ?></p>
+            <p><strong>Asunto: </strong> <?php echo $historial->asunto ; ?></p>
+            <p><strong>Descripción: </strong> <?php echo $historial->descripcion ; ?></p>
+            <p><a class="btn btn-success" href='/historial&recientes'> Volver </a></p>
         </div>
-       
     </body>
-    
 </html>
 @stop
