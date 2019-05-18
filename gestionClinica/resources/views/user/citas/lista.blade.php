@@ -20,11 +20,13 @@
     <body>
         <br> 
         <div class="container">
-            <h1><strong>Citas registradas</strong></h1>
-            <div>
-                <a href="/citas&antiguas">Antiguas</a>
-                <a href="/citas&recientes">Recientes</a>
-            </div>
+            <h1><strong><?php echo $titulo ?></strong></h1>
+            <?php if($orden){ ?>
+                <div>
+                    <a href="/citas&antiguas">Antiguas</a>
+                    <a href="/citas&recientes">Recientes</a>
+                </div>
+            <?php } ?>
             <br> 
             <div class="container">
                 <?php 
@@ -48,7 +50,9 @@
                                     <td> <?php echo($nombre[$i]->apellidos . ', ' . $nombre[$i]->nombre) ?> </td>
                                     <td> 
                                         <button onclick="window.location.href='citas/<?php echo $c->id ?>'"  class="btn btn-primary ">Ver cita</button> 
-                                        <button data-toggle="modal" data-target="#exampleModalCenter" onclick="$rutaModal='citas/<?php echo $c->id ?>/borrar'"   class="btn btn-danger ">Cancelar cita</button> 
+                                        <?php if(!$orden){ ?>
+                                            <button data-toggle="modal" data-target="#exampleModalCenter" onclick="$rutaModal='citas/<?php echo $c->id ?>/borrar'"   class="btn btn-danger ">Cancelar cita</button> 
+                                        <?php } ?>
                                     </td>
                                 </tr> 
                             <?php $i++; }  ?> 

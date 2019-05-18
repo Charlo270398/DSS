@@ -101,6 +101,22 @@ class UserDAO
         }
         return $cita;
     }
+
+    public function mostrarCitasProximas() {
+        if (Auth::check()) {
+            $id = Auth::user()->id;
+            $u = new UserDAO();
+            $time = date('d-m-Y H:i:s');
+            $time =  Date('d-m-Y H:i:s', strtotime("+2 hours",strtotime($time)));
+            if($u->mostrarRol($id)->id==2){//ID PACIENTE = 2
+                $cita  = Cita::orderBy('fecha')->where('paciente_id', '=', "$id")->where('fecha', '>', "$time")->get();//Ordenado por fecha de antiguo a reciente
+            }else{
+                $cita  = Cita::orderBy('fecha')->where('medico_id', '=', "$id")->where('fecha', '>', "$time")->get();//Ordenado por fecha de antiguo a reciente
+            }
+        }
+        return $cita;
+    }
+
     //Exclusivo de médico
     public function mostrarDepartamento($id){
             $user  = User::findOrFail($id); 
