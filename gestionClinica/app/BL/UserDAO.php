@@ -155,6 +155,17 @@ class UserDAO
         }
     }
 
+    public function mostrarListaPacientes(){
+        try{
+            $rol = Rol::where('nombre', '=', 'Paciente')->first();
+            $users = User::orderBy('apellidos')->where('rol_id', '=', $rol->id);
+            return $users;
+            
+        }catch(\Exception $ex){
+            return false;
+        }
+    }
+
     public function mostrarListaMedicosPorNombre($nombre){
         try{
             $rol = Rol::where('nombre', '=', 'Medico')->first();

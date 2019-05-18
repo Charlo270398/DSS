@@ -93,16 +93,6 @@
     </body>
     </div>
 
-    <script>
-        function getInput(){
-            if(document.getElementById("myInput").value != ''){
-                return '&' + document.getElementById("myInput").value;
-            }else{
-                return '';
-            }
-        }
-    </script>
-
     <!-- Modal Borrar-->
     <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">

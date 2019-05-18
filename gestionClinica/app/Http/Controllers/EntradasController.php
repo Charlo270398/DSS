@@ -34,6 +34,26 @@ class EntradasController extends Controller
             return redirect('/home');
         }
     }
+
+    public function mostrarHistorialDePaciente($modo, $idP) {
+        $u = new UserDAO();
+        if (Auth::check()) {
+            $id = Auth::user()->id;
+            if($u->mostrarRol($id)->id==3){//ID MEDICO = 3
+                if($modo == 'antiguas'){
+                    return view('/user/paciente/historial/lista', ['user' => $u->mostrarUsuario($idP), 'entradas' => $u->mostrarEntradasAntiguas($idP)]);
+                }else{
+                    return view('/user/paciente/historial/lista', ['user' => $u->mostrarUsuario($idP), 'entradas' => $u->mostrarEntradasRecientes($idP)]);
+                }  
+            }else{
+            //Excepcion??
+                return view('/user/menuusuario', ['tipo' => $u->mostrarRol($id), 'error' =>'No puedes acceder al historial porque no eres un médico!']);
+            }  
+        }else{
+            return redirect('/login');
+        }
+    }
+
     public function mostrarEntrada($idE) {
         if (Auth::check()) {
             $idU = Auth::user()->id;

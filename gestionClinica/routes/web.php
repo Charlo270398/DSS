@@ -90,8 +90,9 @@ Route::get('/citas/confirmar/d={dia}&h={hora}&m={idMedico}','CitasController@mos
 Route::get('/citas/{idC}/borrar','CitasController@borrarCita')->middleware('auth');
 Route::get('/medico/citas','MedicosController@mostrarListaCitas')->middleware('auth');//MEDICO
 Route::get('/medico/{idM}/horarios','CitasController@mostrarCitasDisponibles')->middleware('auth');//MEDICO
-
-
+//Usuario-medico
+Route::get('/pacientes','MedicosController@mostrarListaPacientes')->middleware('auth');//MEDICO
+Route::get('/pacientes/{idP}/historial&{modo}','MedicosController@mostrarHistorialDePaciente')->middleware('auth');//MEDICO
 //CREADO POR AUTH
 Auth::routes();
 //Route::get('/home', 'HomeController@index')->name('home'); 
