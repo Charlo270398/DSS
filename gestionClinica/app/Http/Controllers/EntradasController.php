@@ -35,15 +35,17 @@ class EntradasController extends Controller
         }
     }
 
-    public function mostrarHistorialDePaciente($modo, $idP) {
+    public function mostrarHistorialDePaciente($idP, $modo) {
+        
         $u = new UserDAO();
         if (Auth::check()) {
             $id = Auth::user()->id;
             if($u->mostrarRol($id)->id==3){//ID MEDICO = 3
+                
                 if($modo == 'antiguas'){
-                    return view('/user/paciente/historial/lista', ['user' => $u->mostrarUsuario($idP), 'entradas' => $u->mostrarEntradasAntiguas($idP)]);
+                    return view('/user/paciente/historial/lista', ['user' => $u->mostrarUsuario($id), 'entradas' => $u->mostrarEntradasAntiguas($idP)]);
                 }else{
-                    return view('/user/paciente/historial/lista', ['user' => $u->mostrarUsuario($idP), 'entradas' => $u->mostrarEntradasRecientes($idP)]);
+                    return view('/user/paciente/historial/lista', ['user' => $u->mostrarUsuario($id), 'entradas' => $u->mostrarEntradasRecientes($idP)]);
                 }  
             }else{
             //Excepcion??

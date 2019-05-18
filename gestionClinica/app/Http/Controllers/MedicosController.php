@@ -154,6 +154,6 @@ class MedicosController extends Controller
     public function mostrarListaPacientes(){
         $u = new UserDAO();
         $med = $u->mostrarListaPacientes();
-        return view('/user/paciente/lista', ['medicos' => $med->paginate(5)]);
+        return view('/user/paciente/lista2', ['medicos' => $med->paginate(5)]);
     }
 }

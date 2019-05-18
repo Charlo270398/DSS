@@ -92,7 +92,7 @@ Route::get('/medico/citas','MedicosController@mostrarListaCitas')->middleware('a
 Route::get('/medico/{idM}/horarios','CitasController@mostrarCitasDisponibles')->middleware('auth');//MEDICO
 //Usuario-medico
 Route::get('/pacientes','MedicosController@mostrarListaPacientes')->middleware('auth');//MEDICO
-Route::get('/pacientes/{idP}/historial&{modo}','MedicosController@mostrarHistorialDePaciente')->middleware('auth');//MEDICO
+Route::get('/pacientes/{idP}/historial&{modo}','EntradasController@mostrarHistorialDePaciente')->middleware('auth');//MEDICO
 //CREADO POR AUTH
 Auth::routes();
 //Route::get('/home', 'HomeController@index')->name('home'); 
