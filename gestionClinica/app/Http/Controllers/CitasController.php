@@ -160,7 +160,7 @@ class CitasController extends Controller
             $cita->motivo = $request->input('motivo');
             $cita->save();
             
-            return redirect('/citas&recientes');
+            return redirect('/citas&proximas');
         }else{
             return redirect('/home');
         }

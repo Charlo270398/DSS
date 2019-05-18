@@ -54,8 +54,16 @@ class UsuarioController extends Controller
 
                 if($modo == 'antiguas'){
                     $citas = $u->mostrarCitasAntiguas($id);
-                }else{
+                    $titulo = 'Historial de citas';
+                    $mostrarOrden = true;
+                }else if($modo == 'recientes'){
                     $citas = $u->mostrarCitasRecientes($id);
+                    $titulo = 'Historial de citas';
+                    $mostrarOrden = true;
+                }else{
+                    $citas = $u->mostrarCitasProximas($id);
+                    $titulo = 'Reservas pendientes';
+                    $mostrarOrden = false;
                 }
                 
                 if($u->mostrarRol($id)->id==2){//Si es paciente en la tabla indica con que medico tiene la cita y viceversa
@@ -66,7 +74,7 @@ class UsuarioController extends Controller
                     $nombres = $c->nombresCitas($citas, false);
                 }
                 
-                return view('/user/citas/lista', ['citas' => $citas, 'perfil'=> $perfil, 'nombre'=> $nombres]);
+                return view('/user/citas/lista', ['citas' => $citas, 'perfil'=> $perfil, 'nombre'=> $nombres, 'titulo' => $titulo, 'orden' => $mostrarOrden]);
 
             }else{
                 return view('/user/menuusuario', ['tipo' => $u->mostrarRol($id), 'error' =>'¡No puedes acceder a las citas porque no eres un paciente!']); 
