@@ -9,14 +9,11 @@ use App\BL\BoxDAO;
 
 class EntradaDAO
 {
-    public function mostrarHistorial($id) {
-        $historial  = Entrada::findOrFail($id);
-        return $historial;
-    }
+
     
     public function mostrarEntrada($id) {
-        $Entrada  = Entrada::findOrFail($id);
-        return $Entrada;
+        $entrada  = Entrada::findOrFail($id);
+        return $entrada;
     }
 
     public function mostrarListaEntradas() {

@@ -34,15 +34,15 @@ class EntradasController extends Controller
             return redirect('/home');
         }
     }
-    public function mostrarHistorialPaciente($idH) {
+    public function mostrarEntrada($idE) {
         if (Auth::check()) {
             $idU = Auth::user()->id;
             $h = new EntradaDAO();  
             $u = new UserDAO();   
             $d = new DepartamentoDAO();
-            $historial = $h->mostrarHistorialPaciente($idH);
+            $historial = $h->mostrarEntrada($idE);
             if($historial->paciente_id == $idU){
-                return view('/user/paciente/historial/entrada', ['entrada' => $historial, 'paciente' => $u->mostrarUsuario($historial->paciente_id)]);
+                return view('/user/paciente/historial/entrada', ['entrada' => $historial, 'medico' => $u->mostrarUsuario($historial->medico_id), 'paciente' => $u->mostrarUsuario($historial->paciente_id)]);
             }else{
                 return view('/user/menuusuario', ['tipo' => $u->mostrarRol($idU), 'error' =>'¡Error, sitio incorrecto!']);
             }

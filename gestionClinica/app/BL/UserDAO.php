@@ -117,6 +117,27 @@ class UserDAO
         return $cita;
     }
 
+    public function mostrarCitasHoy() {
+        if (Auth::check()) {
+            $id = Auth::user()->id;
+            $u = new UserDAO();    
+            $time = date('d-m-Y H:i:s');
+            $time =  Date('d-m-Y H:i:s', strtotime("+2 hours",strtotime($time))); 
+            if($u->mostrarRol($id)->id==2){//ID PACIENTE = 2
+                $cita  = Cita::orderBy('fecha')->where('paciente_id', '=', "$id")->where('fecha', '>', "$time")->get();//Ordenado por fecha de antiguo a reciente
+            }else{
+                $cita  = Cita::orderBy('fecha')->where('medico_id', '=', "$id")->where('fecha', '>', "$time")->get();//Ordenado por fecha de antiguo a reciente
+            }
+            $dev = array();
+            foreach ($cita as $c) {
+                if(substr($c->fecha, 0, 10) == substr($time, 0, 10)){
+                    array_push($dev, $c);
+                }
+            }
+        }
+        return $dev;
+    }
+
     //Exclusivo de médico
     public function mostrarDepartamento($id){
             $user  = User::findOrFail($id); 

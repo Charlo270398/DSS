@@ -7,6 +7,7 @@
 <html>
     <body>
     <br>
+<<<<<<< HEAD
     <div class="container">
             <table class="table table-bordered" table bgcolor="blue" style="width:50%; margin:auto">
                 <thead class="tableHeader">
@@ -33,6 +34,28 @@
                     </tr>    
                 </tbody>
             </table>
+=======
+    <?php 
+    if($citas > 0){ ?>
+           <div class="container">
+                <div class="alert alert-success" role="alert">
+                    <?php if($citas == 1){
+                        echo "Recuerda que hoy tienes $citas cita concertada,";
+                    }else{
+                        echo "Recuerda que hoy tienes $citas citas concertadas,";
+                    }  ?>
+                    <a href="/citas&hoy">  pulsa aquí</a>
+                    <?php if($citas == 1){echo 'para consultarla.';}else{echo 'para consultarlas.';}?>
+                 </div>
+        </div>
+    <?php } ?>
+        <div class="container">
+            <ul><h2><strong>Panel del médico</strong></h2></ul>
+            <ul><a class="aPanel" href="/citas&proximas"> Citas pendientes </a></ul>
+            <ul><a class="aPanel" href="/citas&hoy"> Citas para hoy </a></ul>
+            <ul><a class="aPanel" href="/citas&recientes"> Historial de citas </a></ul>
+            <ul><a class="aPanel" href="/pacientes"> Buscar ficha de paciente </a></ul>
+>>>>>>> Develop
         </div>
     </body>
 </html>

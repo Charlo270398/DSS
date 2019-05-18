@@ -11,7 +11,18 @@ class UsuarioController extends Controller
         if (Auth::check()) {
             $id = Auth::user()->id;
             $u = new UserDAO();
-            return view('/user/menuusuario', ['tipo' => $u->mostrarRol($id), 'error' =>'']);
+            $rol = $u->mostrarRol($id);
+            if($rol->id != 1){//Medico y paciente
+                $citas = $u->mostrarCitasHoy();
+                if($citas == null){
+                    $citasHoy=0;
+                }else{
+                    $citasHoy=count($citas);
+                }
+                return view('/user/menuusuario', ['tipo' => $rol, 'error' =>'', 'citas'=>$citasHoy]);
+            }else{//Admin
+                return view('/user/menuusuario', ['tipo' => $rol, 'error' =>'', 'citas'=>0]);
+            }
         }else{
             return view('/error', ['error' => 'Error autenticando.']);
         }
@@ -52,9 +63,14 @@ class UsuarioController extends Controller
                     $citas = $u->mostrarCitasRecientes($id);
                     $titulo = 'Historial de citas';
                     $mostrarOrden = true;
-                }else{
+                }else if($modo == 'hoy'){
+                    $citas = $u->mostrarCitasHoy($id);
+                    $titulo = 'Citas para hoy';
+                    $mostrarOrden = false;
+                }
+                else{
                     $citas = $u->mostrarCitasProximas($id);
-                    $titulo = 'Reservas pendientes';
+                    $titulo = 'Citas pendientes';
                     $mostrarOrden = false;
                 }
                 
