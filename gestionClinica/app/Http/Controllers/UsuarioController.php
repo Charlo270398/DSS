@@ -3,6 +3,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\BL\UserDAO;
 use App\BL\CitaDAO;
+use App\BL\EntradaDAO;
 use Illuminate\Support\Facades\Auth;
 class UsuarioController extends Controller
 {
@@ -37,10 +38,11 @@ class UsuarioController extends Controller
         if (Auth::check()) {
             $id = Auth::user()->id;
             if($u->mostrarRol($id)->id==2){//ID PACIENTE = 2
+                $e = new EntradaDAO();
                 if($modo == 'antiguas'){
-                    return view('/user/paciente/historial/lista', ['user' => $u->mostrarUsuario($id), 'entradas' => $u->mostrarEntradasAntiguas($id)]);
+                    return view('/user/paciente/historial/lista', ['user' => $u->mostrarUsuario($id), 'entradas' => $e->mostrarEntradasAntiguas($id)]);
                 }else{
-                    return view('/user/paciente/historial/lista', ['user' => $u->mostrarUsuario($id), 'entradas' => $u->mostrarEntradasRecientes($id)]);
+                    return view('/user/paciente/historial/lista', ['user' => $u->mostrarUsuario($id), 'entradas' => $e->mostrarEntradasRecientes($id)]);
                 }  
             }else{
             //Excepcion??

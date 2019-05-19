@@ -21,6 +21,15 @@ class EntradaDAO
         return $entrada;
     }
 
+    public function mostrarEntradasRecientes($id) {
+        $entradas  = Entrada::where('paciente_id', '=', "$id")->orderBy('fecha', 'DESC')->get();//Ordenado por fecha de reciente a antiguo
+        return $entradas;
+    }
+    public function mostrarEntradasAntiguas($id) {
+        $entradas  = Entrada::where('paciente_id', '=', "$id")->orderBy('fecha')->get();//Ordenado por fecha de antiguo a reciente
+        return $entradas;
+    }
+
     public function actualizarEntrada($Entrada){
         try{
             $Entrada->save();
