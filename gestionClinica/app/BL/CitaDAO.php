@@ -97,7 +97,7 @@ class CitaDAO
             $startTime = Date('d-m-Y H:i:s', strtotime("+7 days",strtotime($startTime)));
         }
         if($diaSemana == 'Sunday'){
-            $startTime = Date('d-m-Y H:i:s', strtotime("+7 days",strtotime($startTime)));
+            $startTime = Date('d-m-Y H:i:s', strtotime("+1 days",strtotime($startTime)));
         }
         
 
