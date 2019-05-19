@@ -98,19 +98,19 @@ class UsuarioController extends Controller
     public function mostrarListaPacientes(){
         $u = new UserDAO();
         $pac = $u->mostrarListaPacientes();
-        return view('/user/paciente/lista2', ['pacientes' => $pac->paginate(5)]);
+        return view('/user/paciente/lista', ['pacientes' => $pac->paginate(5)]);
     }
 
     public function mostrarListaPacientesPorNombre(Request $request){
         $u = new UserDAO();
         $pac = $u->mostrarListaPacientesPorNombre($request->input('nombre'));
-        return view('/user/paciente/lista2', ['pacientes' => $pac->paginate(5)]);
+        return view('/user/paciente/lista', ['pacientes' => $pac->paginate(5)]);
     }
 
     public function mostrarListaPacientesPorDni(Request $request){
         $u = new UserDAO();
         $pac = $u->mostrarListaPacientesPorDni($request->input('dni'));
-        return view('/user/paciente/lista2', ['pacientes' => $pac->paginate(5)]);
+        return view('/user/paciente/lista', ['pacientes' => $pac->paginate(5)]);
     }
 
     public function mostrarPaciente($idP) {
