@@ -70,8 +70,9 @@
                 <?php }else{?>
                     <h2>Búsqueda sin resultados</h2>
                 <?php } ?>
+                <button type="button" onclick="window.location.href='/usuario'" class="btn btn-success">Volver</button>
         </div>
-        <br>
+        <br>       
         {{ $pacientes->links() }}
     </body>
     </div>

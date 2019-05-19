@@ -41,11 +41,11 @@ class EntradasController extends Controller
         if (Auth::check()) {
             $id = Auth::user()->id;
             if($u->mostrarRol($id)->id==3){//ID MEDICO = 3
-                
+                $e = new EntradaDAO();
                 if($modo == 'antiguas'){
-                    return view('/user/paciente/historial/lista', ['user' => $u->mostrarUsuario($id), 'entradas' => $u->mostrarEntradasAntiguas($idP)]);
+                    return view('/user/paciente/historial/lista', ['user' => $u->mostrarUsuario($idP), 'entradas' => $e->mostrarEntradasAntiguas($idP), 'medico' => true]);
                 }else{
-                    return view('/user/paciente/historial/lista', ['user' => $u->mostrarUsuario($id), 'entradas' => $u->mostrarEntradasRecientes($idP)]);
+                    return view('/user/paciente/historial/lista', ['user' => $u->mostrarUsuario($idP), 'entradas' => $e->mostrarEntradasRecientes($idP), 'medico' => true]);
                 }  
             }else{
             //Excepcion??
@@ -64,7 +64,7 @@ class EntradasController extends Controller
             $d = new DepartamentoDAO();
             $historial = $h->mostrarEntrada($idE);
             if($historial->paciente_id == $idU){
-                return view('/user/paciente/historial/entrada', ['entrada' => $historial, 'medico' => $u->mostrarUsuario($historial->medico_id), 'paciente' => $u->mostrarUsuario($historial->paciente_id)]);
+                return view('/user/paciente/historial/entrada', ['esmedico' => false, 'entrada' => $historial, 'medico' => $u->mostrarUsuario($historial->medico_id), 'paciente' => $u->mostrarUsuario($historial->paciente_id)]);
             }else{
                 return view('/user/menuusuario', ['tipo' => $u->mostrarRol($idU), 'error' =>'¡Error, sitio incorrecto!']);
             }
@@ -73,6 +73,25 @@ class EntradasController extends Controller
             return redirect('/login');
         }
     }
+
+    public function mostrarEntradaPaciente($idP, $idE) {
+        if (Auth::check()) {
+            $idU = Auth::user()->id;
+            $h = new EntradaDAO();  
+            $u = new UserDAO();   
+            $d = new DepartamentoDAO();
+            $historial = $h->mostrarEntrada($idE);
+            if($historial->paciente_id == $idP){
+                return view('/user/paciente/historial/entrada', ['esmedico' => true, 'entrada' => $historial, 'medico' => $u->mostrarUsuario($historial->medico_id), 'paciente' => $u->mostrarUsuario($historial->paciente_id)]);
+            }else{
+                return view('/user/menuusuario', ['tipo' => $u->mostrarRol($idU), 'error' =>'¡Error, sitio incorrecto!']);
+            }
+        }
+        else{
+            return redirect('/login');
+        }
+    }
+
     public function mostrarAddEntradaForm($pacienteId) {
         if (Auth::check()) {
             $userId = Auth::user()->id;

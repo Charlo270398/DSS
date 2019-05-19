@@ -98,7 +98,9 @@ Route::get('/medico/citas','MedicosController@mostrarListaCitas')->middleware('a
 Route::get('/medico/{idM}/horarios','CitasController@mostrarCitasDisponibles')->middleware('auth');//MEDICO
 //Usuario-medico
 Route::get('/pacientes','UsuarioController@mostrarListaPacientes')->middleware('auth');//MEDICO
+Route::get('/pacientes/{idP}','UsuarioController@mostrarPaciente')->middleware('auth');//MEDICO
 Route::get('/pacientes/{idP}/historial&{modo}','EntradasController@mostrarHistorialDePaciente')->middleware('auth');//MEDICO
+Route::get('/pacientes/{idP}/entrada&{idH}','EntradasController@mostrarEntradaPaciente')->middleware('auth');//MEDICO
 //CREADO POR AUTH
 Auth::routes();
 //Route::get('/home', 'HomeController@index')->name('home'); 

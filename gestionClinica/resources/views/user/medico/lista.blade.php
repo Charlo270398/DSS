@@ -36,7 +36,7 @@
 
 <html>  
     <header style="text-align: center">
-        <h1>Listado de médicos</h1>
+        <h1><strong>Listado de médicos</strong></h1>
     </header>
     <body>
         <br>

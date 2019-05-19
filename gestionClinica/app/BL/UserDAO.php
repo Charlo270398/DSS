@@ -162,7 +162,7 @@ class UserDAO
     public function mostrarListaMedicosPorNombre($nombre){
         try{
             $rol = Rol::where('nombre', '=', 'Medico')->first();
-            $users = User::whereRaw("(apellidos like  '%$nombre%' or  nombre like  '%$nombre%') and rol_id == $rol->id ");
+            $users = User::orderBy('apellidos')->whereRaw("(apellidos like  '%$nombre%' or  nombre like  '%$nombre%') and rol_id == $rol->id ");
             return $users;
             
         }catch(\Exception $ex){
@@ -173,7 +173,7 @@ class UserDAO
     public function mostrarListaPacientesPorNombre($nombre){
         try{
             $rol = Rol::where('nombre', '=', 'Paciente')->first();
-            $users = User::whereRaw("(apellidos like  '%$nombre%' or  nombre like  '%$nombre%') and rol_id == $rol->id ");
+            $users = User::orderBy('apellidos')->whereRaw("(apellidos like  '%$nombre%' or  nombre like  '%$nombre%') and rol_id == $rol->id ");
             return $users;
             
         }catch(\Exception $ex){
@@ -184,7 +184,7 @@ class UserDAO
     public function mostrarListaPacientesPorDni($dni){
         try{
             $rol = Rol::where('nombre', '=', 'Paciente')->first();
-            $users = User::whereRaw("(dni like  '%$dni%') and rol_id == $rol->id ");
+            $users = User::orderBy('apellidos')->whereRaw("(dni like  '%$dni%') and rol_id == $rol->id ");
             return $users;
             
         }catch(\Exception $ex){

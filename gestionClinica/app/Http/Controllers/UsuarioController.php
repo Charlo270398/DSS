@@ -40,9 +40,9 @@ class UsuarioController extends Controller
             if($u->mostrarRol($id)->id==2){//ID PACIENTE = 2
                 $e = new EntradaDAO();
                 if($modo == 'antiguas'){
-                    return view('/user/paciente/historial/lista', ['user' => $u->mostrarUsuario($id), 'entradas' => $e->mostrarEntradasAntiguas($id)]);
+                    return view('/user/paciente/historial/lista', ['user' => $u->mostrarUsuario($id), 'entradas' => $e->mostrarEntradasAntiguas($id), 'medico' => false]);
                 }else{
-                    return view('/user/paciente/historial/lista', ['user' => $u->mostrarUsuario($id), 'entradas' => $e->mostrarEntradasRecientes($id)]);
+                    return view('/user/paciente/historial/lista', ['user' => $u->mostrarUsuario($id), 'entradas' => $e->mostrarEntradasRecientes($id), 'medico' => false]);
                 }  
             }else{
             //Excepcion??
@@ -97,19 +97,25 @@ class UsuarioController extends Controller
 
     public function mostrarListaPacientes(){
         $u = new UserDAO();
-        $med = $u->mostrarListaPacientes();
-        return view('/user/paciente/lista2', ['pacientes' => $med->paginate(5)]);
+        $pac = $u->mostrarListaPacientes();
+        return view('/user/paciente/lista2', ['pacientes' => $pac->paginate(5)]);
     }
 
     public function mostrarListaPacientesPorNombre(Request $request){
         $u = new UserDAO();
-        $med = $u->mostrarListaPacientesPorNombre($request->input('nombre'));
-        return view('/user/paciente/lista2', ['pacientes' => $med->paginate(5)]);
+        $pac = $u->mostrarListaPacientesPorNombre($request->input('nombre'));
+        return view('/user/paciente/lista2', ['pacientes' => $pac->paginate(5)]);
     }
 
     public function mostrarListaPacientesPorDni(Request $request){
         $u = new UserDAO();
-        $med = $u->mostrarListaPacientesPorDni($request->input('dni'));
-        return view('/user/paciente/lista2', ['pacientes' => $med->paginate(5)]);
+        $pac = $u->mostrarListaPacientesPorDni($request->input('dni'));
+        return view('/user/paciente/lista2', ['pacientes' => $pac->paginate(5)]);
     }
+
+    public function mostrarPaciente($idP) {
+        $u = new UserDAO();
+        return view('/user/paciente/paciente', ['medico' => $u->mostrarUsuario($idP)]);
+    }
+    
 }
