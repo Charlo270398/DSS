@@ -28,6 +28,7 @@
         $disp = false;
     }
 ?>
+
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title><?php echo $head ?></title>
@@ -35,15 +36,22 @@
 
 <html>  
     <header style="text-align: center">
-        <h1>Listado de médicos</h1>
+        <h1><strong>Listado de médicos</strong></h1>
     </header>
     <body>
         <br>
         <div class="container">
             <h4>Buscador</h4>
             <div class="input-group mb-3">
-                <button type="button" class="btn btn-primary" onclick="window.location.href='/medicos' + getInput()"> Buscar </button>
-                <input id="myInput" type="text" class="form-control" placeholder="Nombre o apellidos" aria-label="Username" aria-describedby="basic-addon1">
+                <form action="{{action('MedicosController@mostrarListaMedicosPorNombre')}}" method="POST">
+                    {{ csrf_field() }}
+                    {{ method_field('POST') }}
+                    <div class="form-inline">
+                        <button type="submit" class="btn btn-primary"> Buscar </button>
+                        <input name="nombre" id="nombre"  type="text" class="form-control" placeholder="Nombre o apellidos" aria-label="Username" aria-describedby="basic-addon1">
+                        <input name="op" id="op" value = "<?php echo $op ?>"  type="hidden">
+                    </div>
+                </form>
             </div>
         </div>
         <br>     
@@ -84,15 +92,6 @@
         {{ $medicos->links() }}
     </body>
     </div>
-    <script>
-        function getInput(){
-            if(document.getElementById("myInput").value != ''){
-                return '&' + document.getElementById("myInput").value;
-            }else{
-                return '';
-            }
-        }
-    </script>
 
     <!-- Modal Borrar-->
     <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">

@@ -33,7 +33,7 @@
             <p>
                 <a class="btn btn-success" href='/citas&recientes'> Volver </a>
                 <?php if($esMedico){ ?>
-                <a class="btn btn-primary" href='/historial/add&<?php echo $cita->paciente_id ?>'> Insertar entrada en el historial del paciente </a>    
+                <a class="btn btn-primary" href='/historial/entrada/add&<?php echo $cita->paciente_id ?>'> Insertar entrada en el historial del paciente </a>    
                 <?php } ?>
             </p>
         </div>

@@ -78,41 +78,49 @@ class CitaDAO
 
         $dias = array();
         $fechas = array();
-        $time = date('Y-m-d H:i:s');
-        $time =  Date('Y-m-d H:i:s', strtotime("+2 hours",strtotime($time))); //Arreglo bug
-        $startTime =  Date('Y-m-d H:i:s', strtotime("08:40:00",strtotime($time)));
+        $time = date('d-m-Y H:i:s');
+        $time =  Date('d-m-Y H:i:s', strtotime("+2 hours",strtotime($time))); //Arreglo bug
+        $startTime =  Date('d-m-Y H:i:s', strtotime("08:40:00",strtotime($time)));
         $MINUTOS_SESION = 20;
         $DIAS = 7; //Numero de días que se van a computar
         $SESIONES =  15; //3 sesiones = 1 hora
         $RESTAR_SESIONES = $SESIONES*$MINUTOS_SESION; //Minutos a restar para resetear cada día
         $diaSemana = date("l", strtotime($startTime));
-        
+
+        if($diaSemana == 'Friday'){
+            $endTime =  Date('d-m-Y H:i:s', strtotime("13:40:00",strtotime($time)));
+            if($time > $endTime){
+                $startTime = Date('d-m-Y H:i:s', strtotime("+7 days",strtotime($startTime)));
+            }
+        }
         if($diaSemana == 'Saturday'){
-            $startTime = Date('Y-m-d H:i:s', strtotime("+2 days",strtotime($startTime)));
+            $startTime = Date('d-m-Y H:i:s', strtotime("+7 days",strtotime($startTime)));
         }
         if($diaSemana == 'Sunday'){
-            $startTime = Date('Y-m-d H:i:s', strtotime("+1 days",strtotime($startTime)));
+            $startTime = Date('d-m-Y H:i:s', strtotime("+1 days",strtotime($startTime)));
         }
+        
+
         else{
             while($diaSemana != 'Monday'){
-                $startTime = Date('Y-m-d H:i:s', strtotime("-1 days",strtotime($startTime)));
+                $startTime = Date('d-m-Y H:i:s', strtotime("-1 days",strtotime($startTime)));
                 $diaSemana = date("l", strtotime($startTime));
             }
         }
         
        
-        $startTime = Date('Y-m-d H:i:s', strtotime("-1 days",strtotime($startTime)));
+        $startTime = Date('d-m-Y H:i:s', strtotime("-1 days",strtotime($startTime)));
         for($i=0; $i<$DIAS; $i++){
             $fechas = array();
             $fechaE = array();
-            $startTime = Date('Y-m-d H:i:s', strtotime("+1 days",strtotime($startTime)));
+            $startTime = Date('d-m-Y H:i:s', strtotime("+1 days",strtotime($startTime)));
             $diaSemana = date("l", strtotime($startTime));
             $mes = date("m",strtotime($startTime));
             $dia = date("d",strtotime($startTime));
             for($j=0; $j<$SESIONES; $j++){
-                $startTime = Date('Y-m-d H:i:s', strtotime("+$MINUTOS_SESION minutes",strtotime($startTime)));
+                $startTime = Date('d-m-Y H:i:s', strtotime("+$MINUTOS_SESION minutes",strtotime($startTime)));
                 if($startTime > $time && $this->disponible($idM, $startTime)){
-                    array_push($fechaE, Date('Y-m-d',strtotime($startTime)));
+                    array_push($fechaE, Date('d-m-Y',strtotime($startTime)));
                     array_push($fechas, Date("H:i",strtotime($startTime)));
                    
                 }
@@ -127,7 +135,7 @@ class CitaDAO
             if($diaSemana != 'Saturday' && $diaSemana != 'Sunday'){
                 array_push($dias, [$this->traducirD($diaSemana) . " $dia de " . $this->traducirM($mes) . ' de ' . Date("Y",strtotime($startTime)), $fechas, $fechaE]);
             }
-            $startTime = Date('Y-m-d H:i:s', strtotime("-$RESTAR_SESIONES minutes",strtotime($startTime)));
+            $startTime = Date('d-m-Y H:i:s', strtotime("-$RESTAR_SESIONES minutes",strtotime($startTime)));
         }  
         
         return $dias;
@@ -135,8 +143,7 @@ class CitaDAO
 
     //AUXILIAR MOSTRAR HORARIO
     public function disponible($idM, $hora){
-
-     
+        //$hora = substr($hora,0,2) . '-' . (substr($hora,3,2)) . '-' . substr($hora,6,4) . ' ' . substr($hora,11,5) . ':00';
         $cita = Cita::where('medico_id', '=', $idM)->where('fecha', '=', $hora)->first();
         
         if($cita == null){

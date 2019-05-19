@@ -1,7 +1,5 @@
 <?php
-
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
 use App\BL\CitaDAO;
 use App\BL\UserDAO;
@@ -9,11 +7,9 @@ use App\Cita;
 use App\BL\DepartamentoDAO;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\Auth;
-
 class CitasController extends Controller
 {
     public function mostrarCita($idC) {
-
         if (Auth::check()) {
             $idU = Auth::user()->id;
             $c = new CitaDAO();
@@ -34,9 +30,7 @@ class CitasController extends Controller
             return redirect('/login');
         }
     }
-
     public function mostrarConfirmarCita($dia, $hora, $idMedico){
-
         //Hay que comprobar que la long de los string de dia y hora
         //Hay que comprobar que los dias son correctos
         //Hay que comprobar que las horas son correctas, solo a en punto, y 20 y menos 20
@@ -49,28 +43,22 @@ class CitasController extends Controller
             }
             $time =  Date('d-m-Y', strtotime("+1 days",strtotime($time)));
         }
-
         if($u->mostrarUsuario($idMedico)->rol_id != 3){//El medico que se mete es medico
             $validado = false;
         }
-
         if(strlen($hora)!=5){//La longitud de hora que se mete es de 5 si o si
             $validado = false;
         }
-
         if(substr($hora, 0, 2) != '09' && substr($hora, 0, 2) != '10' && substr($hora, 0, 2) != '11'  //Horas que no estén dentro del horario correcto
         && substr($hora, 0, 2) != '12' && substr($hora, 0, 2) != '13'){
             $validado = false;
         }
-
         if(substr($hora, 3, 5) != '00' && substr($hora, 3, 5) != '20' && substr($hora, 3, 5) != '40'){//Solo se puede reservar a en punto, y 20 e y 40
             $validado = false;
         }
-
         if(strlen($dia)!=10){//La longitud del dia que se mete es de 10 si o si
             $validado = false;
         }
-
         if (Auth::check() && $validado) {
             $idU = Auth::user()->id;
             $c = new CitaDAO();
@@ -91,9 +79,7 @@ class CitasController extends Controller
             return view('/home');
         }
     }
-
     public function borrarCita($idC) {
-
         if (Auth::check()) {
             $c = new CitaDAO();
             $u = new UserDAO();
@@ -101,7 +87,7 @@ class CitasController extends Controller
             $cita = $c->mostrarCita($idC);
             if($cita->paciente_id == $idU || $cita->medico_id == $idU){//Quien borra es o el paciente que reservó o el médico
                 $cita->delete();
-                return redirect('/citas&recientes');
+                return redirect('/citas&proximas');
             }else{
                 return view('/user/menuusuario', ['tipo' => $u->mostrarRol($idU), 'error' =>'¡Estás metiéndote donde no debes campeón!']);
             }
@@ -109,16 +95,14 @@ class CitasController extends Controller
             return redirect('/home');
         }
     }
-
     public function mostrarCitasDisponibles($idM){
-
         $c = new CitaDAO();
         $items = $c->mostrarHorario($idM);
         if (Auth::check()) {
             $id = Auth::user()->id;
             $u = new UserDAO();
             if($u->mostrarRol($id)->id==2){//ID PACIENTE = 2
-                return view('/user/citas/disponibles', ['error' =>'', 'fechas' => $items, 'idMedico' => $idM]);
+                return view('/user/citas/horasdisponibles', ['error' =>'', 'fechas' => $items, 'idMedico' => $idM]);
             }else{
                 return view('/user/menuusuario', ['tipo' => $u->mostrarRol($id), 'error' =>'¡No puedes reservar citas porque no eres un paciente!']);
             }
@@ -127,9 +111,7 @@ class CitasController extends Controller
             return view('/error', ['error' => 'Error autenticando.']);
         }
     }
-
     public function mostrarCitasDisponiblesError($idM, $error){//Básicamente copypaste de mostrarCitasDisponibles pero introduciendo datos en error
-
         $c = new CitaDAO();
         $items = $c->mostrarHorario($idM);
         if (Auth::check()) {
@@ -145,11 +127,8 @@ class CitasController extends Controller
             return view('/error', ['error' => 'Error autenticando.']);
         }
     }
-
     public function reservar(Request $request) {
-
         if (Auth::check()) {
-
             $id = Auth::user()->id;
 
             $cita = new Cita();
@@ -160,10 +139,9 @@ class CitasController extends Controller
             $cita->motivo = $request->input('motivo');
             $cita->save();
 
-            return redirect('/citas&recientes');
+            return redirect('/citas&proximas');
         }else{
             return redirect('/home');
         }
     }
-
 }

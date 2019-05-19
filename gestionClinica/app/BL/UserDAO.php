@@ -14,7 +14,7 @@ class UserDAO
         return $user;
     }
     public function mostrarListaUsuarios() {
-        $user  = User::orderBy('apellidos')->get();//Ordenado por apelidos
+        $user  = User::orderBy('apellidos');//Ordenado por apelidos
         return $user;
     }
     public function actualizarUsuario($user){
@@ -65,22 +65,17 @@ class UserDAO
             return false;
         }
     }
-    public function mostrarEntradasRecientes($id) {
-        $entradas  = Entrada::orderBy('fecha', 'DESC')->get();//Ordenado por fecha de reciente a antiguo
-        return $entradas;
-    }
-    public function mostrarEntradasAntiguas($id) {
-        $entradas  = Entrada::orderBy('fecha')->get();//Ordenado por fecha de antiguo a reciente
-        return $entradas;
-    }
+
     public function mostrarCitasRecientes() {
         if (Auth::check()) {
             $id = Auth::user()->id;
             $u = new UserDAO();
+            $time = date('d-m-Y H:i:s');
+            $time =  Date('d-m-Y H:i:s', strtotime("+2 hours",strtotime($time)));
             if($u->mostrarRol($id)->id==2){//ID PACIENTE = 2
-                $cita  = Cita::orderBy('fecha', 'DESC')->where('paciente_id', '=', "$id")->get();//Ordenado por fecha de antiguo a reciente
+                $cita  = Cita::orderBy('fecha', 'DESC')->where('fecha', '<', "$time")->where('paciente_id', '=', "$id")->get();//Ordenado por fecha de antiguo a reciente
             }else{
-                $cita  = Cita::orderBy('fecha', 'DESC')->where('medico_id', '=', "$id")->get();//Ordenado por fecha de antiguo a reciente
+                $cita  = Cita::orderBy('fecha', 'DESC')->where('fecha', '<', "$time")->where('medico_id', '=', "$id")->get();//Ordenado por fecha de antiguo a reciente
             }
         }
         return $cita;
@@ -89,14 +84,53 @@ class UserDAO
         if (Auth::check()) {
             $id = Auth::user()->id;
             $u = new UserDAO();
+            $time = date('d-m-Y H:i:s');
+            $time =  Date('d-m-Y H:i:s', strtotime("+2 hours",strtotime($time)));
             if($u->mostrarRol($id)->id==2){//ID PACIENTE = 2
-                $cita  = Cita::orderBy('fecha')->where('paciente_id', '=', "$id")->get();//Ordenado por fecha de antiguo a reciente
+                $cita  = Cita::orderBy('fecha')->where('paciente_id', '=', "$id")->where('fecha', '<', "$time")->get();//Ordenado por fecha de antiguo a reciente
             }else{
-                $cita  = Cita::orderBy('fecha')->where('medico_id', '=', "$id")->get();//Ordenado por fecha de antiguo a reciente
+                $cita  = Cita::orderBy('fecha')->where('medico_id', '=', "$id")->where('fecha', '<', "$time")->get();//Ordenado por fecha de antiguo a reciente
             }
         }
         return $cita;
     }
+
+    public function mostrarCitasProximas() {
+        if (Auth::check()) {
+            $id = Auth::user()->id;
+            $u = new UserDAO();
+            $time = date('d-m-Y H:i:s');
+            $time =  Date('d-m-Y H:i:s', strtotime("+2 hours",strtotime($time)));
+            if($u->mostrarRol($id)->id==2){//ID PACIENTE = 2
+                $cita  = Cita::orderBy('fecha')->where('paciente_id', '=', "$id")->where('fecha', '>', "$time")->get();//Ordenado por fecha de antiguo a reciente
+            }else{
+                $cita  = Cita::orderBy('fecha')->where('medico_id', '=', "$id")->where('fecha', '>', "$time")->get();//Ordenado por fecha de antiguo a reciente
+            }
+        }
+        return $cita;
+    }
+
+    public function mostrarCitasHoy() {
+        if (Auth::check()) {
+            $id = Auth::user()->id;
+            $u = new UserDAO();    
+            $time = date('d-m-Y H:i:s');
+            $time =  Date('d-m-Y H:i:s', strtotime("+2 hours",strtotime($time))); 
+            if($u->mostrarRol($id)->id==2){//ID PACIENTE = 2
+                $cita  = Cita::orderBy('fecha')->where('paciente_id', '=', "$id")->where('fecha', '>', "$time")->get();//Ordenado por fecha de antiguo a reciente
+            }else{
+                $cita  = Cita::orderBy('fecha')->where('medico_id', '=', "$id")->where('fecha', '>', "$time")->get();//Ordenado por fecha de antiguo a reciente
+            }
+            $dev = array();
+            foreach ($cita as $c) {
+                if(substr($c->fecha, 0, 10) == substr($time, 0, 10)){
+                    array_push($dev, $c);
+                }
+            }
+        }
+        return $dev;
+    }
+
     //Exclusivo de médico
     public function mostrarDepartamento($id){
             $user  = User::findOrFail($id); 
@@ -113,10 +147,44 @@ class UserDAO
             return false;
         }
     }
+
+    public function mostrarListaPacientes(){
+        try{
+            $rol = Rol::where('nombre', '=', 'Paciente')->first();
+            $users = User::orderBy('apellidos')->where('rol_id', '=', $rol->id);
+            return $users;
+            
+        }catch(\Exception $ex){
+            return false;
+        }
+    }
+
     public function mostrarListaMedicosPorNombre($nombre){
         try{
             $rol = Rol::where('nombre', '=', 'Medico')->first();
-            $users = User::whereRaw("(apellidos like  '%$nombre%' or  nombre like  '%$nombre%') and rol_id == $rol->id ");
+            $users = User::orderBy('apellidos')->whereRaw("(apellidos like  '%$nombre%' or  nombre like  '%$nombre%') and rol_id == $rol->id ");
+            return $users;
+            
+        }catch(\Exception $ex){
+            return false;
+        }
+    }
+
+    public function mostrarListaPacientesPorNombre($nombre){
+        try{
+            $rol = Rol::where('nombre', '=', 'Paciente')->first();
+            $users = User::orderBy('apellidos')->whereRaw("(apellidos like  '%$nombre%' or  nombre like  '%$nombre%') and rol_id == $rol->id ");
+            return $users;
+            
+        }catch(\Exception $ex){
+            return false;
+        }
+    }
+
+    public function mostrarListaPacientesPorDni($dni){
+        try{
+            $rol = Rol::where('nombre', '=', 'Paciente')->first();
+            $users = User::orderBy('apellidos')->whereRaw("(dni like  '%$dni%') and rol_id == $rol->id ");
             return $users;
             
         }catch(\Exception $ex){
