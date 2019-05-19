@@ -67,6 +67,12 @@ Route::post('citas/reservar', [
 Route::post('entradas/add', [
     'uses' => 'EntradasController@addEntrada'
 ])->middleware('auth');
+Route::post('pacientes', [
+    'uses' => 'UsuarioController@mostrarListaPacientesPorNombre'
+])->middleware('auth');
+Route::post('&pacientes', [
+    'uses' => 'UsuarioController@mostrarListaPacientesPorDni'
+])->middleware('auth');
 //----USUARIO----
 Route::get('/usuario','UsuarioController@autenticarUsuario')->middleware('auth');
 Route::get('/logged', function () { //Para redirigir a panel de usuario una vez iniciamos sesión
@@ -91,7 +97,7 @@ Route::get('/citas/{idC}/borrar','CitasController@borrarCita')->middleware('auth
 Route::get('/medico/citas','MedicosController@mostrarListaCitas')->middleware('auth');//MEDICO
 Route::get('/medico/{idM}/horarios','CitasController@mostrarCitasDisponibles')->middleware('auth');//MEDICO
 //Usuario-medico
-Route::get('/pacientes','MedicosController@mostrarListaPacientes')->middleware('auth');//MEDICO
+Route::get('/pacientes','UsuarioController@mostrarListaPacientes')->middleware('auth');//MEDICO
 Route::get('/pacientes/{idP}/historial&{modo}','EntradasController@mostrarHistorialDePaciente')->middleware('auth');//MEDICO
 //CREADO POR AUTH
 Auth::routes();

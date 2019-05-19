@@ -94,4 +94,22 @@ class UsuarioController extends Controller
             return view('/error', ['error' => 'Error autenticando.']);
         }
     }
+
+    public function mostrarListaPacientes(){
+        $u = new UserDAO();
+        $med = $u->mostrarListaPacientes();
+        return view('/user/paciente/lista2', ['pacientes' => $med->paginate(5)]);
+    }
+
+    public function mostrarListaPacientesPorNombre(Request $request){
+        $u = new UserDAO();
+        $med = $u->mostrarListaPacientesPorNombre($request->input('nombre'));
+        return view('/user/paciente/lista2', ['pacientes' => $med->paginate(5)]);
+    }
+
+    public function mostrarListaPacientesPorDni(Request $request){
+        $u = new UserDAO();
+        $med = $u->mostrarListaPacientesPorDni($request->input('dni'));
+        return view('/user/paciente/lista2', ['pacientes' => $med->paginate(5)]);
+    }
 }
