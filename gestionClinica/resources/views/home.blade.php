@@ -63,11 +63,12 @@
                             <br>
                             <img  class="float-left" src='/images/app.png' style="width:350px; height:300px">
                             <img  class="float-left" src='/images/appstore.jpg' style="width:175px; height:150x">
+                            
                             </div>
                             <div class="col-sm-8" style="margin-top:30px;">
                             <h2><strong>Departamentos y Centros</strong></h2>
                             <p style="font-family:verdana;"> Contamos con diversidad de departamentos para cubrir
-                                                             las necesidades de nuestros pacientes.Alicante
+                                                             las necesidades de nuestros pacientes.
                                                              <br>
                                                              Puedes consultar nuestros departamentos en las sección
                                                              de Departamentos.
