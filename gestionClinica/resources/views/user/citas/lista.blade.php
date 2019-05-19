@@ -63,6 +63,8 @@
                     <h4>Sin citas pendientes</h4>
                 <?php } ?>                      
             </div>
+            <br>
+            <button type="button" onclick="window.location.href='/usuario'" class="btn btn-primary">Volver</button>
         </div>
         <!-- Modal Borrar-->
         <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">

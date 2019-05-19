@@ -58,7 +58,9 @@
     
             <?php if($medico){ ?>
                 <br>
-                <button type="button" onclick="window.location.href='/pacientes'" class="btn btn-success">Volver</button>
+                <button type="button" onclick="window.location.href='/pacientes'" class="btn btn-primary">Volver</button>
+            <?php }else{ ?>
+                <button type="button" onclick="window.location.href='/usuario'" class="btn btn-primary">Volver</button>
             <?php } ?>
         </div>
         <br>

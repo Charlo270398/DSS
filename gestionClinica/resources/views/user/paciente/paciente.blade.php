@@ -12,6 +12,7 @@
 <link href="/css/lists.css" rel="stylesheet">
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <?php use App\Util; $x = new Util(); ?>
     <title><?php echo $medico->nombre; ?></title>
 </head>
 <html> 
@@ -36,13 +37,12 @@
                   <td><?php  echo $medico->nombre;?></td>
                   <td><?php  echo $medico->apellidos;?></td>
                   <td><?php  echo $medico->email;?></td>
-                  <td><?php  echo $medico->fecha_nacimiento;?></td>
+                  <td><?php echo (substr($medico->fecha_nacimiento, 0, 2) . ' de ' . $x->meses(substr($medico->fecha_nacimiento, 3, 2)) . ' de ' . substr($medico->fecha_nacimiento, 6, 4)) ?></td>
               </tr>
             </tbody>
           </table>
           <br>
           <button type="button" onclick="window.location.href='/pacientes'" class="btn btn-primary">Volver</button>
-          <button type="button" onclick="window.location.href='/pacientes/<?php echo ($medico->id);?>/historial&recientes'" class="btn btn-success">Ver historial médico</button>
         </div>
     </body>
 </html>
