@@ -23,9 +23,9 @@
                           <div class="col-sm-4" >
                             <h3><strong>Sobre nosotros</strong></h3>
                             <ul style="font-family:verdana;" style="list-style-type:circle;">
-                                <li>Clínica con prestigio nacional</li>
-                                <li>Plantilla de profesionales con gran reputación</li>
-                                <li>Año 2018: Premio a la mejor clínica de la Comunidad Valenciana</li>
+                                <li>Clínica con prestigio nacional.</li>
+                                <li>Plantilla de profesionales con gran reputación.</li>
+                                <li>Año 2018: Premio a la mejor clínica de la Comunidad Valenciana.</li>
                             </ul>
                             <h3><strong>Dónde estamos</strong></h3>
                             <br>
@@ -56,6 +56,39 @@
                                 <li style="font-family:verdana;"><strong>Orientados a la innovación y la tecnología.</strong> La tecnología como elemento facilitador de la relación con el paciente y a su vez como eje diferencial de nuestra propuesta sanitaria.</li>
                             </ul> 
                             <br>
+                            </div>
+                            <div class="col-sm-4" >
+                            <h4><strong>Descargate la App de Clínica Alicante ya disponible para nuestros pacientes.</strong></h4>
+                            <h5>Clínica Alicante cuida del paciente.</h5>
+                            <br>
+                            <img  class="float-left" src='/images/app.png' style="width:350px; height:300px">
+                            <img  class="float-left" src='/images/appstore.jpg' style="width:175px; height:150x">
+                            </div>
+                            <div class="col-sm-8" style="margin-top:30px;">
+                            <h2><strong>Departamentos y Centros</strong></h2>
+                            <p style="font-family:verdana;"> Contamos con diversidad de departamentos para cubrir
+                                                             las necesidades de nuestros pacientes.Alicante
+                                                             <br>
+                                                             Puedes consultar nuestros departamentos en las sección
+                                                             de Departamentos.
+                            </p>
+                            <center>
+                            <img  class="text-align: center" src='/images/fotoclinica.png' style="width:350px; height:300px">
+                            </center>
+                            <br><br>
+                            <h4><strong>Atención brindada por un equipo</strong></h4>
+                            <p style="font-family:verdana;"> Los médicos de Clínica Alicante se asesoran mutuamente.
+                                                             Colaboran como miembros de un equipo.
+                                                             <br>
+                                                             En Clínica Alicante, no obtienes solo una opinión,
+                                                             sino varias opiniones. 
+                                                             <br>
+                                                             Clínica Alicante se encarga de reclutar los mejores médicos para el 
+                                                             bienestar y satisfacción de sus pacientes.
+                            </p>
+                            <center>
+                            <img  class="text-align: center" src='/images/plantilla.jpg' style="width:350px; height:300px">
+                            </center>
                             </div>
                         </div>
                       </div>
