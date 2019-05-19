@@ -52,7 +52,12 @@ class UsuarioController extends Controller
                     $citas = $u->mostrarCitasRecientes($id);
                     $titulo = 'Historial de citas';
                     $mostrarOrden = true;
-                }else{
+                }else if($modo == 'hoy'){
+                    $citas = $u->mostrarCitasHoy($id);
+                    $titulo = 'Citas para hoy';
+                    $mostrarOrden = false;
+                }
+                else{
                     $citas = $u->mostrarCitasProximas($id);
                     $titulo = 'Citas pendientes';
                     $mostrarOrden = false;
