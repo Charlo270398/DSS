@@ -30,10 +30,8 @@ div.hidden {
             <html>
             <br>
             <br>
-            <br>
-            <br>
             <header style="text-align: center">
-                <h1><strong>Datos de:  <?php echo $paciente->nombre?> <?php echo $paciente->apellidos?></strong></h1>
+                <h1><strong>Datos de  <?php echo $paciente->nombre?> <?php echo $paciente->apellidos?></strong></h1>
             </header>
             <body>
                 <br>
@@ -66,14 +64,14 @@ div.hidden {
                   <input type="text" class="form-control" id="apellidos" placeholder="Apellidos" value="<?php echo $paciente->apellidos?>" name="apellidos" required>
                 </div><br>
                 <div class="form-group">
-                  <label for="password" class="mr-sm-2">Contraseña:</label>
-                  <input id="password" class="form-control" name="password" type="password" pattern="^\S{6,}$" onchange="this.setCustomValidity(this.validity.patternMismatch ? 'Debe tener 6 caracteres' : ''); if(this.checkValidity()) form.password_two.pattern = this.value;" placeholder="Password" required>
+                  <label for="password" class="mr-sm-2">Nueva contraseña:</label>
+                  <input id="password" class="form-control" name="password" type="password" pattern="^\S{4,}$" onchange="this.setCustomValidity(this.validity.patternMismatch ? 'Debe tener 4 caracteres' : ''); if(this.checkValidity()) form.password_two.pattern = this.value;" placeholder="Nueva contraseña" required>
 
 
                 </div><br>
                 <div class="form-group">
-                  <label for="password_confirm" class="mr-sm-2">Repetir Contraseña:</label>
-                  <input id="password_two" class="form-control" name="password_two" type="password" pattern="^\S{6,}$" onchange="this.setCustomValidity(this.validity.patternMismatch ? 'Pon la misma contraseña' : '');" placeholder="Verify Password" required>
+                  <label for="password_confirm" class="mr-sm-2">Repetir contraseña:</label>
+                  <input id="password_two" class="form-control" name="password_two" type="password" pattern="^\S{4,}$" onchange="this.setCustomValidity(this.validity.patternMismatch ? 'Repita su nueva contraseña' : '');" placeholder="Repita su nueva contraseña" required>
 
 
                 </div><br>
