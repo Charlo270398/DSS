@@ -13,9 +13,9 @@ class Util
             case '03':
                 return 'Marzo';
             case '04':
-                return 'Mayo';
-            case '05':
                 return 'Abril';
+            case '05':
+                return 'Mayo';
             case '06':
                 return 'Junio';
             case '07':
