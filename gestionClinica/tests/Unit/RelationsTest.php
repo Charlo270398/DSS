@@ -74,7 +74,7 @@ class RelationsTest extends TestCase
         $entrada->medico_id = $medico->id;
         $entrada->paciente_id = $paciente->id;
         $entrada->fecha = date('Y-m-d');
-        $entrada->texto = 'hola';
+        $entrada->descripcion = 'hola';
         $entrada->save();
         $rol->user()->save($medico);
 
