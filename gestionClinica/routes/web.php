@@ -73,6 +73,9 @@ Route::post('pacientes', [
 Route::post('&pacientes', [
     'uses' => 'UsuarioController@mostrarListaPacientesPorDni'
 ])->middleware('auth');
+Route::post('usuario/edit/editar_create', [
+    'uses' => 'UsuarioController@editarMedico'
+])->middleware('auth');
 //----USUARIO----
 Route::get('/usuario','UsuarioController@autenticarUsuario')->middleware('auth');
 Route::get('/logged', function () { //Para redirigir a panel de usuario una vez iniciamos sesión
@@ -101,6 +104,10 @@ Route::get('/pacientes','UsuarioController@mostrarListaPacientes')->middleware('
 Route::get('/pacientes/{idP}','UsuarioController@mostrarPaciente')->middleware('auth');//MEDICO
 Route::get('/pacientes/{idP}/historial&{modo}','EntradasController@mostrarHistorialDePaciente')->middleware('auth');//MEDICO
 Route::get('/pacientes/{idP}/entrada&{idH}','EntradasController@mostrarEntradaPaciente')->middleware('auth');//MEDICO
+//Usuario-paciente
+Route::get('/usuario/editar','UsuarioController@mostrarEditUsuarioForm')->middleware('auth');
+
+
 //CREADO POR AUTH
 Auth::routes();
-//Route::get('/home', 'HomeController@index')->name('home'); 
+//Route::get('/home', 'HomeController@index')->name('home');

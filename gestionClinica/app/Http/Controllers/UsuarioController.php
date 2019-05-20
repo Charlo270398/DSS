@@ -4,11 +4,18 @@ use Illuminate\Http\Request;
 use App\BL\UserDAO;
 use App\BL\CitaDAO;
 use App\BL\EntradaDAO;
+use App\User;
+use App\Rol;
+use App\Departamento;
+use App\BL\DepartamentoDAO;
+
+use Illuminate\Support\Facades\Hash;
+
 use Illuminate\Support\Facades\Auth;
 class UsuarioController extends Controller
 {
     public function autenticarUsuario(){
-        
+
         if (Auth::check()) {
             $id = Auth::user()->id;
             $u = new UserDAO();
@@ -27,9 +34,9 @@ class UsuarioController extends Controller
         }else{
             return view('/error', ['error' => 'Error autenticando.']);
         }
-        
+
     }
-    
+
     public function mostrarFormAutenticacion(){
         return view('/user/login');
     }
@@ -43,14 +50,53 @@ class UsuarioController extends Controller
                     return view('/user/paciente/historial/lista', ['user' => $u->mostrarUsuario($id), 'entradas' => $e->mostrarEntradasAntiguas($id), 'medico' => false]);
                 }else{
                     return view('/user/paciente/historial/lista', ['user' => $u->mostrarUsuario($id), 'entradas' => $e->mostrarEntradasRecientes($id), 'medico' => false]);
-                }  
+                }
             }else{
             //Excepcion??
                 return view('/user/menuusuario', ['tipo' => $u->mostrarRol($id), 'error' =>'No puedes acceder al historial porque no eres un paciente!']);
-            }  
+            }
         }
-        
+
     }
+    public function editarMedico(Request $request) {
+        $u = new UserDAO();
+        $user = new User();
+        $user = $u->mostrarUsuario($request->input('id'));
+        $user->dni = $request->input('dni');
+        $user->nombre = $request->input('nombre');
+        //$user->password = $request->input('password'); Hash::make($data['password'])
+        $user->password = Hash::make($request->input ('password'));
+        $user->apellidos = $request->input('apellidos');
+        $user->email = $request->input('email');
+
+
+        $user->rol_id = 2;
+        if($u->editarPaciente($user)){
+
+
+            return redirect('/usuario' );
+
+        }else{
+            return view('/user/paciente/editar', ['paciente'=>$user, 'error' => 'E-mail repetido'] );
+        }
+    }
+
+    public function mostrarEditUsuarioForm() {
+        if (Auth::check()) {
+            $userId = Auth::user()->id;
+            $d = new UserDAO();
+            if($d->mostrarRol($userId)->id==2){
+                $dep = $d->mostrarUsuario($userId);
+                return view("/user/paciente/editar", ['paciente' => $dep, 'error'=>''] );
+            }
+            else{
+                return view('/user/menuusuario', ['tipo' => $d->mostrarRol($userId), 'error' =>'No tienes permisos de administrador!']);
+            }
+        }
+    }
+
+
+
     public function mostrarCitas($modo){
         if (Auth::check()) {
             $id = Auth::user()->id;
@@ -75,7 +121,7 @@ class UsuarioController extends Controller
                     $titulo = 'Citas pendientes';
                     $mostrarOrden = false;
                 }
-                
+
                 if($u->mostrarRol($id)->id==2){//Si es paciente en la tabla indica con que medico tiene la cita y viceversa
                     $perfil = 'Médico';
                     $nombres = $c->nombresCitas($citas, true);
@@ -83,11 +129,11 @@ class UsuarioController extends Controller
                     $perfil = 'Paciente';
                     $nombres = $c->nombresCitas($citas, false);
                 }
-                
+
                 return view('/user/citas/lista', ['citas' => $citas, 'perfil'=> $perfil, 'nombre'=> $nombres, 'titulo' => $titulo, 'orden' => $mostrarOrden]);
 
             }else{
-                return view('/user/menuusuario', ['tipo' => $u->mostrarRol($id), 'error' =>'¡No puedes acceder a las citas porque no eres un paciente!']); 
+                return view('/user/menuusuario', ['tipo' => $u->mostrarRol($id), 'error' =>'¡No puedes acceder a las citas porque no eres un paciente!']);
             }
         }else{
             //Excepcion??
@@ -117,5 +163,5 @@ class UsuarioController extends Controller
         $u = new UserDAO();
         return view('/user/paciente/paciente', ['medico' => $u->mostrarUsuario($idP)]);
     }
-    
+
 }
