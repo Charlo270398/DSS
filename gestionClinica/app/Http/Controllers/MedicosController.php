@@ -100,7 +100,7 @@ class MedicosController extends Controller
             return view('/error', ['error' => 'Error ctualizando el medico'] );
         }
     }
-    
+
     public function borrarMedico($id) {
 
         if (Auth::check()) {
@@ -113,7 +113,7 @@ class MedicosController extends Controller
                 }else{
                     return view('/user/menuusuario', ['tipo' => $u->mostrarRol($userId), 'error' =>'¡Intentas borrar un usuario que no es médico!']);
                 }
-                
+
             }
             else{
                 return view('/user/menuusuario', ['tipo' => $u->mostrarRol($userId), 'error' =>'¡No tienes permisos de administrador!']);

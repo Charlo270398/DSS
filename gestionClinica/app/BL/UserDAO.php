@@ -6,7 +6,8 @@ use App\Entrada;
 use App\Cita;
 use App\Departamento;
 use Illuminate\Support\Facades\Auth;
-
+use App\ServiceLayer;
+use Illuminate\Support\Facades\DB;
 class UserDAO
 {
     public function mostrarUsuario($id) {
@@ -25,6 +26,25 @@ class UserDAO
             return false;
         }
     }
+    public function editarPaciente($user){
+        $rollback =false;
+
+                DB::beginTransaction();
+                    try{
+                        $user->save();
+                        $rollback=true;
+                    }catch(\Exception $ex){
+                        $rollback=false;
+                    }
+                if(!$rollback){
+                    DB::rollBack();
+                    return false;
+                }
+                else{
+                    DB::commit();
+                    return true;
+                }
+    }
     public function addMedico($user){
         try{
             $user->save();
@@ -33,7 +53,7 @@ class UserDAO
             return false;
         }
     }
-    
+
     public function borrarUsuario($id){
         try{
             $user = $this->mostrarUsuario($id);
@@ -113,9 +133,9 @@ class UserDAO
     public function mostrarCitasHoy() {
         if (Auth::check()) {
             $id = Auth::user()->id;
-            $u = new UserDAO();    
+            $u = new UserDAO();
             $time = date('d-m-Y H:i:s');
-            $time =  Date('d-m-Y H:i:s', strtotime("+2 hours",strtotime($time))); 
+            $time =  Date('d-m-Y H:i:s', strtotime("+2 hours",strtotime($time)));
             if($u->mostrarRol($id)->id==2){//ID PACIENTE = 2
                 $cita  = Cita::orderBy('fecha')->where('paciente_id', '=', "$id")->where('fecha', '>', "$time")->get();//Ordenado por fecha de antiguo a reciente
             }else{
@@ -133,8 +153,8 @@ class UserDAO
 
     //Exclusivo de médico
     public function mostrarDepartamento($id){
-            $user  = User::findOrFail($id); 
-            $dep  = Departamento::findOrFail($user->departamento_id); 
+            $user  = User::findOrFail($id);
+            $dep  = Departamento::findOrFail($user->departamento_id);
             return $dep;
     }
     public function mostrarListaMedicos(){
@@ -142,7 +162,7 @@ class UserDAO
             $rol = Rol::where('nombre', '=', 'Medico')->first();
             $users = User::orderBy('apellidos')->where('rol_id', '=', $rol->id);
             return $users;
-            
+
         }catch(\Exception $ex){
             return false;
         }
@@ -153,7 +173,7 @@ class UserDAO
             $rol = Rol::where('nombre', '=', 'Paciente')->first();
             $users = User::orderBy('apellidos')->where('rol_id', '=', $rol->id);
             return $users;
-            
+
         }catch(\Exception $ex){
             return false;
         }
@@ -164,7 +184,7 @@ class UserDAO
             $rol = Rol::where('nombre', '=', 'Medico')->first();
             $users = User::orderBy('apellidos')->whereRaw("(apellidos like  '%$nombre%' or  nombre like  '%$nombre%') and rol_id == $rol->id ");
             return $users;
-            
+
         }catch(\Exception $ex){
             return false;
         }
@@ -175,7 +195,7 @@ class UserDAO
             $rol = Rol::where('nombre', '=', 'Paciente')->first();
             $users = User::orderBy('apellidos')->whereRaw("(apellidos like  '%$nombre%' or  nombre like  '%$nombre%') and rol_id == $rol->id ");
             return $users;
-            
+
         }catch(\Exception $ex){
             return false;
         }
@@ -186,7 +206,7 @@ class UserDAO
             $rol = Rol::where('nombre', '=', 'Paciente')->first();
             $users = User::orderBy('apellidos')->whereRaw("(dni like  '%$dni%') and rol_id == $rol->id ");
             return $users;
-            
+
         }catch(\Exception $ex){
             return false;
         }
@@ -196,7 +216,7 @@ class UserDAO
 
         return false;
     }
- 
-    
+
+
 }
 ?>

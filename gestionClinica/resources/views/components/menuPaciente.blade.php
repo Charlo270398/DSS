@@ -6,7 +6,7 @@
 </head>
 <html>
     <body>
-        <?php 
+        <?php
         if($citas > 0){ ?>
                <div class="container">
                     <div class="alert alert-success" role="alert">
@@ -28,6 +28,7 @@
             <ul> <a class="aPanel" href="/citas&proximas"> Citas pendientes </a></ul>
             <ul> <a class="aPanel" href="/citas&recientes"> Historial de citas </a></ul>
             <ul> <a class="aPanel" href="/historial&recientes"> Ver historial médico </a></ul>
+            <ul> <a class="aPanel" href="/usuario/editar"> Editar mis datos </a></ul>
         </div>
     </body>
 </html>
