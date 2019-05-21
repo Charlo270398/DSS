@@ -22,31 +22,24 @@
         <?php } ?>
         <br>
         <div class="container">
-            <ul> <h2><strong>Panel del paciente</strong></h2></ul>
-            <ul> <a class="aPanel" href="/medico/reservas"> Reservar cita </a></ul>
-            <ul> <a class="aPanel" href="/citas&hoy"> Citas para hoy </a></ul>
-            <ul> <a class="aPanel" href="/citas&proximas"> Citas pendientes </a></ul>
-            <ul> <a class="aPanel" href="/citas&recientes"> Historial de citas </a></ul>
-            <ul> <a class="aPanel" href="/historial&recientes"> Ver historial médico </a></ul>
-            <ul> <a class="aPanel" href="/usuario/editar"> Editar mis datos </a></ul>
-        </div>
-        <div class="container">
+                <ul> <h2><strong>Panel del paciente</strong></h2></ul>
                 <div class="row">
                         <div class="col-sm-6">
                           <div class="card">
                             <div class="card-body">
                               <h5 class="card-title"><strong>Reservar cita</strong></h5>
-                              <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                              <a href="#" class="btn btn-primary">Go somewhere</a>
+                              <p class="card-text">Reserva citas en la próxima semana con el médico que desees. Una vez selecciones fecha debes indicar
+                              el motivo de la consulta.</p>
+                              <a href="/medico/reservas" class="btn btn-primary">Acceder</a>
                             </div>
                           </div>
                         </div>
                         <div class="col-sm-6">
                           <div class="card">
                             <div class="card-body">
-                              <h5 class="card-title">Special title treatment</h5>
-                              <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                              <a href="#" class="btn btn-primary">Go somewhere</a>
+                              <h5 class="card-title"><strong>Citas para hoy</strong></h5>
+                              <p class="card-text">Si tienes alguna cita pendiente para hoy puedes consultarla aquí.</p>
+                              <a href="/citas&hoy" class="btn btn-primary">Acceder</a>
                             </div>
                         </div>
                     </div>
@@ -55,18 +48,18 @@
                         <div class="col-sm-6">
                           <div class="card">
                             <div class="card-body">
-                              <h5 class="card-title">Special title treatment</h5>
-                              <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                              <a href="#" class="btn btn-primary">Go somewhere</a>
+                              <h5 class="card-title"><strong>Ver historial médico</strong></h5>
+                              <p class="card-text">Consulta tu historial médico, en el que puedes ver todas las entradas que se han realizado en él.</p>
+                              <a href="/historial&recientes" class="btn btn-primary">Acceder</a>
                             </div>
                           </div>
                         </div>
                         <div class="col-sm-6">
                           <div class="card">
                             <div class="card-body">
-                              <h5 class="card-title">Special title treatment</h5>
-                              <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                              <a href="#" class="btn btn-primary">Go somewhere</a>
+                              <h5 class="card-title"><strong>Citas pendientes</strong></h5>
+                              <p class="card-text">Consulta las citas pendientes que tienes por delante. Si lo deseas puedes cancelarlas.</p>
+                              <a href="/citas&proximas" class="btn btn-primary">Acceder</a>
                             </div>
                         </div>
                     </div>
@@ -75,18 +68,18 @@
                         <div class="col-sm-6">
                           <div class="card">
                             <div class="card-body">
-                              <h5 class="card-title">Special title treatment</h5>
-                              <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                              <a href="#" class="btn btn-primary">Go somewhere</a>
+                              <h5 class="card-title"><strong>Editar mis datos</strong></h5>
+                              <p class="card-text">Edita tus datos de usuario como nombre o contraseña.</p>
+                              <a href="/usuario/editar" class="btn btn-primary">Acceder</a>
                             </div>
                           </div>
                         </div>
                         <div class="col-sm-6">
                           <div class="card">
                             <div class="card-body">
-                              <h5 class="card-title">Special title treatment</h5>
-                              <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                              <a href="#" class="btn btn-primary">Go somewhere</a>
+                              <h5 class="card-title"><strong>Historial de citas</strong></h5>
+                              <p class="card-text">Aquí se muestra un histórico de todas las citas que has concertado.</p>
+                              <a href="/citas&recientes" class="btn btn-primary">Acceder</a>
                             </div>
                         </div>
                     </div>
