@@ -20,7 +20,7 @@ class ClinicaController extends Controller
                 $cli = $a->mostrarClinica();
                 return view('/clinica/editar', ['clinica' => $cli] );
             }else{
-                return view('/user/menuusuario', ['tipo' => $u->mostrarRol($id), 'error' =>'¡No puedes editar administrador!']);
+                return view('/user/menuusuario', ['citas' => 0, 'tipo' => $u->mostrarRol($id), 'error' =>'¡No puedes editar administrador!']);
             }  
         }
     }
