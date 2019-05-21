@@ -7,7 +7,7 @@
 <html>
     <body>
         <div class='container'>
-                <table class="table table-bordered" table bgcolor="blue" style="width:50%; margin:auto">
+                <table class="table table-bordered" table bgcolor=" #7f9bd0" style="width:50%; margin:auto">
                         <thead class="tableHeader">
                             <tr>
                                 <th><h4 style="text-align:center"><strong>Panel del administrador</strong></h4></th>
