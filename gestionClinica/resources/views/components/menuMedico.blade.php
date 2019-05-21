@@ -22,11 +22,47 @@
         </div>
     <?php } ?>
         <div class="container">
-            <ul><h2><strong>Panel del médico</strong></h2></ul>
-            <ul><a class="aPanel" href="/citas&proximas"> Citas pendientes </a></ul>
-            <ul><a class="aPanel" href="/citas&hoy"> Citas para hoy </a></ul>
-            <ul><a class="aPanel" href="/citas&recientes"> Historial de citas </a></ul>
-            <ul><a class="aPanel" href="/pacientes"> Buscar ficha de paciente </a></ul>
+                <ul> <h2><strong>Panel del médico</strong></h2></ul>
+                <div class="row">
+                        <div class="col-sm-6">
+                          <div class="card">
+                            <div class="card-body">
+                              <h5 class="card-title"><strong>Citas para hoy</strong></h5>
+                              <p class="card-text">Consulta las citas que han concertado los pacientes contigo para hoy. También puedes cancelarlas y añadir entradas al historial médico del paciente.</p>
+                              <a href="/citas&hoy" class="btn btn-primary">Acceder</a>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-sm-6">
+                          <div class="card">
+                            <div class="card-body">
+                              <h5 class="card-title"><strong>Citas pendientes</strong></h5>
+                              <p class="card-text">Si tienes alguna cita pendiente con un paciente puedes puedes consultarla aquí. También puedes cancelarlas y añadir entradas al historial médico del paciente.</p>
+                              <a href="/citas&proximas" class="btn btn-primary">Acceder</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                        <div class="col-sm-6">
+                          <div class="card">
+                            <div class="card-body">
+                              <h5 class="card-title"><strong>Historial de citas</strong></h5>
+                              <p class="card-text">Consulta el histórico de citas con tus pacientes.</p>
+                              <a href="/citas&recientes" class="btn btn-primary">Acceder</a>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-sm-6">
+                          <div class="card">
+                            <div class="card-body">
+                              <h5 class="card-title"><strong>Buscar ficha de paciente</strong></h5>
+                              <p class="card-text">Busca la ficha de cualquier paciente de la clínica. Puedes añadir entradas a su historial médico.</p>
+                              <a href="/pacientes" class="btn btn-primary">Acceder</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
         </div>
     </body>
 </html>
