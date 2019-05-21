@@ -6,7 +6,7 @@ use App\Entrada;
 use App\Cita;
 use App\Departamento;
 use Illuminate\Support\Facades\Auth;
-use App\ServiceLayer;
+use App\ServicesLayer\Editar;
 use Illuminate\Support\Facades\DB;
 class UserDAO
 {
@@ -27,7 +27,8 @@ class UserDAO
         }
     }
     public function editarPaciente($user){
-        $rollback =false;
+       return (Editar::editarPacientes($user));
+       /* $rollback =false;
 
                 DB::beginTransaction();
                     try{
@@ -43,7 +44,7 @@ class UserDAO
                 else{
                     DB::commit();
                     return true;
-                }
+                }*/
     }
     public function addMedico($user){
         try{
