@@ -20,8 +20,14 @@ class ClinicaController extends Controller
                 $cli = $a->mostrarClinica();
                 return view('/clinica/editar', ['clinica' => $cli] );
             }else{
+                error_log("Error, no se puede mostrar el edit form de clínica porque 
+                            no se ha iniciado sesión como Administrador.", 0);
                 return view('/user/menuusuario', ['citas' => 0, 'tipo' => $u->mostrarRol($id), 'error' =>'¡No puedes editar administrador!']);
             }  
+        }
+        else{
+            error_log("Intento de acceso sin haber iniciado sesión", 0);
+            return redirect('/login');
         }
     }
     
