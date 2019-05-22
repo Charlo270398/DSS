@@ -93,7 +93,7 @@ class UsuarioController extends Controller
                 return view("/user/paciente/editar", ['paciente' => $dep, 'error'=>''] );
             }
             else{
-                return view('/user/menuusuario', ['citas'=>0, 'tipo' => $d->mostrarRol($userId), 'error' =>'No tienes permisos de administrador!']);
+                return view('/user/menuusuario', ['citas'=>0, 'tipo' => $d->mostrarRol($userId), 'error' =>'¡No tienes permisos de administrador!']);
             }
         }else{
             error_log("Intento de acceso sin haber iniciado sesión", 0);
