@@ -63,7 +63,8 @@ class MedicosController extends Controller
                 return view("/user/medico/editar", ['medico' => $dep] );
             }
             else{
-                return view('/user/menuusuario', ['tipo' => $d->mostrarRol($userId), 'error' =>'No tienes permisos de administrador!']);
+                error_log("Intento de acceso a mostrarEditarForm sin ser admin", 0);
+                return view('/user/menuusuario', ['citas'=> 0, 'tipo' => $d->mostrarRol($userId), 'error' =>'¡No tienes permisos de administrador!']);
             }
         }else{
             error_log("Intento de acceso sin haber iniciado sesión", 0);
