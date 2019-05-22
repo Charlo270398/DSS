@@ -28,10 +28,12 @@ class EntradasController extends Controller
                 //$entrada->save();
                 return redirect('/usuario');
             }else{
-                return view('/user/menuusuario', ['tipo' => $d->mostrarRol($userId), 'error' =>'¡No tienes permisos de médico!']);
+                error_log("Intento de addEntrada sin ser médico", 0);
+                return view('/user/menuusuario', ['citas' => 0, 'tipo' => $d->mostrarRol($userId), 'error' =>'¡No tienes permisos de médico!']);
             }
         }else{
-            return redirect('/home');
+            error_log("Intento de acceso sin haber iniciado sesión", 0);
+            return redirect('/login');
         }
     }
 
@@ -48,10 +50,11 @@ class EntradasController extends Controller
                     return view('/user/paciente/historial/lista', ['user' => $u->mostrarUsuario($idP), 'entradas' => $e->mostrarEntradasRecientes($idP), 'medico' => true]);
                 }  
             }else{
-            //Excepcion??
-                return view('/user/menuusuario', ['tipo' => $u->mostrarRol($id), 'error' =>'No puedes acceder al historial porque no eres un médico!']);
+                error_log("Intento de mostrarHistorialDePaciente sin ser médico", 0);
+                return view('/user/menuusuario', ['citas' => 0, 'tipo' => $u->mostrarRol($id), 'error' =>'No puedes acceder al historial porque no eres un médico!']);
             }  
         }else{
+            error_log("Intento de acceso sin haber iniciado sesión", 0);
             return redirect('/login');
         }
     }
@@ -66,10 +69,12 @@ class EntradasController extends Controller
             if($historial->paciente_id == $idU){
                 return view('/user/paciente/historial/entrada', ['esmedico' => false, 'entrada' => $historial, 'medico' => $u->mostrarUsuario($historial->medico_id), 'paciente' => $u->mostrarUsuario($historial->paciente_id)]);
             }else{
-                return view('/user/menuusuario', ['tipo' => $u->mostrarRol($idU), 'error' =>'¡Error, sitio incorrecto!']);
+                error_log("Error en mostrandoEntrada porque el id AUTH no es el propietario del historial", 0);
+                return view('/user/menuusuario', ['citas' => 0,'tipo' => $u->mostrarRol($idU), 'error' =>'¡Error, sitio incorrecto!']);
             }
         }
         else{
+            error_log("Intento de acceso sin haber iniciado sesión", 0);
             return redirect('/login');
         }
     }
@@ -84,10 +89,12 @@ class EntradasController extends Controller
             if($historial->paciente_id == $idP){
                 return view('/user/paciente/historial/entrada', ['esmedico' => true, 'entrada' => $historial, 'medico' => $u->mostrarUsuario($historial->medico_id), 'paciente' => $u->mostrarUsuario($historial->paciente_id)]);
             }else{
-                return view('/user/menuusuario', ['tipo' => $u->mostrarRol($idU), 'error' =>'¡Error, sitio incorrecto!']);
+                error_log("Intento de acceso a mostrarEntradaPaciente con una paciente distinto al paciente propietario de la entrada", 0);
+                return view('/user/menuusuario', ['citas' => 0,'tipo' => $u->mostrarRol($idU), 'error' =>'¡Error, sitio incorrecto!']);
             }
         }
         else{
+            error_log("Intento de acceso sin haber iniciado sesión", 0);
             return redirect('/login');
         }
     }
@@ -100,8 +107,12 @@ class EntradasController extends Controller
                 return view('/user/paciente/historial/add', ['usuario' => $d->mostrarUsuario($pacienteId)] );
             }
             else{
-                return view('/user/menuusuario', ['tipo' => $d->mostrarRol($userId), 'error' =>'¡No tienes permisos de médico!']);
+                error_log("Intento de acceso a mostrarAddEntradaForm sin ser médico", 0);
+                return view('/user/menuusuario', ['citas' => 0,'tipo' => $d->mostrarRol($userId), 'error' =>'¡No tienes permisos de médico!']);
             }
+        }else{
+            error_log("Intento de acceso sin haber iniciado sesión", 0);
+            return redirect('/login');
         }
     }
 }
