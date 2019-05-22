@@ -43,11 +43,15 @@ class MedicosController extends Controller
             $userId = Auth::user()->id;
             $d = new UserDAO();
             if($d->mostrarRol($userId)->id==1){
-                return view('/user/medico/add', ['clinica' => 1] );
+                return view('/user/medico/add', ['clinica' => 1] );//El ID de la clínica es 1
             }
             else{
-                return view('/user/menuusuario', ['tipo' => $d->mostrarRol($userId), 'error' =>'No tienes permisos de administrador!']);
+                error_log("Intento de mostrar AddForm de médicos sin ser admin", 0);
+                return view('/user/menuusuario', ['citas' => 0, 'tipo' => $d->mostrarRol($userId), 'error' =>'¡No tienes permisos de administrador!']);
             }
+        }else{
+            error_log("Intento de acceso sin haber iniciado sesión", 0);
+            return redirect('/login');
         }
     }
     public function mostrarEditarForm($id) {
@@ -61,43 +65,67 @@ class MedicosController extends Controller
             else{
                 return view('/user/menuusuario', ['tipo' => $d->mostrarRol($userId), 'error' =>'No tienes permisos de administrador!']);
             }
+        }else{
+            error_log("Intento de acceso sin haber iniciado sesión", 0);
+            return redirect('/login');
         }
     }
     public function addMedico(Request $request) {
-        $u = new UserDAO();
-        $user = new User();
-        $user->dni = $request->input('dni');
-        $user->nombre = $request->input('nombre');
-        $user->password = $request->input('password');
-        $user->apellidos = $request->input('apellidos');
-        $user->email = $request->input('email');
-        $user->fecha_nacimiento = $request->input('fecha_nacimiento');
-        $user->num_colegiado = $request->input('num_colegiado');
-        $user->departamento_id = $request->input('departamento_id');
-        $user->rol_id = 3;
-        if($u->addMedico($user)){
-            return view('/user/medico/add', ['medico' => $user] );
+        
+        if (Auth::check()) {
+            $userId = Auth::user()->id;
+            $u = new UserDAO();
+            $user = new User();
+            $user->dni = $request->input('dni');
+            $user->nombre = $request->input('nombre');
+            $user->password = $request->input('password');
+            $user->apellidos = $request->input('apellidos');
+            $user->email = $request->input('email');
+            $user->fecha_nacimiento = $request->input('fecha_nacimiento');
+            $user->num_colegiado = $request->input('num_colegiado');
+            $user->departamento_id = $request->input('departamento_id');
+            $user->rol_id = 3;
+            if($u->addMedico($user)){
+                return view('/user/medico/add', ['medico' => $user] );
+            }else{
+                error_log("Fallo añadiendo médico", 0);
+                return view('/user/menuusuario', ['citas' => 0, 'tipo' => $u->mostrarRol($userId), 'error' =>'Ha habido un error intentando añadir el médico']); 
+            }
         }else{
-            return view('/error', ['error' => 'Error añadiendo el medico'] );
+            error_log("Intento de acceso sin haber iniciado sesión", 0);
+            return redirect('/login');
         }
     }
     public function editarMedico(Request $request) {
-        $u = new UserDAO();
-        $user = new User();
-        $user = $u->mostrarUsuario($request->input('id'));
-        $user->dni = $request->input('dni');
-        $user->nombre = $request->input('nombre');
-        //$user->password = $request->input('password'); Hash::make($data['password'])
-        $user->password = Hash::make($request->input ('password'));
-        $user->apellidos = $request->input('apellidos');
-        $user->email = $request->input('email');
-        $user->fecha_nacimiento = $request->input('fecha_nacimiento');
-        $user->num_colegiado= $request->input('num_colegiado');
-        $user->rol_id = 3;
-        if($u->addMedico($user)){
-            return view('/user/medico/editar', ['medico' => $user] );
+        if(Auth::check()){
+            $userId = Auth::user()->id;
+            $u = new UserDAO();
+            if($u->mostrarRol($userId)->id==1){//ID de admin es 1
+                $u = new UserDAO();
+                $user = new User();
+                $user = $u->mostrarUsuario($request->input('id'));
+                $user->dni = $request->input('dni');
+                $user->nombre = $request->input('nombre');
+                //$user->password = $request->input('password'); Hash::make($data['password'])
+                $user->password = Hash::make($request->input ('password'));
+                $user->apellidos = $request->input('apellidos');
+                $user->email = $request->input('email');
+                $user->fecha_nacimiento = $request->input('fecha_nacimiento');
+                $user->num_colegiado= $request->input('num_colegiado');
+                $user->rol_id = 3;
+                if($u->addMedico($user)){
+                    return view('/user/medico/editar', ['medico' => $user] );
+                }else{
+                    error_log("Fallo editando médico", 0);
+                    return view('/user/menuusuario', ['citas' => 0, 'tipo' => $u->mostrarRol($userId), 'error' =>'Ha habido un error editando el médico']); 
+                }
+            }else{
+                error_log("Intento de editar médico sin ser admin", 0);
+                return view('/user/menuusuario', ['citas' => 0, 'tipo' => $u->mostrarRol($userId), 'error' =>'¡Intentas borrar un usuario que no es médico!']); 
+            }
         }else{
-            return view('/error', ['error' => 'Error ctualizando el medico'] );
+            error_log("Intento de acceso sin haber iniciado sesión", 0);
+            return redirect('/login');
         }
     }
 
@@ -111,13 +139,17 @@ class MedicosController extends Controller
                     $u -> borrarUsuario($id);
                     return redirect('/medico/editList');
                 }else{
-                    return view('/user/menuusuario', ['tipo' => $u->mostrarRol($userId), 'error' =>'¡Intentas borrar un usuario que no es médico!']);
+                    error_log("Intento de borrar médico siendo el ID a borrar de un usuario que no es médico", 0);
+                    return view('/user/menuusuario', ['citas' => 0, 'tipo' => $u->mostrarRol($userId), 'error' =>'¡Intentas borrar un usuario que no es médico!']);
                 }
-
             }
             else{
-                return view('/user/menuusuario', ['tipo' => $u->mostrarRol($userId), 'error' =>'¡No tienes permisos de administrador!']);
+                error_log("Intento de borrado médico sin ser admin", 0);
+                return view('/user/menuusuario', ['citas' => 0, 'tipo' => $u->mostrarRol($userId), 'error' =>'¡No tienes permisos de administrador!']);
             }
+        }else{
+            error_log("Intento de acceso sin haber iniciado sesión", 0);
+            return redirect('/login');
         }
     }
     public function mostrarListaMedicosEditar(){
@@ -131,8 +163,12 @@ class MedicosController extends Controller
                 return view('/user/medico/lista', ['medicos' => $users, 'departamentos'=>$d->mostrarListaDepartamentos(), 'op' =>'editar']);
             }
             else{
-                return view('/user/menuusuario', ['tipo' => $d->mostrarRol($userId), 'error' =>'No tienes permisos de administrador!']);
+                error_log("Intento de mostrarListaMedicosEditar sin ser admin", 0);
+                return view('/user/menuusuario', ['citas' => 0, 'tipo' => $d->mostrarRol($userId), 'error' =>'No tienes permisos de administrador!']);
             }
+        }else{
+            error_log("Intento de acceso sin haber iniciado sesión", 0);
+            return redirect('/login');
         }
     }
     public function mostrarListaMedicosReserva(){
@@ -146,8 +182,13 @@ class MedicosController extends Controller
                 return view('/user/medico/lista', ['medicos' => $users, 'departamentos'=>$d->mostrarListaDepartamentos(), 'op' =>'reservar']);
             }
             else{
-                return view('/user/menuusuario', ['tipo' => $d->mostrarRol($userId), 'error' =>'No eres paciente!']);
+                error_log("Intento de mostrar ListaMedicosReserva sin ser paciente", 0);
+                return view('/user/menuusuario', ['citas' => 0, 'tipo' => $d->mostrarRol($userId), 'error' =>'No eres paciente!']);
             }
+        }
+        else{
+            error_log("Intento de acceso sin haber iniciado sesión", 0);
+            return redirect('/login');
         }
     }
 

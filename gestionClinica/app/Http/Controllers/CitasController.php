@@ -23,10 +23,12 @@ class CitasController extends Controller
                 return view('/user/citas/cita', ['cita' => $cita, 'usuario' => $u->mostrarUsuario($cita->paciente_id),
                 'departamento' => $d->mostrarDepartamento($u->mostrarUsuario($cita->medico_id)->departamento_id), 'esMedico' => true]);
             }else{
-                return view('/user/menuusuario', ['tipo' => $u->mostrarRol($idU), 'error' =>'¡Estás metiéndote donde no debes campeón!']);
+                error_log("Accediendo a mostrar cita como admin", 0);
+                return view('/user/menuusuario', ['citas' => 0, 'tipo' => $u->mostrarRol($idU), 'error' =>'¡Estás metiéndote donde no debes campeón!']);
             }
         }
         else{
+            error_log("Intento de acceso sin haber iniciado sesión", 0);
             return redirect('/login');
         }
     }
@@ -65,17 +67,18 @@ class CitasController extends Controller
             $c = new CitaDAO();
             $d = new DepartamentoDAO();
             $cita = $c->generarCita($dia, $hora, $idMedico);
-            if($u->mostrarRol($idU)->id==2){//ID 2 de paciente
-                if($cita == null){//Cita no disponible (porque no hay boxes)
-                    return $this->mostrarCitasDisponiblesError($idMedico, 'No hay boxes disponibles para esa fecha');
-                }else{
-                    return view('/user/citas/confirmar', ['cita' => $cita, 'medico' => $u->mostrarUsuario($idMedico),
-                'departamento' => $d->mostrarDepartamento($u->mostrarUsuario($idMedico)->departamento_id)]);
+                if($u->mostrarRol($idU)->id==2){//ID 2 de paciente
+                    if($cita == null){//Cita no disponible (porque no hay boxes)
+                        return $this->mostrarCitasDisponiblesError($idMedico, 'No hay boxes disponibles para esa fecha');
+                    }else{
+                        return view('/user/citas/confirmar', ['cita' => $cita, 'medico' => $u->mostrarUsuario($idMedico),
+                    'departamento' => $d->mostrarDepartamento($u->mostrarUsuario($idMedico)->departamento_id)]);
+                    }
                 }
-            }
-            else{
-                return view('/user/menuusuario', ['tipo' => $u->mostrarRol($idU), 'error' =>'No puedes reservar citas porque no eres un paciente!']);
-            }
+                else{
+                    error_log("Intento de acceso a mostrar confirmar cita sin ser paciente", 0);
+                    return view('/user/menuusuario', ['citas' => 0, 'tipo' => $u->mostrarRol($idU), 'error' =>'¡No puedes reservar citas porque no eres un paciente!']);
+                }
             }else{
                 error_log("Fecha inválida al mostrar Confirmar Cita", 0);
                 return redirect('/usuario');
@@ -95,10 +98,12 @@ class CitasController extends Controller
                 $cita->delete();
                 return redirect('/citas&proximas');
             }else{
-                return view('/user/menuusuario', ['tipo' => $u->mostrarRol($idU), 'error' =>'¡Estás metiéndote donde no debes campeón!']);
+                error_log("Intento de borrar cita sin ser médico ni paciente", 0);
+                return view('/user/menuusuario', ['citas' => 0, 'tipo' => $u->mostrarRol($idU), 'error' =>'¡Estás metiéndote donde no debes campeón!']);
             }
         }else{
-            return redirect('/home');
+            error_log("Intento de acceso sin haber iniciado sesión", 0);
+            return redirect('/login');
         }
     }
     public function mostrarCitasDisponibles($idM){
@@ -110,11 +115,11 @@ class CitasController extends Controller
             if($u->mostrarRol($id)->id==2){//ID PACIENTE = 2
                 return view('/user/citas/horasdisponibles', ['error' =>'', 'fechas' => $items, 'idMedico' => $idM]);
             }else{
-                return view('/user/menuusuario', ['tipo' => $u->mostrarRol($id), 'error' =>'¡No puedes reservar citas porque no eres un paciente!']);
+                return view('/user/menuusuario', ['citas' => 0, 'tipo' => $u->mostrarRol($id), 'error' =>'¡No puedes reservar citas porque no eres un paciente!']);
             }
         }else{
-            //Excepcion??
-            return view('/error', ['error' => 'Error autenticando.']);
+            error_log("Intento de acceso sin haber iniciado sesión", 0);
+            return redirect('/login');
         }
     }
     public function mostrarCitasDisponiblesError($idM, $error){//Básicamente copypaste de mostrarCitasDisponibles pero introduciendo datos en error
@@ -126,17 +131,17 @@ class CitasController extends Controller
             if($u->mostrarRol($id)->id==2){//ID PACIENTE = 2
                 return view('/user/citas/disponibles', ['error' =>$error, 'fechas' => $items, 'idMedico' => $idM]);
             }else{
-                return view('/user/menuusuario', ['tipo' => $u->mostrarRol($id), 'error' =>'No puedes reservar citas porque no eres un paciente!']);
+                error_log("Mostrando citas disponibles sin ser paciente", 0);
+                return view('/user/menuusuario', ['citas' => 0, 'tipo' => $u->mostrarRol($id), 'error' =>'¡No puedes reservar citas porque no eres un paciente!']);
             }
         }else{
-            //Excepcion??
-            return view('/error', ['error' => 'Error autenticando.']);
+            error_log("Intento de acceso sin haber iniciado sesión", 0);
+            return redirect('/login');
         }
     }
     public function reservar(Request $request) {
         if (Auth::check()) {
             $id = Auth::user()->id;
-
             $cita = new Cita();
             $cita->medico_id = $request->input('idM');
             $cita->paciente_id = $id;
@@ -144,10 +149,10 @@ class CitasController extends Controller
             $cita->fecha = $request->input('fecha');
             $cita->motivo = $request->input('motivo');
             $cita->save();
-
             return redirect('/citas&proximas');
         }else{
-            return redirect('/home');
+            error_log("Intento de acceso sin haber iniciado sesión", 0);
+            return redirect('/login');
         }
     }
 }
