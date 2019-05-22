@@ -22,7 +22,7 @@ Route::get('/departamentos/editList','DepartamentosController@mostrarListaDepart
 Route::get('/departamentos/{id}', 'DepartamentosController@mostrarDepartamento');
 Route::get('/departamentos/{id}/editar', 'DepartamentosController@mostrarEditarForm')->middleware('auth');;
 Route::get('/departamentos/{id}/borrar', 'DepartamentosController@borrarDepartamento')->middleware('auth');;
-s
+
 Route::get('/medicos','MedicosController@mostrarListaMedicos');
 Route::get('/medicos/{id}', 'MedicosController@mostrarMedico');
 Route::get('/medico/editList','MedicosController@mostrarListaMedicosEditar')->middleware('auth');
