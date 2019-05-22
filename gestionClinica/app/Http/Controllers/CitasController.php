@@ -59,7 +59,8 @@ class CitasController extends Controller
         if(strlen($dia)!=10){//La longitud del dia que se mete es de 10 si o si
             $validado = false;
         }
-        if (Auth::check() && $validado) {
+        if (Auth::check()) {
+            if($validado){
             $idU = Auth::user()->id;
             $c = new CitaDAO();
             $d = new DepartamentoDAO();
@@ -75,8 +76,13 @@ class CitasController extends Controller
             else{
                 return view('/user/menuusuario', ['tipo' => $u->mostrarRol($idU), 'error' =>'No puedes reservar citas porque no eres un paciente!']);
             }
+            }else{
+                error_log("Fecha inválida al mostrar Confirmar Cita", 0);
+                return redirect('/usuario');
+            }
         }else{
-            return view('/home');
+            error_log("Intento de acceso sin haber iniciado sesión", 0);
+            return redirect('/login');
         }
     }
     public function borrarCita($idC) {
