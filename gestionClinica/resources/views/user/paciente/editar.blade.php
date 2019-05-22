@@ -36,7 +36,7 @@ div.hidden {
             <body>
                 <br>
                 <div class="container">
-                <form action="{{action('UsuarioController@editarMedico')}}" method="POST" class="was-validated">
+                <form action="{{action('UsuarioController@editarPaciente')}}" method="POST" class="was-validated">
                 {{ csrf_field() }}
                 {{ method_field('POST') }}
 

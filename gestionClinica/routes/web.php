@@ -22,7 +22,7 @@ Route::get('/departamentos/editList','DepartamentosController@mostrarListaDepart
 Route::get('/departamentos/{id}', 'DepartamentosController@mostrarDepartamento');
 Route::get('/departamentos/{id}/editar', 'DepartamentosController@mostrarEditarForm')->middleware('auth');;
 Route::get('/departamentos/{id}/borrar', 'DepartamentosController@borrarDepartamento')->middleware('auth');;
-//Medicos
+s
 Route::get('/medicos','MedicosController@mostrarListaMedicos');
 Route::get('/medicos/{id}', 'MedicosController@mostrarMedico');
 Route::get('/medico/editList','MedicosController@mostrarListaMedicosEditar')->middleware('auth');
@@ -73,8 +73,8 @@ Route::post('pacientes', [
 Route::post('&pacientes', [
     'uses' => 'UsuarioController@mostrarListaPacientesPorDni'
 ])->middleware('auth');
-Route::post('usuario/edit/editar_create', [
-    'uses' => 'UsuarioController@editarMedico'
+Route::post('usuario/edit', [
+    'uses' => 'UsuarioController@editarPaciente'
 ])->middleware('auth');
 //----USUARIO----
 Route::get('/usuario','UsuarioController@autenticarUsuario')->middleware('auth');
@@ -97,13 +97,13 @@ Route::get('/citas/disponibles&{idM}','CitasController@mostrarCitasDisponibles')
 Route::get('/citas/{idC}','CitasController@mostrarCita')->middleware('auth');//Comprobar que esa cita es del paciente autenticado en ese momento
 Route::get('/citas/confirmar/d={dia}&h={hora}&m={idMedico}','CitasController@mostrarConfirmarCita')->middleware('auth');
 Route::get('/citas/{idC}/borrar','CitasController@borrarCita')->middleware('auth');
-Route::get('/medico/citas','MedicosController@mostrarListaCitas')->middleware('auth');//MEDICO
-Route::get('/medico/{idM}/horarios','CitasController@mostrarCitasDisponibles')->middleware('auth');//MEDICO
+Route::get('/medico/citas','MedicosController@mostrarListaCitas')->middleware('auth');
+Route::get('/medico/{idM}/horarios','CitasController@mostrarCitasDisponibles')->middleware('auth');
 //Usuario-medico
-Route::get('/pacientes','UsuarioController@mostrarListaPacientes')->middleware('auth');//MEDICO
-Route::get('/pacientes/{idP}','UsuarioController@mostrarPaciente')->middleware('auth');//MEDICO
-Route::get('/pacientes/{idP}/historial&{modo}','EntradasController@mostrarHistorialDePaciente')->middleware('auth');//MEDICO
-Route::get('/pacientes/{idP}/entrada&{idH}','EntradasController@mostrarEntradaPaciente')->middleware('auth');//MEDICO
+Route::get('/pacientes','UsuarioController@mostrarListaPacientes')->middleware('auth');
+Route::get('/pacientes/{idP}','UsuarioController@mostrarPaciente')->middleware('auth');
+Route::get('/pacientes/{idP}/historial&{modo}','EntradasController@mostrarHistorialDePaciente')->middleware('auth');
+Route::get('/pacientes/{idP}/entrada&{idH}','EntradasController@mostrarEntradaPaciente')->middleware('auth');
 //Usuario-paciente
 Route::get('/usuario/editar','UsuarioController@mostrarEditUsuarioForm')->middleware('auth');
 

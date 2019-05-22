@@ -32,14 +32,12 @@ class UsuarioController extends Controller
                 return view('/user/menuusuario', ['tipo' => $rol, 'error' =>'', 'citas'=>0]);
             }
         }else{
-            return view('/error', ['error' => 'Error autenticando.']);
+            error_log("Intento de acceso sin haber iniciado sesión", 0);
+            return redirect('/login');
         }
 
     }
 
-    public function mostrarFormAutenticacion(){
-        return view('/user/login');
-    }
     public function mostrarHistorial($modo){
         $u = new UserDAO();
         if (Auth::check()) {
@@ -52,32 +50,37 @@ class UsuarioController extends Controller
                     return view('/user/paciente/historial/lista', ['user' => $u->mostrarUsuario($id), 'entradas' => $e->mostrarEntradasRecientes($id), 'medico' => false]);
                 }
             }else{
-            //Excepcion??
-                return view('/user/menuusuario', ['tipo' => $u->mostrarRol($id), 'error' =>'No puedes acceder al historial porque no eres un paciente!']);
+                error_log("Intento de acceso a un área sin tener permisos", 0);
+                return view('/user/menuusuario', ['citas'=>0 , 'tipo' => $u->mostrarRol($id), 'error' =>'¡No puedes acceder al historial porque no eres un paciente!']);
             }
+        }else{
+            error_log("Intento de acceso sin haber iniciado sesión", 0);
+            return redirect('/login');
         }
 
     }
-    public function editarMedico(Request $request) {
-        $u = new UserDAO();
-        $user = new User();
-        $user = $u->mostrarUsuario($request->input('id'));
-        $user->dni = $request->input('dni');
-        $user->nombre = $request->input('nombre');
-        //$user->password = $request->input('password'); Hash::make($data['password'])
-        $user->password = Hash::make($request->input ('password'));
-        $user->apellidos = $request->input('apellidos');
-        $user->email = $request->input('email');
-
-
-        $user->rol_id = 2;
-        if($u->editarPaciente($user)){
-
-
-            return redirect('/usuario' );
-
-        }else{
-            return view('/user/paciente/editar', ['paciente'=>$user, 'error' => 'E-mail repetido'] );
+    public function editarPaciente(Request $request) {
+        
+        if (Auth::check()) {
+            $u = new UserDAO();
+            $user = new User();
+            $user = $u->mostrarUsuario($request->input('id'));
+            $user->dni = $request->input('dni');
+            $user->nombre = $request->input('nombre');
+            $user->password = Hash::make($request->input ('password'));
+            $user->apellidos = $request->input('apellidos');
+            $user->email = $request->input('email');
+            $user->rol_id = 2;
+            if($u->editarPaciente($user)){
+                return redirect('/usuario' );
+            }else{
+                error_log("E-mail repetido al editar paciente", 0);
+                return view('/user/paciente/editar', ['paciente'=>$user, 'error' => 'E-mail repetido'] );
+            }
+        }
+        else{
+            error_log("Intento de acceso sin haber iniciado sesión", 0);
+            return redirect('/login');
         }
     }
 
@@ -90,12 +93,13 @@ class UsuarioController extends Controller
                 return view("/user/paciente/editar", ['paciente' => $dep, 'error'=>''] );
             }
             else{
-                return view('/user/menuusuario', ['tipo' => $d->mostrarRol($userId), 'error' =>'No tienes permisos de administrador!']);
+                return view('/user/menuusuario', ['citas'=>0, 'tipo' => $d->mostrarRol($userId), 'error' =>'No tienes permisos de administrador!']);
             }
+        }else{
+            error_log("Intento de acceso sin haber iniciado sesión", 0);
+            return redirect('/login');
         }
     }
-
-
 
     public function mostrarCitas($modo){
         if (Auth::check()) {
@@ -133,11 +137,11 @@ class UsuarioController extends Controller
                 return view('/user/citas/lista', ['citas' => $citas, 'perfil'=> $perfil, 'nombre'=> $nombres, 'titulo' => $titulo, 'orden' => $mostrarOrden]);
 
             }else{
-                return view('/user/menuusuario', ['tipo' => $u->mostrarRol($id), 'error' =>'¡No puedes acceder a las citas porque no eres un paciente!']);
+                return view('/user/menuusuario', ['citas'=>0, 'tipo' => $u->mostrarRol($id), 'error' =>'¡No puedes acceder a las citas porque no eres un paciente!']);
             }
         }else{
-            //Excepcion??
-            return view('/error', ['error' => 'Error autenticando.']);
+            error_log("Intento de acceso sin haber iniciado sesión", 0);
+            return redirect('/login');
         }
     }
 
