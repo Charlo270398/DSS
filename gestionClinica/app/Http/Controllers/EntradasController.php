@@ -22,7 +22,7 @@ class EntradasController extends Controller
                 $entrada->asunto = $request->input('asunto');
                 $entrada->descripcion = $request->input('descripcion');
                 $time = date('d-m-Y H:i:s');
-                $time =  Date('d-m-Y H:i:s', strtotime("+2 hours",strtotime($time)));//COMPROBAR SI ESTÁ BIEN
+                $time =  Date('d-m-Y H:i:s', strtotime("+2 hours",strtotime($time)));//La hora actual requiere 2 horas más -.-
                 $entrada->fecha = $time;
                 $e->addEntrada($entrada);
                 //$entrada->save();
