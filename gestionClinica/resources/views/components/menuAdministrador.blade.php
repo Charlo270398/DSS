@@ -21,26 +21,26 @@
                         <th><h6 style="text-align:center"><strong>Acciones</strong></h6></th>
                     </tr>
                 </thead>
-                <tbody style="text-align:center">                     
+                <tbody style="text-align:center">
                     <tr>
                         <th>Clínica</th>
                         <th><a href="/clinica/edit" class="btn btn-primary">Editar</a></th>
-                    </tr>  
+                    </tr>
                     <tr>
                         <th>Departamentos</th>
                         <th><a href="/departamento/add" class="btn btn-primary">Añadir</a>
-                        <a href="/departamentos/editList" class="btn btn-primary">Editar/Eliminar</a></th>
+                        <a href="/departamentos/editList" class="btn btn-primary">Editar</a></th>
                     </tr>
                     <tr>
                         <th>Boxes</th>
                         <th><a href="/box/add" class="btn btn-primary">Añadir</a>
                         <a href="/box/deleteList" class="btn btn-primary">Eliminar</a></th>
-                    </tr>  
+                    </tr>
                     <tr>
                         <th>Medicos</th>
                         <th><a href="/medico/add" class="btn btn-primary">Dar de alta</a>
                         <a href="/medico/editList" class="btn btn-primary">Editar/Dar de baja</a></th>
-                    </tr>  
+                    </tr>
                 </tbody>
             </table>
         </div>

@@ -34,7 +34,7 @@ div.hidden {
                             </div>
                     </div>
                 <?php } ?>
-                
+
                 <div class="container">
                 <form action="{{action('UsuarioController@editarPaciente')}}" method="POST" class="was-validated">
                 {{ csrf_field() }}
@@ -84,8 +84,8 @@ div.hidden {
 
 
                 <div class="form-group">
-                  <label for="mail" class="mr-sm-2">E-mail:</label>
-                  <input type="text" class="form-control" id="mail" placeholder="tucorreo@gmail.com" value="<?php echo $paciente->email?>" name="email" required>
+                  <label for="email" class="mr-sm-2">E-mail:</label>
+                  <input type="email" class="form-control" id="email" placeholder="tucorreo@gmail.com" value="<?php echo $paciente->email?>" name="email" required>
                 </div><br>
 
                 <br>

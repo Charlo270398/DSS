@@ -45,6 +45,20 @@
                         </div>
 
                         <div class="form-group row">
+                            <label for="fecha_nacimiento" class="col-md-4 col-form-label text-md-right">{{ __('Fecha de Nacimiento') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="fecha_nacimiento" type="date" placeholder="dd-mm-yyyy" class="form-control{{ $errors->has('fecha_nacimiento') ? ' is-invalid' : '' }}" name="fecha_nacimiento" value="{{ old('fecha_nacimiento') }}" required autofocus>
+
+                                @if ($errors->has('fecha_nacimiento'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('fecha_nacimiento') }}</strong>
+                                    </span>
+                                @endif
+                                </div>
+                        </div>
+
+                        <div class="form-group row">
                             <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('Dirección de correo') }}</label>
 
                             <div class="col-md-6">
