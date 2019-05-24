@@ -3,6 +3,7 @@
 namespace App\BL;
 use App\Box;
 use App\Cita;
+use App\ServicesLayer\BorrarBox;
 
 class BoxDAO
 {
@@ -74,13 +75,14 @@ class BoxDAO
     }
 
     public function borrarBox($id){
-        try{
+        return (BorrarBox::borrarBox($id));
+        /* try{
             $box = $this->mostrarBox($id);
             $box->delete();
             return true;
         }catch(\Exception $ex){
             return false;
-        }
+        } */
     }
 }
 ?>

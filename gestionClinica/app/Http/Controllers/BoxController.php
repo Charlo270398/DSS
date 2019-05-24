@@ -42,9 +42,9 @@ class BoxController extends Controller
         $u = new UserDAO();
         if (Auth::check()) {
             $ida = Auth::user()->id;
-            if($u->mostrarRol($ida)->id==1){//ID PACIENTE = 2
+            if($u->mostrarRol($ida)->id==1){//ID Admin = 1
                 $d = new BoxDAO();
-                return view('/box/lista', ['departamentos' => $d->mostrarListaBoxes(), 'op' => 'borrar']); //La devuelve Alfabeticamente por defecto
+                return view('/box/lista', ['error' => "", 'departamentos' => $d->mostrarListaBoxes(), 'op' => 'borrar']);
 
             }else{
                 error_log("Intento de acceso a add box sin tener permisos", 0);
@@ -57,11 +57,24 @@ class BoxController extends Controller
 
     }
     public function borrarBox($id) {
-        $d = new boxDAO();
-        if($d->borrarBox($id)){
-            return redirect('/box/deleteList');
+
+        if (Auth::check()) {
+            $u = new UserDAO();
+            $d = new boxDAO();
+            $ida = Auth::user()->id;
+            if($u->mostrarRol($ida)->id==1){//ID Admin = 1
+                if($d->borrarBox($id)){
+                    return redirect('/box/deleteList');
+                }else{
+                    return view('/box/lista', ['error' => 'No se han podido reasignar todas las citas de un día concreto a otro box, espera a que haya disponibilidad.','departamentos' => $d->mostrarListaBoxes(), 'op' => 'borrar']); 
+                }
+            }else{
+                error_log("Intento de acceso a borrar box sin tener permisos", 0);
+                return view('/user/menuusuario', ['citas'=>0 , 'tipo' => $u->mostrarRol($ida), 'error' =>'¡No puedes acceder  a esta parte porque no tienes permisos!']);
+            }
         }else{
-            return view('/error', ['error' => 'Error borrando box.'] );
+            error_log("Intento de acceso sin haber iniciado sesión", 0);
+            return redirect('/login');
         }
     }
 

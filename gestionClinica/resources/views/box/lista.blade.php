@@ -8,18 +8,7 @@
 
 @section('body')
 <!DOCTYPE html>
-<?php
-    if($op == 'borrar'){
-        $ruta = '/borrar';
-        $header = 'Borrar boxes';
-    }else if($op == 'editar'){
-        $ruta = '/editar';
-        $header = 'Editar box';
-    }else{
-        $ruta = '';
-        $header = 'Listado de boxes';
-    }
-?>
+
 <head>
     <link href="/css/lists.css" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -31,10 +20,19 @@
     <body>
         <br>
         <br>
+        
         <div class = "container">
             <?php if($departamentos->count() != 0){ ?>
-                <h2 style="text-align:center;"><?php echo $header;?></h2>
+                <h2 style="text-align:center;"><strong><?php echo 'Listado de boxes';?></strong></h2>
                 <br>
+                <?php 
+                    if($error!=''){ ?>
+                        <div class="container">
+                                <div class="alert alert-danger" role="alert">
+                                    <?php  echo $error  ?>
+                                </div>
+                        </div>
+                <?php } ?>
                 <div class="btn-group-vertical" style="width: 100%;">
                     <?php foreach($departamentos as $value): ?>
                     

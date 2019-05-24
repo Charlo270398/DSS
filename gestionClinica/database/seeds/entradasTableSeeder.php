@@ -18,12 +18,12 @@ class entradasTableSeeder extends Seeder
 
         for($i=0; $i<1; $i++){//Bucle por si queremos meter muchas entradas del tirón
             $time =  Date('d-m-Y H:i:s', strtotime("+1 days",strtotime($time)));
-            $ent= new Entrada(['paciente_id' => 35, 'medico_id' => 3, 'asunto' => '¿Tiene usted SIDA? La respuesta le sorprenderá', 'descripcion' =>'No tiene sida, no se preocupe.',
+            $ent= new Entrada(['paciente_id' => 35, 'medico_id' => 3, 'asunto' => 'SIDA', 'descripcion' =>'No tiene sida, no se preocupe.',
             'fecha' => $time]);
             $ent->save();
         }
         $time =  Date('d-m-Y H:i:s', strtotime("+1 hours",strtotime($time)));
-        $ent= new Entrada(['paciente_id' => 35, 'medico_id' => 4, 'asunto' => 'HAY QUE AMPUTAR', 'descripcion' =>'Tiene usted gangrena en las dos piernas',
+        $ent= new Entrada(['paciente_id' => 35, 'medico_id' => 4, 'asunto' => 'HAY QUE AMPUTAR', 'descripcion' =>'Necrosis en ambas piernas, hay que amputar',
         'fecha' => $time]);
         $ent->save();
 

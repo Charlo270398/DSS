@@ -20,7 +20,7 @@ class CreateCitasTable extends Migration
             $table->integer('paciente_id');
             $table->foreign('paciente_id')->references('id')->on('users')->onDelete('cascade');
             $table->integer('box_id');
-            $table->foreign('box_id')->references('id')->on('boxes')->onDelete('cascade'); 
+            $table->foreign('box_id')->references('id')->on('boxes'); 
             $table->timestamp('fecha');
             $table->string('motivo');
             $table->timestamps();
