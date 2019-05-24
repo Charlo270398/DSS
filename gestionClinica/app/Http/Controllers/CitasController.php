@@ -23,7 +23,7 @@ class CitasController extends Controller
                 return view('/user/citas/cita', ['cita' => $cita, 'usuario' => $u->mostrarUsuario($cita->paciente_id),
                 'departamento' => $d->mostrarDepartamento($u->mostrarUsuario($cita->medico_id)->departamento_id), 'esMedico' => true]);
             }else{
-                error_log("Accediendo a mostrar cita como admin", 0);
+                error_log("Accediendo a mostrarCita sin ser el paciente de esa cita", 0);
                 return view('/user/menuusuario', ['citas' => 0, 'tipo' => $u->mostrarRol($idU), 'error' =>'¡Estás metiéndote donde no debes campeón!']);
             }
         }
