@@ -29,11 +29,11 @@ class CitaDAO
         if($box == 0){ //No hay citas en esa hora
             $cita = new Cita();
             $cita->fecha = $dia . ' ' . $hora . ':00';
-            $cita->box_id = 1;//Comprobar que hay disponibles
+            $cita->box_id = $b->mostrarListaBoxes()->first()->id;//Comprobar que hay disponibles
             return $cita;
         }
         else{//Si hay citas en esa hora
-            $box = $b->devolverDisponible($dia, $hora);
+            $box = $b->devolverDisponible($dia . ' ' . $hora . ':00');
             if($box == -1){//Todos los boxes ocupados
                 return null;
             }else{
@@ -110,6 +110,7 @@ class CitaDAO
         
        
         $startTime = Date('d-m-Y H:i:s', strtotime("-1 days",strtotime($startTime)));
+        $b = new BoxDAO();
         for($i=0; $i<$DIAS; $i++){
             $fechas = array();
             $fechaE = array();
@@ -119,15 +120,19 @@ class CitaDAO
             $dia = date("d",strtotime($startTime));
             for($j=0; $j<$SESIONES; $j++){
                 $startTime = Date('d-m-Y H:i:s', strtotime("+$MINUTOS_SESION minutes",strtotime($startTime)));
-                if($startTime > $time && $this->disponible($idM, $startTime)){
+                if($startTime > $time && $this->disponible($idM, $startTime) && $b->devolverDisponible($startTime) != -1){
                     array_push($fechaE, Date('d-m-Y',strtotime($startTime)));
-                    array_push($fechas, Date("H:i",strtotime($startTime)));
-                   
+                    array_push($fechas, Date("H:i",strtotime($startTime)));          
                 }
                 else if($startTime > $time && !$this->disponible($idM, $startTime)){
                     array_push($fechas, 'Hora ocupada');
                     array_push($fechaE, -1);
-                }else{
+                }
+                else if($b->devolverDisponible($startTime) == -1){
+                    array_push($fechas, 'Boxes ocupados');
+                    array_push($fechaE, -1);
+                }
+                else{
                     array_push($fechas, '--:--');
                     array_push($fechaE, -1);
                 }

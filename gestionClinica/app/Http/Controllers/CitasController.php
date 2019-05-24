@@ -69,7 +69,7 @@ class CitasController extends Controller
             $cita = $c->generarCita($dia, $hora, $idMedico);
                 if($u->mostrarRol($idU)->id==2){//ID 2 de paciente
                     if($cita == null){//Cita no disponible (porque no hay boxes)
-                        return $this->mostrarCitasDisponiblesError($idMedico, 'No hay boxes disponibles para esa fecha');
+                        return view('/user/menuusuario', ['citas' => 0, 'tipo' => $u->mostrarRol($idU), 'error' =>'Ha habido algun error validando la cita, lo sentimos mucho.']);
                     }else{
                         return view('/user/citas/confirmar', ['cita' => $cita, 'medico' => $u->mostrarUsuario($idMedico),
                     'departamento' => $d->mostrarDepartamento($u->mostrarUsuario($idMedico)->departamento_id)]);
@@ -113,7 +113,7 @@ class CitasController extends Controller
             $id = Auth::user()->id;
             $u = new UserDAO();
             if($u->mostrarRol($id)->id==2){//ID PACIENTE = 2
-                return view('/user/citas/horasdisponibles', ['error' =>'', 'fechas' => $items, 'idMedico' => $idM]);
+                return view('/user/citas/horasdisponibles', ['fechas' => $items, 'idMedico' => $idM]);
             }else{
                 return view('/user/menuusuario', ['citas' => 0, 'tipo' => $u->mostrarRol($id), 'error' =>'¡No puedes reservar citas porque no eres un paciente!']);
             }
@@ -122,23 +122,7 @@ class CitasController extends Controller
             return redirect('/login');
         }
     }
-    public function mostrarCitasDisponiblesError($idM, $error){//Básicamente copypaste de mostrarCitasDisponibles pero introduciendo datos en error
-        $c = new CitaDAO();
-        $items = $c->mostrarHorario($idM);
-        if (Auth::check()) {
-            $id = Auth::user()->id;
-            $u = new UserDAO();
-            if($u->mostrarRol($id)->id==2){//ID PACIENTE = 2
-                return view('/user/citas/disponibles', ['error' =>$error, 'fechas' => $items, 'idMedico' => $idM]);
-            }else{
-                error_log("Mostrando citas disponibles sin ser paciente", 0);
-                return view('/user/menuusuario', ['citas' => 0, 'tipo' => $u->mostrarRol($id), 'error' =>'¡No puedes reservar citas porque no eres un paciente!']);
-            }
-        }else{
-            error_log("Intento de acceso sin haber iniciado sesión", 0);
-            return redirect('/login');
-        }
-    }
+
     public function reservar(Request $request) {
         if (Auth::check()) {
             $id = Auth::user()->id;

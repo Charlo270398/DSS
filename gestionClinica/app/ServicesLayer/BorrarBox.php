@@ -18,9 +18,8 @@ class BorrarBox{
                     $citas = Cita::all();
                     $boxD = new BoxDAO();
                     foreach($citas as $cita){
-                        $dia=substr($cita->fecha,0,10);
-                        $hora=substr($cita->fecha, -8, -3);
-                        $nuevoBox = $boxD->devolverDisponible($dia, $hora);
+            
+                        $nuevoBox = $boxD->devolverDisponible($cita->fecha);
                         if($nuevoBox!=-1){
                             $cita->box_id = $nuevoBox;
                             $cita->save();

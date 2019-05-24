@@ -13,8 +13,8 @@ class BoxDAO
         return $c; 
     }
 
-    public function devolverDisponible($dia, $hora){
-        $fecha = $dia . ' ' . $hora . ':00';
+    public function devolverDisponible($fecha){
+
         $c = Cita::where('fecha', '=', $fecha)->count();
         $b = Box::all()->count();
         

@@ -30,16 +30,7 @@
         
             
         <div class="container" >
-
-                <?php 
-                if($error!=''){ ?>
-                    <div class="container">
-                            <div class="alert alert-danger" role="alert">
-                                <?php  echo $error  ?>
-                            </div>
-                    </div>
-                <?php } ?>
-                
+     
                 <table class="table table-bordered">
                   <thead class="tableHeader" >
                     <tr>
@@ -56,7 +47,7 @@
                         for($i=0; $i<sizeof($fechas[0][1]); $i++){ ?>
                         <tr>
                             <?php for($j=0; $j<sizeof($fechas); $j++){
-                                if($fechas[$j][1][$i] == '--:--' || $fechas[$j][1][$i] == 'Hora ocupada'){?>
+                                if($fechas[$j][1][$i] == '--:--' || $fechas[$j][1][$i] == 'Hora ocupada' || $fechas[$j][1][$i] == 'Boxes ocupados'){?>
                                     <th><?php echo $fechas[$j][1][$i] ?></th>
                                 <?php }else{?>
                                     <th><a href="/citas/confirmar/d=<?php echo substr($fechas[$j][2][$i],0,10)?>&h=<?php echo $fechas[$j][1][$i]?>&m=<?php echo $idMedico ?>"><?php echo $fechas[$j][1][$i]?></a></th>
