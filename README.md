@@ -15,7 +15,7 @@ Pagina web para la gestión de citas y datos de pacientes de una clínica privad
 ## Guía de despliegue
 
 Pasos a seguir:
-* Ir a la carpeta raíz
+* Situarse en la carpeta /gestionClinica .
 * Si es la primera vez que se ejecuta, crear y rellenar las tablas de la BD con "php artisan migrate:refresh --seed" *(en caso de fallo porque no existe un seeder ejecutar composer dump-autoload)
 * Ejecutar "php artisan serve"
 * Buscar en un navegador localhost:8000
