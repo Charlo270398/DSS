@@ -4,15 +4,45 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Panel administrador</title>
 </head>
-<link href="/css/menus.css" rel="stylesheet">
 <html>
     <body>
-        <div>
-            <ul> <h2>Panel del administrador</h2></ul>
-            <ul> <h4>Clínica: <a class="aPanel" href="/clinica/edit"> Editar </a>    </h4></ul>
-            <ul> <h4>Departamentos:  <a class="aPanel" href="/departamento/add"> Añadir </a> <a class="aPanel" href="/departamentos/editList"> Editar </a> <a class="aPanel" href="/departamentos/deleteList"> Borrar </a>    </h4></ul>
-            <ul> <h4>Boxes: <a class="aPanel" href="/box/add"> Añadir </a> <a class="aPanel" href="/box/delete"> Borrar </a>    </h4></ul>
-            <ul> <h4>Medicos: <a class="aPanel" href="/medico/add"> Dar de alta </a> <a class="aPanel" href="/medico/editList"> Editar </a>  <a class="aPanel" href="/medico/deleteList"> Dar de baja </a>   </h4></ul>
+        <div class='container'>
+                <table class="table table-bordered" table bgcolor=" #7f9bd0" style="width:50%; margin:auto">
+                        <thead class="tableHeader">
+                            <tr>
+                                <th><h4 style="text-align:center"><strong>Panel del administrador</strong></h4></th>
+                            </tr>
+                        </thead>
+                    </table>
+            <table class="table table-bordered" style="width:50%; margin:auto">
+                <thead class="tableHeader">
+                    <tr>
+                        <th style="width:25%"><h6 style="text-align:center"><strong>Elemento</strong></h6></th>
+                        <th><h6 style="text-align:center"><strong>Acciones</strong></h6></th>
+                    </tr>
+                </thead>
+                <tbody style="text-align:center">
+                    <tr>
+                        <th>Clínica</th>
+                        <th><a href="/clinica/edit" class="btn btn-primary">Editar</a></th>
+                    </tr>
+                    <tr>
+                        <th>Departamentos</th>
+                        <th><a href="/departamento/add" class="btn btn-primary">Añadir</a>
+                        <a href="/departamentos/editList" class="btn btn-primary">Editar</a></th>
+                    </tr>
+                    <tr>
+                        <th>Boxes</th>
+                        <th><a href="/box/add" class="btn btn-primary">Añadir</a>
+                        <a href="/box/deleteList" class="btn btn-primary">Eliminar</a></th>
+                    </tr>
+                    <tr>
+                        <th>Medicos</th>
+                        <th><a href="/medico/add" class="btn btn-primary">Dar de alta</a>
+                        <a href="/medico/editList" class="btn btn-primary">Editar/Dar de baja</a></th>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </body>
 </html>

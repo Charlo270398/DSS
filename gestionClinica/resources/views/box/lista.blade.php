@@ -8,40 +8,47 @@
 
 @section('body')
 <!DOCTYPE html>
-<?php
-    if($op == 'borrar'){
-        $ruta = '/borrar';
-        $header = 'Borrar box';
-    }else if($op == 'editar'){
-        $ruta = '/editar';
-        $header = 'Editar box';
-    }else{
-        $ruta = '';
-        $header = 'Listado de boxess';
-    }
-?>
+
 <head>
+    <link href="/css/lists.css" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Boxes</title>
 </head>
-<link href="/css/lists.css" rel="stylesheet">
+
 <html>
-    <header>
-        <h2><?php echo $header;?></h2>
-    </header>
+
     <body>
         <br>
-        <div class = "listDivContainer">
+        <br>
+        
+        <div class = "container">
+            <?php if($departamentos->count() != 0){ ?>
+                <h2 style="text-align:center;"><strong><?php echo 'Listado de boxes';?></strong></h2>
+                <br>
+                <?php 
+                    if($error!=''){ ?>
+                        <div class="container">
+                                <div class="alert alert-danger" role="alert">
+                                    <?php  echo $error  ?>
+                                </div>
+                        </div>
+                <?php } ?>
+                <div class="btn-group-vertical" style="width: 100%;">
+                    <?php foreach($departamentos as $value): ?>
+                    
+                            <button onclick="window.location.href= '/box/<?php echo ($value->id);?>/borrar'" data-toggle="modal" data-target="#exampleModalCenter" type="button"  class="btn btn-danger depbutton ">Borrar box <?php echo $value->numero;?></button>
+                
+                    <?php endforeach; ?>
+                </div>
+            <?php }else{ ?>
+                <h2 style="text-align:center;">La lista de boxes está vacía</h2>
+            <?php } ?>
             <br>
-            <?php foreach($departamentos as $key=>$value): ?>
-                <ol class="btn-group">
-                    <a href="/box/<?php echo ($value->id . $ruta);?>">
-                        <button><?php echo $value->id;?></button>
-                    </a>
-                </ol>
-            <?php endforeach; ?>
             <br>
-            </div>
+            <button onclick="window.location.href='/usuario'" class='btn btn-primary' >Salir</button>
+        </div>
     </body>
+
+
 </html>
 @stop

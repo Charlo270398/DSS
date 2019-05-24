@@ -15,25 +15,19 @@ Pagina web para la gestión de citas y datos de pacientes de una clínica privad
 ## Guía de despliegue
 
 Pasos a seguir:
-* Ir a la carpeta raíz
-* Crear y rellenar las tablas de la BD "php artisan migrate:refresh --seed" *(en caso de fallo porque no existe un seeder ejecutar composer dump-autoload)
+* Situarse en la carpeta /gestionClinica .
+* Si es la primera vez que se ejecuta, crear la BD con "touch database/database.sqlite" y rellenar las tablas de la BD con "php artisan migrate:refresh --seed" *(en caso de fallo porque no existe un seeder ejecutar composer dump-autoload)
 * Ejecutar "php artisan serve"
 * Buscar en un navegador localhost:8000
 
+### Usuarios de prueba
+Pasos a seguir: 
+* Entrar en Iniciar Sesión (arriba a la derecha)
+* Para entrar en el área de administración e introducir los siguientes datos: EMAIL-> admin@gmail.com PASS->1234
+* Para entrar en el área de médico e introducir los siguientes datos: EMAIL-> jorgegonzalez@gmail.com PASS->1234
+* Para entrar en el área de paciente introducir los siguientes datos: EMAIL-> yaelduran@gmail.com PASS->1234
 
-* Para entrar en el area de administración escribir la siguiente ruta: localhost:8000/usuario/1
-* Para entrar en el area de Médico escribir la siguiente ruta: localhost:8000/usuario/3
-* Para entrar en el area de paciente escribir la siguiente ruta: localhost:8000/usuario/9
 
-
-
-Para entrar al área de usuario escribir la siguiente ruta: localhost:8000/usuario/{id}.
-Los usuarios de prueba (para ver funcionalidades con datos concretos) son los siguientes:
-
-* Administrador->ID=1
-* Médico-> ID=3
-* Paciente-> ID=9
-
-Para resolver cualquier consultar al equipo desarrollador.
+Para resolver cualquier duda consultar al equipo desarrollador.
 
 

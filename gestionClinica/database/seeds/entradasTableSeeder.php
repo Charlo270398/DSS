@@ -13,15 +13,19 @@ class entradasTableSeeder extends Seeder
     public function run()
     {
         DB::table('entradas')->delete();
+        $time = date('d-m-Y H:i:s');
+        $time =  Date('d-m-Y H:i:s', strtotime("09:00:00",strtotime($time)));
 
-        $ent= new Entrada(['usuario_id' => 9, 'texto' =>'Texto prueba',
-         'fecha' => date('2015-10-10 10:10:10')]);
+        for($i=0; $i<1; $i++){//Bucle por si queremos meter muchas entradas del tirón
+            $time =  Date('d-m-Y H:i:s', strtotime("+1 days",strtotime($time)));
+            $ent= new Entrada(['paciente_id' => 35, 'medico_id' => 3, 'asunto' => 'SIDA', 'descripcion' =>'No tiene sida, no se preocupe.',
+            'fecha' => $time]);
+            $ent->save();
+        }
+        $time =  Date('d-m-Y H:i:s', strtotime("+1 hours",strtotime($time)));
+        $ent= new Entrada(['paciente_id' => 35, 'medico_id' => 4, 'asunto' => 'HAY QUE AMPUTAR', 'descripcion' =>'Necrosis en ambas piernas, hay que amputar',
+        'fecha' => $time]);
         $ent->save();
-        $ent= new Entrada(['usuario_id' => 9, 'texto' =>'Texto prueba 2',
-         'fecha' => date('2017-10-10 10:10:10')]);
-        $ent->save();
-        $ent= new Entrada(['usuario_id' => 9, 'texto' =>'Texto prueba 3',
-         'fecha' => date('2012-10-10 10:10:10')]);
-        $ent->save();
+
     }
 }

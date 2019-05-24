@@ -1,0 +1,46 @@
+Se recomienda ver actividad en Trello y
+en GitHub para ver el trabajo aportado por cada uno.
+
+Ramas de github de cada componente:
+- Carlos -> Rama Carlos
+- Soufyan -> Rama Soufyan
+- Juan -> Ramas Juan, Wito, Soliveres (esta última es la más reciente)
+- Miguel -> Rama Miguel
+
+Para unificar el trabajo hemos usado la rama Develop.
+ 
+Hemos llevado a cabo una valoración individual hacia los demás compañeros.
+
+Valoraciones individuales hechas por cada componente del grupo:
+
+Nombre: Carlos Zamora Sanz		Valoración (de 0 a 10)
+--------------------------------------------------------------+
+Carlos Zamora Sanz				10
+Soufyan Rhazili Raoui				8
+Juan Soliveres Olivares				8
+Miguel Campello Roman 				5
+
+
+Nombre: Soufyan Rhazili Raoui		Valoración (de 0 a 10)
+--------------------------------------------------------------+
+Carlos Zamora Sanz				10
+Soufyan Rhazili Raoui				8
+Juan Soliveres Olivares				8
+Miguel Campello Roman 				5
+
+
+Nombre: Juan Soliveres Olivares		Valoración (de 0 a 10) 
+--------------------------------------------------------------+
+Carlos Zamora Sanz				10
+Soufyan Rhazili Raoui				8
+Juan Soliveres Olivares				8
+Miguel Campello Roman 				5
+
+
+Nombre: Miguel Campello Roman 		Valoración (de 0 a 10)
+--------------------------------------------------------------+
+Carlos Zamora Sanz				
+Soufyan Rhazili Raoui				
+Juan Soliveres Olivares				
+Miguel Campello Roman 				
+

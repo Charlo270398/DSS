@@ -28,7 +28,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/logged';
 
     /**
      * Create a new controller instance.
@@ -50,8 +50,11 @@ class RegisterController extends Controller
     {
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
+            'apellidos' => ['required', 'string', 'max:255'],
+            'fecha_nacimiento' => ['required', 'date', 'min:10', 'max:10'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:6', 'confirmed'],
+            'password' => ['required', 'string', 'min:4', 'confirmed'],
+            'dni' => ['required', 'string', 'min:9', 'max:9', 'unique:users'],
         ]);
     }
 
@@ -64,9 +67,13 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         return User::create([
-            'name' => $data['name'],
+            'nombre' => $data['name'],
+            'apellidos' => $data['apellidos'],
+            'fecha_nacimiento' => $data['fecha_nacimiento'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'dni' => $data['dni'],
+            'rol_id' => 2 //TODO asignar a paciente de forma correcta
         ]);
     }
 }

@@ -13,16 +13,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Menu usuario</title>
 </head>
-<link href="/css/menus.css" rel="stylesheet">
 <html>
     <header>
-        <div class = "title">
-            <h2>Bienvenido <?php echo $user->nombre ?> </h2>
+        <div class = "container" style="text-align: center">
+            <h1><strong> Bienvenid@ <?php echo Auth::user()->nombre ?> </strong></h1>
         </div>
     </header>
     <br>
     <body>
-         @include('components/menu' . $tipo->nombre, array('user'=>$user)) 
+        <?php 
+        if($error!=''){ ?>
+            <div class="container">
+                    <div class="alert alert-danger" role="alert">
+                        <?php  echo $error  ?>
+                    </div>
+            </div>
+        <?php } ?>
+         @include('components/menu' . $tipo->nombre) 
     </body>
 </html>
 @stop
